@@ -135,7 +135,7 @@ func schema_pkg_apis_application_v1alpha1_AppProject(ref common.ReferenceCallbac
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
+				Description: "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster allow list) * what may be deployed (repository allow list, resource allow/block list) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"kind": {
@@ -279,7 +279,7 @@ func schema_pkg_apis_application_v1alpha1_AppProjectSpec(ref common.ReferenceCal
 					},
 					"clusterResourceWhitelist": {
 						SchemaProps: spec.SchemaProps{
-							Description: "ClusterResourceWhitelist contains list of whitelisted cluster level resources",
+							Description: "ClusterResourceWhitelist contains list of allowed cluster level resources",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -292,7 +292,7 @@ func schema_pkg_apis_application_v1alpha1_AppProjectSpec(ref common.ReferenceCal
 					},
 					"namespaceResourceBlacklist": {
 						SchemaProps: spec.SchemaProps{
-							Description: "NamespaceResourceBlacklist contains list of blacklisted namespace level resources",
+							Description: "NamespaceResourceBlacklist contains list of blocked namespace level resources",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -324,7 +324,7 @@ func schema_pkg_apis_application_v1alpha1_AppProjectSpec(ref common.ReferenceCal
 					},
 					"namespaceResourceWhitelist": {
 						SchemaProps: spec.SchemaProps{
-							Description: "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
+							Description: "NamespaceResourceWhitelist contains list of allowed namespace level resources",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -350,7 +350,7 @@ func schema_pkg_apis_application_v1alpha1_AppProjectSpec(ref common.ReferenceCal
 					},
 					"clusterResourceBlacklist": {
 						SchemaProps: spec.SchemaProps{
-							Description: "ClusterResourceBlacklist contains list of blacklisted cluster level resources",
+							Description: "ClusterResourceBlacklist contains list of blocked cluster level resources",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{

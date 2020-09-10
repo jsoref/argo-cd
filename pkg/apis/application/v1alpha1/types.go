@@ -1445,8 +1445,8 @@ type AppProjectList struct {
 }
 
 // AppProject provides a logical grouping of applications, providing controls for:
-// * where the apps may deploy to (cluster whitelist)
-// * what may be deployed (repository whitelist, resource whitelist/blacklist)
+// * where the apps may deploy to (cluster allow list)
+// * what may be deployed (repository allow list, resource allow/block list)
 // * who can access these applications (roles, OIDC group claims bindings)
 // * and what they can do (RBAC policies)
 // * automation access to these roles (JWT tokens)
@@ -1802,19 +1802,19 @@ type AppProjectSpec struct {
 	Description string `json:"description,omitempty" protobuf:"bytes,3,opt,name=description"`
 	// Roles are user defined RBAC roles associated with this project
 	Roles []ProjectRole `json:"roles,omitempty" protobuf:"bytes,4,rep,name=roles"`
-	// ClusterResourceWhitelist contains list of whitelisted cluster level resources
+	// ClusterResourceWhitelist contains list of allowed cluster level resources
 	ClusterResourceWhitelist []metav1.GroupKind `json:"clusterResourceWhitelist,omitempty" protobuf:"bytes,5,opt,name=clusterResourceWhitelist"`
-	// NamespaceResourceBlacklist contains list of blacklisted namespace level resources
+	// NamespaceResourceBlacklist contains list of blocked namespace level resources
 	NamespaceResourceBlacklist []metav1.GroupKind `json:"namespaceResourceBlacklist,omitempty" protobuf:"bytes,6,opt,name=namespaceResourceBlacklist"`
 	// OrphanedResources specifies if controller should monitor orphaned resources of apps in this project
 	OrphanedResources *OrphanedResourcesMonitorSettings `json:"orphanedResources,omitempty" protobuf:"bytes,7,opt,name=orphanedResources"`
 	// SyncWindows controls when syncs can be run for apps in this project
 	SyncWindows SyncWindows `json:"syncWindows,omitempty" protobuf:"bytes,8,opt,name=syncWindows"`
-	// NamespaceResourceWhitelist contains list of whitelisted namespace level resources
+	// NamespaceResourceWhitelist contains list of allowed namespace level resources
 	NamespaceResourceWhitelist []metav1.GroupKind `json:"namespaceResourceWhitelist,omitempty" protobuf:"bytes,9,opt,name=namespaceResourceWhitelist"`
 	// List of PGP key IDs that commits to be synced to must be signed with
 	SignatureKeys []SignatureKey `json:"signatureKeys,omitempty" protobuf:"bytes,10,opt,name=signatureKeys"`
-	// ClusterResourceBlacklist contains list of blacklisted cluster level resources
+	// ClusterResourceBlacklist contains list of blocked cluster level resources
 	ClusterResourceBlacklist []metav1.GroupKind `json:"clusterResourceBlacklist,omitempty" protobuf:"bytes,11,opt,name=clusterResourceBlacklist"`
 }
 

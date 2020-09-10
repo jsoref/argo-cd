@@ -23,8 +23,8 @@ message AWSAuthConfig {
 }
 
 // AppProject provides a logical grouping of applications, providing controls for:
-// * where the apps may deploy to (cluster whitelist)
-// * what may be deployed (repository whitelist, resource whitelist/blacklist)
+// * where the apps may deploy to (cluster allow list)
+// * what may be deployed (repository allow list, resource allow/block list)
 // * who can access these applications (roles, OIDC group claims bindings)
 // * and what they can do (RBAC policies)
 // * automation access to these roles (JWT tokens)
@@ -65,7 +65,7 @@ message AppProjectSpec {
   // ClusterResourceWhitelist contains list of whitelisted cluster level resources
   repeated k8s.io.apimachinery.pkg.apis.meta.v1.GroupKind clusterResourceWhitelist = 5;
 
-  // NamespaceResourceBlacklist contains list of blacklisted namespace level resources
+  // NamespaceResourceBlacklist contains list of blocked namespace level resources
   repeated k8s.io.apimachinery.pkg.apis.meta.v1.GroupKind namespaceResourceBlacklist = 6;
 
   // OrphanedResources specifies if controller should monitor orphaned resources of apps in this project
@@ -80,7 +80,7 @@ message AppProjectSpec {
   // List of PGP key IDs that commits to be synced to must be signed with
   repeated SignatureKey signatureKeys = 10;
 
-  // ClusterResourceBlacklist contains list of blacklisted cluster level resources
+  // ClusterResourceBlacklist contains list of blocked cluster level resources
   repeated k8s.io.apimachinery.pkg.apis.meta.v1.GroupKind clusterResourceBlacklist = 11;
 }
 
