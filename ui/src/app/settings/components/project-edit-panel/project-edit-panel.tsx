@@ -117,7 +117,7 @@ export const ProjectEditPanel = (props: {nameReadonly?: boolean; defaultParams?:
                     </DataLoader>
 
                     <React.Fragment>
-                        <h4>Whitelisted Cluster Resources</h4>
+                        <h4>Allowed Cluster Resources</h4>
                         <div>Cluster-scoped K8s API Groups and Kinds which are permitted to be deployed</div>
                         <div className='argo-table-list__head'>
                             <div className='row'>
@@ -141,12 +141,12 @@ export const ProjectEditPanel = (props: {nameReadonly?: boolean; defaultParams?:
                             </div>
                         ))}
                         <a onClick={() => api.setValue('clusterResourceWhitelist', api.values.clusterResourceWhitelist.concat({group: '', kind: ''}))}>
-                            whitelist new cluster resource
+                            allow new cluster resource
                         </a>
                     </React.Fragment>
 
                     <React.Fragment>
-                        <h4>Blacklisted Cluster Resources</h4>
+                        <h4>Blocked Cluster Resources</h4>
                         <div>Cluster-scoped K8s API Groups and Kinds which are not permitted to be deployed</div>
                         <div className='argo-table-list__head'>
                             <div className='row'>
@@ -170,12 +170,12 @@ export const ProjectEditPanel = (props: {nameReadonly?: boolean; defaultParams?:
                             </div>
                         ))}
                         <a onClick={() => api.setValue('clusterResourceBlacklist', api.values.clusterResourceBlacklist.concat({group: '', kind: ''}))}>
-                            blacklist new cluster resource
+                            block new cluster resource
                         </a>
                     </React.Fragment>
 
                     <React.Fragment>
-                        <h4>Blacklisted Namespaced Resources</h4>
+                        <h4>Blocked Namespaced Resources</h4>
                         <div>
                             Namespace-scoped K8s API Groups and Kinds which are <strong>prohibited</strong> from being deployed
                         </div>
@@ -201,12 +201,12 @@ export const ProjectEditPanel = (props: {nameReadonly?: boolean; defaultParams?:
                             </div>
                         ))}
                         <a onClick={() => api.setValue('namespaceResourceBlacklist', api.values.namespaceResourceBlacklist.concat({group: '', kind: ''}))}>
-                            blacklist new namespaced resource
+                            block new namespaced resource
                         </a>
                     </React.Fragment>
 
                     <React.Fragment>
-                        <h4>Whitelisted Namespaced Resources</h4>
+                        <h4>Allowed Namespaced Resources</h4>
                         <div>
                             Namespace-scoped K8s API Groups and Kinds which are <strong>permitted</strong> to deploy
                         </div>
@@ -232,7 +232,7 @@ export const ProjectEditPanel = (props: {nameReadonly?: boolean; defaultParams?:
                             </div>
                         ))}
                         <a onClick={() => api.setValue('namespaceResourceWhitelist', api.values.namespaceResourceWhitelist.concat({group: '', kind: ''}))}>
-                            whitelist new namespaced resource
+                            allow new namespaced resource
                         </a>
                     </React.Fragment>
 

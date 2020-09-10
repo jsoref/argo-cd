@@ -534,7 +534,7 @@ export class ProjectDetails extends React.Component<RouteComponentProps<{name: s
                     </div>
                 )}
 
-                <h4>Whitelisted cluster resources {helpTip('Cluster-scoped K8s API Groups and Kinds which are permitted to be deployed')}</h4>
+                <h4>Allowed cluster resources {helpTip('Cluster-scoped K8s API Groups and Kinds which are permitted to be deployed')}</h4>
                 {((proj.spec.clusterResourceWhitelist || []).length > 0 && (
                     <div className='argo-table-list'>
                         <div className='argo-table-list__head'>
@@ -558,7 +558,7 @@ export class ProjectDetails extends React.Component<RouteComponentProps<{name: s
                     </div>
                 )}
 
-                <h4>Blacklisted cluster resources {helpTip('Cluster-scoped K8s API Groups and Kinds which are not permitted to be deployed')}</h4>
+                <h4>Blocked cluster resources {helpTip('Cluster-scoped K8s API Groups and Kinds which are not permitted to be deployed')}</h4>
                 {((proj.spec.clusterResourceBlacklist || []).length > 0 && (
                     <div className='argo-table-list'>
                         <div className='argo-table-list__head'>
@@ -582,7 +582,7 @@ export class ProjectDetails extends React.Component<RouteComponentProps<{name: s
                     </div>
                 )}
 
-                <h4>Blacklisted namespaced resources {helpTip('Namespace-scoped K8s API Groups and Kinds which are prohibited from being deployed')}</h4>
+                <h4>Blocked namespaced resources {helpTip('Namespace-scoped K8s API Groups and Kinds which are prohibited from being deployed')}</h4>
                 {((proj.spec.namespaceResourceBlacklist || []).length > 0 && (
                     <div className='argo-table-list'>
                         <div className='argo-table-list__head'>
@@ -606,7 +606,7 @@ export class ProjectDetails extends React.Component<RouteComponentProps<{name: s
                     </div>
                 )}
 
-                <h4>Whitelisted namespaced resources {helpTip('Namespace-scoped K8s API Groups and Kinds which are permitted to deploy')}</h4>
+                <h4>Allowed namespaced resources {helpTip('Namespace-scoped K8s API Groups and Kinds which are permitted to deploy')}</h4>
                 {((proj.spec.namespaceResourceWhitelist || []).length > 0 && (
                     <div className='argo-table-list'>
                         <div className='argo-table-list__head'>
