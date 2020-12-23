@@ -125,7 +125,7 @@ export function compareNodes(first: ResourceTreeNode, second: ResourceTreeNode) 
         if (isNaN(numberA) || isNaN(numberB)) {
             return a.localeCompare(b);
         }
-        return Math.sign(numberA - numberB);
+        return Math.sign(numberB - numberA);
     }
     function getRevision(a: ResourceTreeNode) {
         const filtered = a.info.filter(b => b.name === 'Revision' && b)[0];
