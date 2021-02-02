@@ -66,9 +66,9 @@ func Test_CreateOrUpdateSecretField(t *testing.T) {
 
 	t.Run("Change field in non-existing secret", func(t *testing.T) {
 		ku := NewKubeUtil(client, context.TODO())
-		err := ku.CreateOrUpdateSecretField("test", "nonexist-secret", "password", "foobaz")
+		err := ku.CreateOrUpdateSecretField("test", "nonexistent-secret", "password", "foobaz")
 		require.NoError(t, err)
-		s, err := getSecret(client, "test", "nonexist-secret")
+		s, err := getSecret(client, "test", "nonexistent-secret")
 		require.NoError(t, err)
 
 		// password field should be requested value
@@ -96,9 +96,9 @@ func Test_CreateOrUpdateSecretField(t *testing.T) {
 
 	t.Run("Change field in existing secret with labels", func(t *testing.T) {
 		ku := NewKubeUtil(client, context.TODO()).WithAnnotations(annotations).WithLabels(labels)
-		err := ku.CreateOrUpdateSecretField("test", "nonexisting-secret", "password", "barfoo")
+		err := ku.CreateOrUpdateSecretField("test", "nonexistent-secret", "password", "barfoo")
 		require.NoError(t, err)
-		s, err := getSecret(client, "test", "nonexisting-secret")
+		s, err := getSecret(client, "test", "nonexistent-secret")
 		require.NoError(t, err)
 
 		// password field should be updated
@@ -149,9 +149,9 @@ func Test_CreateOrUpdateSecretData(t *testing.T) {
 
 	t.Run("Change data in non-existing secret with merge", func(t *testing.T) {
 		ku := NewKubeUtil(client, context.TODO())
-		err := ku.CreateOrUpdateSecretData("test", "nonexist-secret", data1, true)
+		err := ku.CreateOrUpdateSecretData("test", "nonexistent-secret", data1, true)
 		require.NoError(t, err)
-		s, err := getSecret(client, "test", "nonexist-secret")
+		s, err := getSecret(client, "test", "nonexistent-secret")
 		require.NoError(t, err)
 		require.Len(t, s.Data, 1)
 		require.Equal(t, "barfoo", string(s.Data["password"]))
@@ -171,9 +171,9 @@ func Test_CreateOrUpdateSecretData(t *testing.T) {
 
 	t.Run("Change data in non-existing secret without merge", func(t *testing.T) {
 		ku := NewKubeUtil(client, context.TODO())
-		err := ku.CreateOrUpdateSecretData("test", "nonexist-secret", data2, false)
+		err := ku.CreateOrUpdateSecretData("test", "nonexistent-secret", data2, false)
 		require.NoError(t, err)
-		s, err := getSecret(client, "test", "nonexist-secret")
+		s, err := getSecret(client, "test", "nonexistent-secret")
 		require.NoError(t, err)
 		require.Len(t, s.Data, 1)
 		require.Equal(t, "foobarbaz", string(s.Data["password"]))
