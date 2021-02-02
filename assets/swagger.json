@@ -2500,7 +2500,7 @@
         "tags": [
           "RepositoryService"
         ],
-        "summary": "ListApps returns list of apps in the repe",
+        "summary": "ListApps returns list of apps in the repo",
         "operationId": "RepositoryService_ListApps",
         "parameters": [
           {
