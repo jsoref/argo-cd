@@ -1,0 +1,32 @@
+# data urls
+data:[a-zA-Z=;,/0-9+-]+
+# Google Docs
+/docs\.google\.com/[a-z]+/d/(?:e/|)[0-9a-zA-Z_-]+/
+\b(?:ssh|ecdsa)[-a-z0-9]+ [a-zA-Z=;,/0-9+-]+
+\bgithub\.com/[0-9a-zA-Z/.-]*
+https://(?:(?:www\.|)youtube\.com|youtu.be)/[-a-zA-Z0-9?&=]*
+\bimg\.youtube\.com/vi/[-a-zA-Z0-9?&=_]*
+# URL escaped characters
+\%[0-9A-F]{2}
+(?:0[Xx]|\\x|U\+|#)[0-9a-fA-FGgRr]{2,}[Uu]?[Ll]{0,2}\b
+\b[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}\b
+^MII[0-9A-Za-z+=/]{61}$
+^[0-9A-Za-z+=/]{50,61}=$
+\b[0-9a-f]{40}\b
+256:[a-zA-Z=;,/0-9+-]{43}\b
+256:[0-9a-f]{64}
+\b[0-9a-f]{64}\b
+_[0-9a-f]{16}\b
+\b(?:crt|config|icon|namespace|secret|secretKey|password|\(password\)|server|token|observedGeneration|uid)"?\s*[:=]{1,2}\s*"?[a-zA-Z=;,._/0-9$+-]+(?:$|")
+(?:client(?:ID|Secret)|accessKey): "?\w+
+(?:IsCommitSHA|RandStringCharset)\(.*\)
+(?:testToken|letterBytes|GpgGoodKeyID)\s*:?=\s*"[^"]+"
+# ignore long runs of a single character:
+\b([A-Za-z])\g{-1}{3,}\b
+# <word>v#
+[Vv]\d+(?:\b|(?=[a-zA-Z_]))
+#
+sparkApplicationId: \S+
+# curl arguments
+\b(?:)curl(?:\s+-[a-zA-Z]+)+
+AuthToken: ".*?"
