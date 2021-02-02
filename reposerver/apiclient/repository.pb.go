@@ -1334,7 +1334,7 @@ const _ = grpc.SupportPackageIsVersion4
 type RepoServerServiceClient interface {
 	// GenerateManifest generates manifest for application in specified repo name and revision
 	GenerateManifest(ctx context.Context, in *ManifestRequest, opts ...grpc.CallOption) (*ManifestResponse, error)
-	// Returns a list of refs (eg. branches and tags) in the repo
+	// Returns a list of refs (e.g. branches and tags) in the repo
 	ListRefs(ctx context.Context, in *ListRefsRequest, opts ...grpc.CallOption) (*Refs, error)
 	// ListApps returns a list of apps in the repo
 	ListApps(ctx context.Context, in *ListAppsRequest, opts ...grpc.CallOption) (*AppList, error)
@@ -1412,7 +1412,7 @@ func (c *repoServerServiceClient) GetHelmCharts(ctx context.Context, in *HelmCha
 type RepoServerServiceServer interface {
 	// GenerateManifest generates manifest for application in specified repo name and revision
 	GenerateManifest(context.Context, *ManifestRequest) (*ManifestResponse, error)
-	// Returns a list of refs (eg. branches and tags) in the repo
+	// Returns a list of refs (e.g. branches and tags) in the repo
 	ListRefs(context.Context, *ListRefsRequest) (*Refs, error)
 	// ListApps returns a list of apps in the repo
 	ListApps(context.Context, *ListAppsRequest) (*AppList, error)
