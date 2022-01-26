@@ -2,16 +2,16 @@
 
 Sync windows are configurable windows of time where syncs will either be blocked or allowed. These are defined
 by a kind, which can be either `allow` or `deny`, a `schedule` in cron format and a duration along with one or 
-more of either `applications`, `namespaces` and `clusters`. Wildcards are supported. These windows affect the running 
-of both manual and automated syncs but allow an override for manual syncs which is useful if you are only interested
+more of either `applications`, `namespaces`, or `clusters`. Wildcards are supported. These windows affect running 
+both manual and automated syncs but allow an override for manual syncs which is useful if you are only interested
 in preventing automated syncs or if you need to temporarily override a window to perform a sync.
 
-The windows work in the following way. If there are no windows matching an application then all syncs are allowed. If there
-are any `allow` windows matching an application then syncs will only be allowed when there is an active `allow` windows. If there
-are any `deny` windows matching an application then all syncs will be denied when the `deny` windows are active. If there is an
-active matching `allow` and an active matching `deny` then syncs will be denied as `deny` windows override `allow` windows. The
+The windows work in the following way: If no windows match an application then all syncs are allowed. If
+any `allow` windows match an application then syncs will only be allowed when there is an active `allow` window. If there
+any `deny` windows match an application then all syncs will be denied when `deny` windows are active. If an
+active `allow` and an active `deny` both apply then syncs will be denied as `deny` windows override `allow` windows. The
 UI and the CLI will both display the state of the sync windows. The UI has a panel which will display different colours depending
-on the state. The colours are as follows. `Red: sync denied`, `Orange: manual allowed` and `Green: sync allowed`.
+on the state. The colours are as follows: `Red: sync denied`, `Orange: manual allowed`, and `Green: sync allowed`.
 
 To display the sync state using the CLI:
 
@@ -75,14 +75,14 @@ spec:
      - cluster1
 ```
 
-In order to perform a sync when syncs are being prevented by a window, you can configure the window to allow manual syncs
-using the CLI, UI or directly in the `AppProject` manifest:
+In order to perform a sync when syncs are being blocked by a window, you can configure the window to allow manual syncs
+using the CLI, UI, or directly in the `AppProject` manifest:
 
 ```bash
 argocd proj windows enable-manual-sync PROJECT ID
 ```
 
-To disable
+To disable:
 
 ```bash
 argocd proj windows disable-manual-sync PROJECT ID
@@ -102,9 +102,9 @@ ID  STATUS    KIND   SCHEDULE    DURATION  APPLICATIONS  NAMESPACES  CLUSTERS  M
 3   Active    deny   * * * * *   1h        -             default     -         Disabled
 ```
 
-All fields of a window can be updated using either the CLI or UI. The `applications`, `namespaces` and `clusters` fields
+All fields of a window can be updated using either the CLI or UI. The `applications`, `namespaces`, and `clusters` fields
 require the update to contain all of the required values. For example if updating the `namespaces` field and it already
-contains default and kube-system then the new value would have to include those in the list. 
+contains `default` and `kube-system` then the new value would have to include those in the list. 
 
 ```bash
 argocd proj windows update PROJECT ID --namespaces default,kube-system,prod1
