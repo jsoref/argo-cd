@@ -60,11 +60,13 @@ func Tgz(srcPath string, inclusions []string, exclusions []string, writers ...io
 //   - points to a non existing directory
 func Untgz(dstPath string, r io.Reader, maxSize int64) error {
 	if !filepath.IsAbs(dstPath) {
+		log.Warnf("Untgz: dstPath points to a relative path: %s", dstPath)
 		return fmt.Errorf("dstPath points to a relative path: %s", dstPath)
 	}
 
 	gzr, err := gzip.NewReader(r)
 	if err != nil {
+		log.Warnf("Untgz: error reading file: %w", err)
 		return fmt.Errorf("error reading file: %w", err)
 	}
 	defer gzr.Close()
@@ -72,59 +74,83 @@ func Untgz(dstPath string, r io.Reader, maxSize int64) error {
 	lr := io.LimitReader(gzr, maxSize)
 	tr := tar.NewReader(lr)
 
+	log.Warnf("Untgz(%s)", dstPath)
+
 	for {
 		header, err := tr.Next()
 		if err != nil {
 			if err == io.EOF {
+				log.Warn("Untgz: io.EOF")
 				break
 			}
+			log.Warnf("Untgz: error while iterating on tar reader: %w", err)
 			return fmt.Errorf("error while iterating on tar reader: %w", err)
 		}
-		if header == nil || header.Name == "." {
+		if header == nil {
+			log.Warnf("Untgz: header == nil")
 			continue
 		}
+		if header.Name == "." {
+			log.Warnf("Untgz: header.Name == '.'")
+			continue
+		}
+		log.Warnf("Untgz header.Name = %s", header.Name)
 
 		target := filepath.Join(dstPath, header.Name)
 		// Sanity check to protect against zip-slip
 		if !Inbound(target, dstPath) {
+			log.Warnf("Untgz: illegal filepath in archive: %s", target)
 			return fmt.Errorf("illegal filepath in archive: %s", target)
 		}
 
 		switch header.Typeflag {
 		case tar.TypeDir:
+			log.Warn("Untgz: header.Typeflag = tar.TypeDir")
 			err := os.MkdirAll(target, 0755)
 			if err != nil {
+				log.Warnf("Untgz: error creating nested folders: %w", err)
 				return fmt.Errorf("error creating nested folders: %w", err)
 			}
 		case tar.TypeSymlink:
+			log.Warn("Untgz: header.Typeflag = tar.TypeSymlink")
 			// Sanity check to protect against symlink exploit
 			linkTarget := filepath.Join(filepath.Dir(target), header.Linkname)
+			log.Warnf("Untgz: linkTarget = %s", linkTarget)
 			realPath, err := filepath.EvalSymlinks(linkTarget)
+			log.Warnf("Untgz: realPath = %s", realPath)
 			if os.IsNotExist(err) {
+				log.Warn("Untgz: !os.IsNotExist; clobbering! realPath = linkTarget")
 				realPath = linkTarget
 			} else if err != nil {
+				log.Warnf("Untgz: error checking symlink realpath: %s", err)
 				return fmt.Errorf("error checking symlink realpath: %s", err)
 			}
 			if !Inbound(realPath, dstPath) {
+				log.Warnf("Untgz: illegal filepath in symlink: %s", linkTarget)
 				return fmt.Errorf("illegal filepath in symlink: %s", linkTarget)
 			}
 			err = os.Symlink(realPath, target)
 			if err != nil {
+				log.Warnf("Untgz: error creating symlink: %s", err)
 				return fmt.Errorf("error creating symlink: %s", err)
 			}
 		case tar.TypeReg:
+			log.Warn("Untgz: header.Typeflag = tar.TypeReg")
 			err := os.MkdirAll(filepath.Dir(target), 0755)
 			if err != nil {
+				log.Warnf("Untgz: error creating nested folders: %w", err)
 				return fmt.Errorf("error creating nested folders: %w", err)
 			}
 
 			f, err := os.Create(target)
 			if err != nil {
+				log.Warnf("Untgz: error creating file %q: %w", target, err)
 				return fmt.Errorf("error creating file %q: %w", target, err)
 			}
 			w := bufio.NewWriter(f)
 			if _, err := io.Copy(w, tr); err != nil {
 				f.Close()
+				log.Warnf("Untgz: error extracting file %s: %w", header.Name, err)
 				return fmt.Errorf("error writing tgz file: %w", err)
 			}
 			f.Close()
