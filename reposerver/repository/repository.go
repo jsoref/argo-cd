@@ -851,89 +851,84 @@ func (s *Service) getManifestCacheEntry(cacheKey string, q *apiclient.ManifestRe
 
 	res := cache.CachedManifestResponse{}
 	err := s.cache.GetManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, &res, refSourceCommitSHAs)
-	if err == nil {
-
-		// The cache contains an existing value
-
-		// If caching of manifest generation errors is enabled, and res is a cached manifest generation error...
-		if s.initConstants.PauseGenerationAfterFailedGenerationAttempts > 0 && res.FirstFailureTimestamp > 0 {
-
-			// If we are already in the 'manifest generation caching' state, due to too many consecutive failures...
-			if res.NumberOfConsecutiveFailures >= s.initConstants.PauseGenerationAfterFailedGenerationAttempts {
-
-				// Check if enough time has passed to try generation again (e.g. to exit the 'manifest generation caching' state)
-				if s.initConstants.PauseGenerationOnFailureForMinutes > 0 {
-
-					elapsedTimeInMinutes := int((s.now().Unix() - res.FirstFailureTimestamp) / 60)
-
-					// After X minutes, reset the cache and retry the operation (e.g. perhaps the error is ephemeral and has passed)
-					if elapsedTimeInMinutes >= s.initConstants.PauseGenerationOnFailureForMinutes {
-						cache.LogDebugManifestCacheKeyFields("deleting manifests cache", "manifest hash did not match or cached response is empty", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
-
-						// We can now try again, so reset the cache state and run the operation below
-						err = s.cache.DeleteManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
-						if err != nil {
-							log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
-						}
-						log.Infof("manifest error cache hit and reset: %s/%s", q.ApplicationSource.String(), cacheKey)
-						return false, nil, nil
-					}
-				}
-
-				// Check if enough cached responses have been returned to try generation again (e.g. to exit the 'manifest generation caching' state)
-				if s.initConstants.PauseGenerationOnFailureForRequests > 0 && res.NumberOfCachedResponsesReturned > 0 {
-
-					if res.NumberOfCachedResponsesReturned >= s.initConstants.PauseGenerationOnFailureForRequests {
-						cache.LogDebugManifestCacheKeyFields("deleting manifests cache", "reset after paused generation count", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
-
-						// We can now try again, so reset the error cache state and run the operation below
-						err = s.cache.DeleteManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
-						if err != nil {
-							log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
-						}
-						log.Infof("manifest error cache hit and reset: %s/%s", q.ApplicationSource.String(), cacheKey)
-						return false, nil, nil
-					}
-				}
-
-				// Otherwise, manifest generation is still paused
-				log.Infof("manifest error cache hit: %s/%s", q.ApplicationSource.String(), cacheKey)
-
-				cachedErrorResponse := fmt.Errorf(cachedManifestGenerationPrefix+": %s", res.MostRecentError)
-
-				if firstInvocation {
-					cache.LogDebugManifestCacheKeyFields("setting manifests cache", "update error count", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
-
-					// Increment the number of returned cached responses and push that new value to the cache
-					// (if we have not already done so previously in this function)
-					res.NumberOfCachedResponsesReturned++
-					err = s.cache.SetManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, &res, refSourceCommitSHAs)
-					if err != nil {
-						log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
-					}
-				}
-
-				return true, nil, cachedErrorResponse
-
-			}
-
-			// Otherwise we are not yet in the manifest generation error state, and not enough consecutive errors have
-			// yet occurred to put us in that state.
-			log.Infof("manifest error cache miss: %s/%s", q.ApplicationSource.String(), cacheKey)
-			return false, res.ManifestResponse, nil
+	if err != nil {
+		if err != reposervercache.ErrCacheMiss {
+			log.Warnf("manifest cache error %s: %v", q.ApplicationSource.String(), err)
+		} else {
+			log.Infof("manifest cache miss: %s/%s", q.ApplicationSource.String(), cacheKey)
 		}
 
+		return false, nil, nil
+	}
+
+	// The cache contains an existing value
+	if s.initConstants.PauseGenerationAfterFailedGenerationAttempts < 0 || res.FirstFailureTimestamp < 0 {
 		log.Infof("manifest cache hit: %s/%s", q.ApplicationSource.String(), cacheKey)
 		return true, res.ManifestResponse, nil
 	}
 
-	if err != reposervercache.ErrCacheMiss {
-		log.Warnf("manifest cache error %s: %v", q.ApplicationSource.String(), err)
-	} else {
-		log.Infof("manifest cache miss: %s/%s", q.ApplicationSource.String(), cacheKey)
+	// If caching of manifest generation errors is enabled, and res is a cached manifest generation error...
+	if res.NumberOfConsecutiveFailures < s.initConstants.PauseGenerationAfterFailedGenerationAttempts {
+		// We are not yet in the manifest generation error state, and not enough consecutive errors have
+		// yet occurred to put us in that state.
+		log.Infof("manifest error cache miss: %s/%s", q.ApplicationSource.String(), cacheKey)
+		return false, res.ManifestResponse, nil
 	}
 
-	return false, nil, nil
+	// If we are already in the 'manifest generation caching' state, due to too many consecutive failures...
+	// Check if enough time has passed to try generation again (e.g. to exit the 'manifest generation caching' state)
+	if s.initConstants.PauseGenerationOnFailureForMinutes > 0 {
+
+		elapsedTimeInMinutes := int((s.now().Unix() - res.FirstFailureTimestamp) / 60)
+
+		// After X minutes, reset the cache and retry the operation (e.g. perhaps the error is ephemeral and has passed)
+		if elapsedTimeInMinutes >= s.initConstants.PauseGenerationOnFailureForMinutes {
+			cache.LogDebugManifestCacheKeyFields("deleting manifests cache", "manifest hash did not match or cached response is empty", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
+
+			// We can now try again, so reset the cache state and run the operation below
+			err = s.cache.DeleteManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
+			if err != nil {
+				log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
+			}
+			log.Infof("manifest error cache hit and reset: %s/%s", q.ApplicationSource.String(), cacheKey)
+			return false, nil, nil
+		}
+	}
+
+	// Check if enough cached responses have been returned to try generation again (e.g. to exit the 'manifest generation caching' state)
+	if s.initConstants.PauseGenerationOnFailureForRequests > 0 && res.NumberOfCachedResponsesReturned > 0 {
+
+		if res.NumberOfCachedResponsesReturned >= s.initConstants.PauseGenerationOnFailureForRequests {
+			cache.LogDebugManifestCacheKeyFields("deleting manifests cache", "reset after paused generation count", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
+
+			// We can now try again, so reset the error cache state and run the operation below
+			err = s.cache.DeleteManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
+			if err != nil {
+				log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
+			}
+			log.Infof("manifest error cache hit and reset: %s/%s", q.ApplicationSource.String(), cacheKey)
+			return false, nil, nil
+		}
+	}
+
+	// Otherwise, manifest generation is still paused
+	log.Infof("manifest error cache hit: %s/%s", q.ApplicationSource.String(), cacheKey)
+
+	cachedErrorResponse := fmt.Errorf(cachedManifestGenerationPrefix+": %s", res.MostRecentError)
+
+	if firstInvocation {
+		cache.LogDebugManifestCacheKeyFields("setting manifests cache", "update error count", cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, refSourceCommitSHAs)
+
+		// Increment the number of returned cached responses and push that new value to the cache
+		// (if we have not already done so previously in this function)
+		res.NumberOfCachedResponsesReturned++
+		err = s.cache.SetManifests(cacheKey, q.ApplicationSource, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, &res, refSourceCommitSHAs)
+		if err != nil {
+			log.Warnf("manifest cache set error %s/%s: %v", q.ApplicationSource.String(), cacheKey, err)
+		}
+	}
+
+	return true, nil, cachedErrorResponse
 }
 
 func getHelmRepos(appPath string, repositories []*v1alpha1.Repository, helmRepoCreds []*v1alpha1.RepoCreds) ([]helm.HelmRepository, error) {
