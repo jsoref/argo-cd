@@ -306,11 +306,21 @@ func (s *Service) runRepoOperation(
 		if err != nil {
 			return err
 		}
+
+		log.WithFields(log.Fields{
+			"chart":    source.Chart,
+			"revision": revision,
+		}).Debug("start runRepoOperation")
 	} else {
 		gitClient, revision, err = s.newClientResolveRevision(repo, revision, git.WithCache(s.cache, !settings.noRevisionCache && !settings.noCache))
 		if err != nil {
 			return err
 		}
+
+		log.WithFields(log.Fields{
+			"Repo":     repo.Repo,
+			"revision": revision,
+		}).Debug("start runRepoOperation")
 	}
 
 	repoRefs, err := resolveReferencedSources(hasMultipleSources, source.Helm, refSources, s.newClientResolveRevision)
@@ -538,7 +548,17 @@ func (s *Service) GenerateManifest(ctx context.Context, q *apiclient.ManifestReq
 	}
 
 	settings := operationSettings{sem: s.parallelismLimitSemaphore, noCache: q.NoCache, noRevisionCache: q.NoRevisionCache, allowConcurrent: q.ApplicationSource.AllowsConcurrentProcessing()}
+
+	log.WithFields(log.Fields{
+		"as": q.ApplicationSource,
+	}).Debug("... GenerateManifest will call runRepoOperation")
+
 	err = s.runRepoOperation(ctx, q.Revision, q.Repo, q.ApplicationSource, q.VerifySignature, cacheFn, operation, settings, q.HasMultipleSources, q.RefSources)
+
+	log.WithFields(log.Fields{
+		"as":     q.ApplicationSource,
+		"result": err,
+	}).Debug("... GenerateManifest called runRepoOperation")
 
 	// if the tarDoneCh message is sent it means that the manifest
 	// generation is being managed by the cmp-server. In this case
@@ -568,7 +588,17 @@ func (s *Service) GenerateManifestWithFiles(stream apiclient.RepoServerService_G
 		}
 	}()
 
+	log.WithFields(log.Fields{
+		"workDir": workDir,
+	}).Debug("... GenerateManifestWithFiles will call ReceiveManifestFileStream")
+
 	req, metadata, err := manifeststream.ReceiveManifestFileStream(stream.Context(), stream, workDir, s.initConstants.StreamedManifestMaxTarSize, s.initConstants.StreamedManifestMaxExtractedSize)
+
+	log.WithFields(log.Fields{
+		"workDir": workDir,
+		"req":     req,
+		"err":     err,
+	}).Debug("... GenerateManifestWithFiles called ReceiveManifestFileStream")
 
 	if err != nil {
 		return fmt.Errorf("error receiving manifest file stream: %w", err)
@@ -683,6 +713,13 @@ func (s *Service) runManifestGenAsync(ctx context.Context, repoRoot, commitSHA, 
 	// key. Overrides will break the cache anyway, because changes to overrides will change the revision.
 	appSourceCopy := q.ApplicationSource.DeepCopy()
 	repoRefs := make(map[string]repoRef)
+
+	log.WithFields(log.Fields{
+		"repoRoot":  repoRoot,
+		"commitSHA": commitSHA,
+		"cacheKey":  cacheKey,
+		"appName":   q.AppName,
+	}).Debug("start runManifestGenAsync")
 
 	var manifestGenResult *apiclient.ManifestResponse
 	opContext, err := opContextSrc()
@@ -834,6 +871,12 @@ func (s *Service) runManifestGenAsync(ctx context.Context, repoRoot, commitSHA, 
 	manifestGenResult.Revision = commitSHA
 	manifestGenResult.VerifyResult = opContext.verificationResult
 	err = s.cache.SetManifests(cacheKey, appSourceCopy, q.RefSources, q, q.Namespace, q.TrackingMethod, q.AppLabelKey, q.AppName, &manifestGenCacheEntry, refSourceCommitSHAs)
+	log.WithFields(log.Fields{
+		"cacheKey": cacheKey,
+		"appName":  q.AppName,
+		"err":      err,
+	}).Debug("finish runManifestGenAsync - SetManifests")
+
 	if err != nil {
 		log.Warnf("manifest cache set error %s/%s: %v", appSourceCopy.String(), cacheKey, err)
 	}
@@ -1038,7 +1081,14 @@ func runHelmBuild(appPath string, h helm.Helm) error {
 		return err
 	}
 
+	log.WithFields(log.Fields{
+		"appPath": appPath,
+	}).Debug("start runHelmBuild")
 	err = h.DependencyBuild()
+	log.WithFields(log.Fields{
+		"appPath": appPath,
+		"err":     err,
+	}).Debug("finish runHelmBuild")
 	if err != nil {
 		return err
 	}
@@ -1331,6 +1381,13 @@ func GenerateManifests(ctx context.Context, appPath, repoRoot, revision string, 
 	}
 	env := newEnv(q, revision)
 
+	log.WithFields(log.Fields{
+		"appPath":       appPath,
+		"repoRoot":      repoRoot,
+		"revision":      revision,
+		"appSourceType": appSourceType,
+	}).Debug("... GenerateManifests before generate")
+
 	switch appSourceType {
 	case v1alpha1.ApplicationSourceTypeHelm:
 		targetObjs, err = helmTemplate(appPath, repoRoot, env, q, isLocal, gitRepoPaths)
@@ -1359,6 +1416,14 @@ func GenerateManifests(ctx context.Context, appPath, repoRoot, revision string, 
 		logCtx := log.WithField("application", q.AppName)
 		targetObjs, err = findManifests(logCtx, appPath, repoRoot, env, *directory, q.EnabledSourceTypes, maxCombinedManifestQuantity)
 	}
+	log.WithFields(log.Fields{
+		"appPath":       appPath,
+		"repoRoot":      repoRoot,
+		"revision":      revision,
+		"appSourceType": appSourceType,
+		"err":           err,
+	}).Debug("... GenerateManifests after generate")
+
 	if err != nil {
 		return nil, err
 	}
@@ -1866,7 +1931,7 @@ func runConfigManagementPluginSidecars(ctx context.Context, appPath, repoPath, p
 	defer io.Close(conn)
 
 	// generate manifests using commands provided in plugin config file in detected cmp-server sidecar
-	cmpManifests, err := generateManifestsCMP(ctx, appPath, repoPath, env, cmpClient, tarDoneCh, tarExcludedGlobs)
+	cmpManifests, err := generateManifestsCMP(ctx, appPath, repoPath, env, cmpClient, pluginName, tarDoneCh, tarExcludedGlobs)
 	if err != nil {
 		return nil, fmt.Errorf("error generating manifests in cmp: %s", err)
 	}
@@ -1889,7 +1954,7 @@ func runConfigManagementPluginSidecars(ctx context.Context, appPath, repoPath, p
 // generateManifestsCMP will send the appPath files to the cmp-server over a gRPC stream.
 // The cmp-server will generate the manifests. Returns a response object with the generated
 // manifests.
-func generateManifestsCMP(ctx context.Context, appPath, repoPath string, env []string, cmpClient pluginclient.ConfigManagementPluginServiceClient, tarDoneCh chan<- bool, tarExcludedGlobs []string) (*pluginclient.ManifestResponse, error) {
+func generateManifestsCMP(ctx context.Context, appPath, repoPath string, env []string, cmpClient pluginclient.ConfigManagementPluginServiceClient, pluginName string, tarDoneCh chan<- bool, tarExcludedGlobs []string) (*pluginclient.ManifestResponse, error) {
 	generateManifestStream, err := cmpClient.GenerateManifest(ctx, grpc_retry.Disable())
 	if err != nil {
 		return nil, fmt.Errorf("error getting generateManifestStream: %w", err)
@@ -1898,7 +1963,18 @@ func generateManifestsCMP(ctx context.Context, appPath, repoPath string, env []s
 		cmp.WithTarDoneChan(tarDoneCh),
 	}
 
+	log.WithFields(log.Fields{
+		"appPath":    appPath,
+		"repoPath":   repoPath,
+		"pluginName": pluginName,
+	}).Debug("generateManifestsCMP calls SendRepoStream")
 	err = cmp.SendRepoStream(generateManifestStream.Context(), appPath, repoPath, generateManifestStream, env, tarExcludedGlobs, opts...)
+	log.WithFields(log.Fields{
+		"appPath":    appPath,
+		"repoPath":   repoPath,
+		"pluginName": pluginName,
+		"err":        err,
+	}).Debug("generateManifestsCMP called SendRepoStream")
 	if err != nil {
 		return nil, fmt.Errorf("error sending file to cmp-server: %s", err)
 	}

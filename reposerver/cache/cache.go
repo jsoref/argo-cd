@@ -212,7 +212,7 @@ func trackingKey(appLabelKey string, trackingMethod string) string {
 // LogDebugManifestCacheKeyFields logs all the information included in a manifest cache key. It's intended to be run
 // before every manifest cache operation to help debug cache misses.
 func LogDebugManifestCacheKeyFields(message string, reason string, revision string, appSrc *appv1.ApplicationSource, srcRefs appv1.RefTargetRevisionMapping, clusterInfo ClusterRuntimeInfo, namespace string, trackingMethod string, appLabelKey string, appName string, refSourceCommitSHAs ResolvedRevisions) {
-	if log.IsLevelEnabled(log.DebugLevel) {
+	if true || log.IsLevelEnabled(log.DebugLevel) {
 		log.WithFields(log.Fields{
 			"revision":    revision,
 			"appSrc":      appSourceKeyJSON(appSrc, srcRefs, refSourceCommitSHAs),

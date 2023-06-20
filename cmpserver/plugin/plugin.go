@@ -113,7 +113,7 @@ func runCommand(ctx context.Context, command Command, warnOnEmptyOutput string, 
 		return strings.TrimSuffix(output, "\n"), err
 	}
 	if len(output) == 0 {
-		log.WithFields(log.Fields{
+		logCtx.WithFields(log.Fields{
 			"stderr":  stderr.String(),
 			"command": command,
 		}).Warn(warnOnEmptyOutput)
