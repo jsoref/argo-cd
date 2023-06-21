@@ -308,7 +308,7 @@ func TestGenerateManifest(t *testing.T) {
 		service, err := newService(configFilePath)
 		require.NoError(t, err)
 
-		res1, err := service.generateManifest(context.Background(), "testdata/kustomize", nil)
+		res1, err := service.generateManifest(context.Background(), "testdata/kustomize", &apiclient.ManifestRequestMetadata{})
 		require.NoError(t, err)
 		require.NotNil(t, res1)
 
@@ -322,7 +322,7 @@ func TestGenerateManifest(t *testing.T) {
 		require.NoError(t, err)
 		service.WithGenerateCommand(Command{Command: []string{"bad-command"}})
 
-		res, err := service.generateManifest(context.Background(), "testdata/kustomize", nil)
+		res, err := service.generateManifest(context.Background(), "testdata/kustomize", &apiclient.ManifestRequestMetadata{})
 		assert.ErrorContains(t, err, "executable file not found")
 		assert.Nil(t, res.Manifests)
 	})
@@ -331,7 +331,7 @@ func TestGenerateManifest(t *testing.T) {
 		require.NoError(t, err)
 		service.WithGenerateCommand(Command{Command: []string{"echo", "invalid yaml: }"}})
 
-		res, err := service.generateManifest(context.Background(), "testdata/kustomize", nil)
+		res, err := service.generateManifest(context.Background(), "testdata/kustomize", &apiclient.ManifestRequestMetadata{})
 		assert.ErrorContains(t, err, "failed to unmarshal manifest")
 		assert.Nil(t, res.Manifests)
 	})
@@ -344,7 +344,7 @@ func TestGenerateManifest_deadline_exceeded(t *testing.T) {
 
 	expiredCtx, cancel := context.WithTimeout(context.Background(), time.Second*0)
 	defer cancel()
-	_, err = service.generateManifest(expiredCtx, "", nil)
+	_, err = service.generateManifest(expiredCtx, "", &apiclient.ManifestRequestMetadata{})
 	assert.ErrorContains(t, err, "context deadline exceeded")
 }
 

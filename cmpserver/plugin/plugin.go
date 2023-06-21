@@ -215,26 +215,26 @@ func (s *Service) generateManifestGeneric(stream GenerateManifestStream) error {
 
 	metadata, err := cmp.ReceiveRepoStream(ctx, stream, workDir, s.initConstants.PluginConfig.Spec.PreserveFileMode)
 	if err != nil {
-		return fmt.Errorf("(%s) generate manifest error receiving stream: %w", metadata.AppName, err)
+		return fmt.Errorf("plugin (%s) generate manifest error receiving stream for app (%s): %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 	}
 
 	appPath := filepath.Clean(filepath.Join(workDir, metadata.AppRelPath))
 	if !strings.HasPrefix(appPath, workDir) {
-		return fmt.Errorf("(%s) illegal appPath `%s`: out of workDir bound", metadata.AppName, appPath)
+		return fmt.Errorf("plugin (%s) app (%s) illegal appPath `%s`: out of workDir bound", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, appPath)
 	}
-	response, err := s.generateManifest(ctx, appPath, metadata.GetEnv())
+	response, err := s.generateManifest(ctx, appPath, metadata)
 	if err != nil {
-		return fmt.Errorf("(%s) error generating manifests: %w", metadata.AppName, err)
+		return fmt.Errorf("plugin (%s) error generating manifests for app (%s): %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 	}
 	err = stream.SendAndClose(response)
 	if err != nil {
-		return fmt.Errorf("(%s) error sending manifest response: %w", metadata.AppName, err)
+		return fmt.Errorf("plugin (%s) error sending manifest response for app (%s): %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 	}
 	return nil
 }
 
 // generateManifest runs generate command from plugin config file and returns generated manifest files
-func (s *Service) generateManifest(ctx context.Context, appDir string, envEntries []*apiclient.EnvEntry) (*apiclient.ManifestResponse, error) {
+func (s *Service) generateManifest(ctx context.Context, appDir string, metadata *apiclient.ManifestRequestMetadata) (*apiclient.ManifestResponse, error) {
 	if deadline, ok := ctx.Deadline(); ok {
 		log.Infof("Generating manifests with deadline %v from now", time.Until(deadline))
 	} else {
@@ -243,15 +243,15 @@ func (s *Service) generateManifest(ctx context.Context, appDir string, envEntrie
 
 	config := s.initConstants.PluginConfig
 
-	env := append(os.Environ(), environ(envEntries)...)
+	env := append(os.Environ(), environ(metadata.GetEnv())...)
 	if len(config.Spec.Init.Command) > 0 {
-		_, err := runCommand(ctx, config.Spec.Init, "Plugin init returned zero output (this is ok)", appDir, env)
+		_, err := runCommand(ctx, config.Spec.Init, fmt.Sprintf("Plugin (%s) init returned zero output (this is ok) for app (%s)", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName), appDir, env)
 		if err != nil {
 			return &apiclient.ManifestResponse{}, err
 		}
 	}
 
-	out, err := runCommand(ctx, config.Spec.Generate, "Plugin command returned zero output (this is likely problematic)", appDir, env)
+	out, err := runCommand(ctx, config.Spec.Generate, fmt.Sprintf("Plugin (%s) command returned zero output (this is likely problematic) for app (%s)", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName), appDir, env)
 	if err != nil {
 		return &apiclient.ManifestResponse{}, err
 	}
@@ -262,7 +262,7 @@ func (s *Service) generateManifest(ctx context.Context, appDir string, envEntrie
 		if len(sanitizedManifests) > 1000 {
 			sanitizedManifests = manifests[:1000]
 		}
-		log.Debugf("Failed to split generated manifests. Beginning of generated manifests: %q", sanitizedManifests)
+		log.Debugf("Plugin (%s) failed to split generated manifests for app (%s). Beginning of generated manifests: %q", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, sanitizedManifests)
 		return &apiclient.ManifestResponse{}, err
 	}
 
@@ -302,7 +302,7 @@ func (s *Service) matchRepositoryGeneric(stream MatchRepositoryStream) error {
 		return fmt.Errorf("match repository error receiving stream: %w", err)
 	}
 
-	isSupported, isDiscoveryEnabled, err := s.matchRepository(bufferedCtx, workDir, metadata.GetEnv(), metadata.GetAppRelPath())
+	isSupported, isDiscoveryEnabled, err := s.matchRepository(bufferedCtx, workDir, metadata)
 	if err != nil {
 		return fmt.Errorf("match repository error: %w", err)
 	}
@@ -315,50 +315,64 @@ func (s *Service) matchRepositoryGeneric(stream MatchRepositoryStream) error {
 	return nil
 }
 
-func (s *Service) matchRepository(ctx context.Context, workdir string, envEntries []*apiclient.EnvEntry, appRelPath string) (isSupported bool, isDiscoveryEnabled bool, err error) {
+func (s *Service) matchRepository(ctx context.Context, workdir string, metadata *apiclient.ManifestRequestMetadata) (isSupported bool, isDiscoveryEnabled bool, err error) {
 	config := s.initConstants.PluginConfig
 
+	appRelPath := metadata.GetAppRelPath()
+	logCtx := log.WithFields(log.Fields{
+		"PluginName": s.initConstants.PluginConfig.Metadata.Name,
+		"AppName":    metadata.AppName,
+		"appRelPath": appRelPath,
+	})
 	appPath, err := securejoin.SecureJoin(workdir, appRelPath)
 	if err != nil {
-		log.WithFields(map[string]interface{}{
+		logCtx.WithFields(map[string]interface{}{
 			common.SecurityField:    common.SecurityHigh,
 			common.SecurityCWEField: common.SecurityCWEIncompleteCleanup,
-		}).Errorf("error joining workdir %q and appRelPath %q: %v", workdir, appRelPath, err)
+			"workdir":               workdir,
+			"err":                   err,
+		}).Errorf("error joining workdir and appRelPath")
 	}
 
 	if config.Spec.Discover.FileName != "" {
-		log.Debug("config.Spec.Discover.FileName is provided")
 		pattern := filepath.Join(appPath, config.Spec.Discover.FileName)
+		logCtx.WithFields(log.Fields{
+			"fileName": config.Spec.Discover.FileName,
+		}).Debug("config.Spec.Discover.FileName is provided")
 		matches, err := filepath.Glob(pattern)
 		if err != nil {
-			e := fmt.Errorf("error finding filename match for pattern %q: %w", pattern, err)
-			log.Debug(e)
-			return false, true, e
+			logCtx.WithFields(log.Fields{
+				"pattern": pattern,
+				"err":     err,
+			}).Debug("error finding filename match for pattern")
+			return false, true, fmt.Errorf("plugin (%s) app (%s) error finding filename match for pattern %q: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, pattern, err)
 		}
 		return len(matches) > 0, true, nil
 	}
 
 	if config.Spec.Discover.Find.Glob != "" {
-		log.Debug("config.Spec.Discover.Find.Glob is provided")
+		logCtx.Debug("config.Spec.Discover.Find.Glob is provided")
 		pattern := filepath.Join(appPath, config.Spec.Discover.Find.Glob)
 		// filepath.Glob doesn't have '**' support hence selecting third-party lib
 		// https://github.com/golang/go/issues/11862
 		matches, err := zglob.Glob(pattern)
 		if err != nil {
-			e := fmt.Errorf("error finding glob match for pattern %q: %w", pattern, err)
-			log.Debug(e)
-			return false, true, e
+			logCtx.WithFields(log.Fields{
+				"pattern": pattern,
+				"err":     err,
+			}).Debug("error finding glob match for pattern")
+			return false, true, fmt.Errorf("plugin (%s) app (%s) error finding glob match for pattern %q: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, pattern, err)
 		}
 
 		return len(matches) > 0, true, nil
 	}
 
 	if len(config.Spec.Discover.Find.Command.Command) > 0 {
-		log.Debug("Going to try runCommand.")
-		env := append(os.Environ(), environ(envEntries)...)
-		find, err := runCommand(ctx, config.Spec.Discover.Find.Command, "Plugin discover reported it does not support this app", appPath, env)
+		logCtx.Debug("Going to try runCommand.")
+		env := append(os.Environ(), environ(metadata.GetEnv())...)
+		find, err := runCommand(ctx, config.Spec.Discover.Find.Command, fmt.Sprintf("Plugin (%s) discover reported it does not support this app (%s)", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName), appPath, env)
 		if err != nil {
-			return false, true, fmt.Errorf("error running find command: %w", err)
+			return false, true, fmt.Errorf("plugin (%s) app (%s) error running find command: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 		}
 		return find != "", true, nil
 	}
@@ -379,46 +393,47 @@ func (s *Service) GetParametersAnnouncement(stream apiclient.ConfigManagementPlu
 
 	workDir, cleanup, err := getTempDirMustCleanup(common.GetCMPWorkDir())
 	if err != nil {
-		return fmt.Errorf("error creating workdir for generating parameter announcements: %w", err)
+		return fmt.Errorf("plugin (%s) error creating workdir for generating parameter announcements: %w", s.initConstants.PluginConfig.Metadata.Name, err)
 	}
 	defer cleanup()
 
 	metadata, err := cmp.ReceiveRepoStream(bufferedCtx, stream, workDir, s.initConstants.PluginConfig.Spec.PreserveFileMode)
 	if err != nil {
-		return fmt.Errorf("parameters announcement error receiving stream: %w", err)
+		return fmt.Errorf("plugin (%s) parameters announcement error receiving stream: %w", s.initConstants.PluginConfig.Metadata.Name, err)
 	}
 	log.Info(metadata.AppName)
 	appPath := filepath.Clean(filepath.Join(workDir, metadata.AppRelPath))
 	if !strings.HasPrefix(appPath, workDir) {
-		return fmt.Errorf("illegal appPath: out of workDir bound")
+		return fmt.Errorf("plugin (%s) app (%s) illegal appPath (%s): out of workDir bound (%s)", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, metadata.AppRelPath, workDir)
 	}
 
-	repoResponse, err := getParametersAnnouncement(bufferedCtx, appPath, s.initConstants.PluginConfig.Spec.Parameters.Static, s.initConstants.PluginConfig.Spec.Parameters.Dynamic, metadata.GetEnv())
+	repoResponse, err := getParametersAnnouncement(bufferedCtx, appPath, s, metadata)
 	if err != nil {
-		return fmt.Errorf("get parameters announcement error: %w", err)
+		return fmt.Errorf("plugin (%s) app (%s) get parameters announcement error: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 	}
 
 	err = stream.SendAndClose(repoResponse)
 	if err != nil {
-		return fmt.Errorf("error sending parameters announcement response: %w", err)
+		return fmt.Errorf("plugin (%s) app (%s) error sending parameters announcement response: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 	}
 	return nil
 }
 
-func getParametersAnnouncement(ctx context.Context, appDir string, announcements []*repoclient.ParameterAnnouncement, command Command, envEntries []*apiclient.EnvEntry) (*apiclient.ParametersAnnouncementResponse, error) {
+func getParametersAnnouncement(ctx context.Context, appDir string, s *Service, metadata *apiclient.ManifestRequestMetadata) (*apiclient.ParametersAnnouncementResponse, error) {
+	announcements := s.initConstants.PluginConfig.Spec.Parameters.Static
 	augmentedAnnouncements := announcements
-
+	command := s.initConstants.PluginConfig.Spec.Parameters.Dynamic
 	if len(command.Command) > 0 {
-		env := append(os.Environ(), environ(envEntries)...)
-		stdout, err := runCommand(ctx, command, "Plugin dynamic parameter announcements failed to return json (e.g. [])", appDir, env)
+		env := append(os.Environ(), environ(metadata.GetEnv())...)
+		stdout, err := runCommand(ctx, command, fmt.Sprintf("Plugin (%s) dynamic parameter announcements failed to return json (e.g. []) for app (%s)", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName), appDir, env)
 		if err != nil {
-			return nil, fmt.Errorf("error executing dynamic parameter output command: %w", err)
+			return nil, fmt.Errorf("plugin (%s) error executing dynamic parameter for app (%s) output command: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 		}
 
 		var dynamicParamAnnouncements []*repoclient.ParameterAnnouncement
 		err = json.Unmarshal([]byte(stdout), &dynamicParamAnnouncements)
 		if err != nil {
-			return nil, fmt.Errorf("error unmarshaling dynamic parameter output into ParametersAnnouncementResponse: %w", err)
+			return nil, fmt.Errorf("plugin (%s) error unmarshaling dynamic parameter for app (%s) output into ParametersAnnouncementResponse: %w", s.initConstants.PluginConfig.Metadata.Name, metadata.AppName, err)
 		}
 
 		// dynamic goes first, because static should take precedence by being later.
