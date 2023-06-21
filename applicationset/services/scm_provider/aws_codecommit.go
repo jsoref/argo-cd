@@ -3,10 +3,11 @@ package scm_provider
 import (
 	"context"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/request"
 	pathpkg "path"
 	"path/filepath"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/aws/request"
 
 	application "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 	"github.com/aws/aws-sdk-go/aws"
@@ -235,7 +236,7 @@ func (p *AWSCodeCommitProvider) listRepoNames(ctx context.Context) ([]string, er
 	var err error
 
 	if len(tagFilters) < 1 {
-		log.Debugf("no tag filer, calling codecommit api to list repos")
+		log.Debug("no tag filer, calling codecommit api to list repos")
 		listReposInput := &codecommit.ListRepositoriesInput{}
 		var output *codecommit.ListRepositoriesOutput
 		for {
@@ -252,7 +253,7 @@ func (p *AWSCodeCommitProvider) listRepoNames(ctx context.Context) ([]string, er
 			}
 		}
 	} else {
-		log.Debugf("tag filer is specified, calling tagging api to list repos")
+		log.Debug("tag filer is specified, calling tagging api to list repos")
 		discoveryInput := &resourcegroupstaggingapi.GetResourcesInput{
 			ResourceTypeFilters: aws.StringSlice([]string{resourceTypeCodeCommitRepository}),
 			TagFilters:          tagFilters,
@@ -357,7 +358,7 @@ func createAWSDiscoveryClients(_ context.Context, role string, region string) (*
 			return nil, nil, fmt.Errorf("error creating new AWS discovery session: %s", err)
 		}
 	} else {
-		log.Debugf("role is not provided for AWS CodeCommit discovery, using pod role")
+		log.Debug("role is not provided for AWS CodeCommit discovery, using pod role")
 	}
 	// use region explicitly if provided  - this allows cross region CodeCommit repo discovery.
 	if region != "" {
@@ -366,7 +367,7 @@ func createAWSDiscoveryClients(_ context.Context, role string, region string) (*
 			Region: aws.String(region),
 		})
 	} else {
-		log.Debugf("region is not provided for AWS CodeCommit discovery, using pod region")
+		log.Debug("region is not provided for AWS CodeCommit discovery, using pod region")
 	}
 
 	taggingClient := resourcegroupstaggingapi.New(discoverySession)

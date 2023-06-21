@@ -12,7 +12,7 @@ func NewLoginRateLimiter(maxNumber int) func() (util.Closer, error) {
 	semaphore := semaphore.NewWeighted(int64(maxNumber))
 	return func() (util.Closer, error) {
 		if !semaphore.TryAcquire(1) {
-			log.Warnf("Exceeded number of concurrent login requests")
+			log.Warn("Exceeded number of concurrent login requests")
 			return nil, session.InvalidLoginErr
 		}
 		return util.NewCloser(func() error {

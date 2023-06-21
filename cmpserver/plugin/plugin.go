@@ -328,7 +328,7 @@ func (s *Service) matchRepository(ctx context.Context, workdir string, envEntrie
 	}
 
 	if config.Spec.Discover.FileName != "" {
-		log.Debugf("config.Spec.Discover.FileName is provided")
+		log.Debug("config.Spec.Discover.FileName is provided")
 		pattern := filepath.Join(appPath, config.Spec.Discover.FileName)
 		matches, err := filepath.Glob(pattern)
 		if err != nil {
@@ -340,7 +340,7 @@ func (s *Service) matchRepository(ctx context.Context, workdir string, envEntrie
 	}
 
 	if config.Spec.Discover.Find.Glob != "" {
-		log.Debugf("config.Spec.Discover.Find.Glob is provided")
+		log.Debug("config.Spec.Discover.Find.Glob is provided")
 		pattern := filepath.Join(appPath, config.Spec.Discover.Find.Glob)
 		// filepath.Glob doesn't have '**' support hence selecting third-party lib
 		// https://github.com/golang/go/issues/11862
@@ -355,7 +355,7 @@ func (s *Service) matchRepository(ctx context.Context, workdir string, envEntrie
 	}
 
 	if len(config.Spec.Discover.Find.Command.Command) > 0 {
-		log.Debugf("Going to try runCommand.")
+		log.Debug("Going to try runCommand.")
 		env := append(os.Environ(), environ(envEntries)...)
 		find, err := runCommand(ctx, config.Spec.Discover.Find.Command, "Plugin discover reported it does not support this app", appPath, env)
 		if err != nil {

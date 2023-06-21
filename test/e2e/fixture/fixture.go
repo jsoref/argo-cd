@@ -867,7 +867,7 @@ func RemoveSubmodule() {
 // until the rollout has completed.
 func RestartRepoServer() {
 	if IsRemote() {
-		log.Infof("Waiting for repo server to restart")
+		log.Info("Waiting for repo server to restart")
 		prefix := os.Getenv("ARGOCD_E2E_NAME_PREFIX")
 		workload := "argocd-repo-server"
 		if prefix != "" {
@@ -884,7 +884,7 @@ func RestartRepoServer() {
 // until the rollout has completed.
 func RestartAPIServer() {
 	if IsRemote() {
-		log.Infof("Waiting for API server to restart")
+		log.Info("Waiting for API server to restart")
 		prefix := os.Getenv("ARGOCD_E2E_NAME_PREFIX")
 		workload := "argocd-server"
 		if prefix != "" {

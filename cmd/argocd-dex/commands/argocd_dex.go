@@ -100,7 +100,7 @@ func NewRunDexCommand() *cobra.Command {
 				dexCfgBytes, err := dex.GenerateDexConfigYAML(prevSettings, disableTLS)
 				errors.CheckError(err)
 				if len(dexCfgBytes) == 0 {
-					log.Infof("dex is not configured")
+					log.Info("dex is not configured")
 				} else {
 					err = os.WriteFile("/tmp/dex.yaml", dexCfgBytes, 0644)
 					errors.CheckError(err)
@@ -119,7 +119,7 @@ func NewRunDexCommand() *cobra.Command {
 					errors.CheckError(err)
 					if string(newDexCfgBytes) != string(dexCfgBytes) {
 						prevSettings = newSettings
-						log.Infof("dex config modified. restarting dex")
+						log.Info("dex config modified. restarting dex")
 						if cmd != nil && cmd.Process != nil {
 							err = cmd.Process.Signal(syscall.SIGTERM)
 							errors.CheckError(err)
@@ -128,7 +128,7 @@ func NewRunDexCommand() *cobra.Command {
 						}
 						break
 					} else {
-						log.Infof("dex config unmodified")
+						log.Info("dex config unmodified")
 					}
 				}
 			}
@@ -168,7 +168,7 @@ func NewGenDexConfigCommand() *cobra.Command {
 			dexCfgBytes, err := dex.GenerateDexConfigYAML(settings, disableTLS)
 			errors.CheckError(err)
 			if len(dexCfgBytes) == 0 {
-				log.Infof("dex is not configured")
+				log.Info("dex is not configured")
 				return nil
 			}
 			if out == "" {

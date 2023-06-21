@@ -977,7 +977,7 @@ func (ctrl *ApplicationController) getPermittedAppLiveObjects(app *appv1.Applica
 
 func (ctrl *ApplicationController) finalizeApplicationDeletion(app *appv1.Application, projectClusters func(project string) ([]*appv1.Cluster, error)) ([]*unstructured.Unstructured, error) {
 	logCtx := log.WithField("application", app.QualifiedName())
-	logCtx.Infof("Deleting resources")
+	logCtx.Info("Deleting resources")
 	// Get refreshed application info, since informer app copy might be stale
 	app, err := ctrl.applicationClientset.ArgoprojV1alpha1().Applications(app.Namespace).Get(context.Background(), app.Name, metav1.GetOptions{})
 	if err != nil {
@@ -1082,7 +1082,7 @@ func (ctrl *ApplicationController) finalizeApplicationDeletion(app *appv1.Applic
 	if validDestination {
 		logCtx.Infof("Successfully deleted %d resources", len(objs))
 	} else {
-		logCtx.Infof("Resource entries removed from undefined cluster")
+		logCtx.Info("Resource entries removed from undefined cluster")
 	}
 
 	ctrl.projectRefreshQueue.Add(fmt.Sprintf("%s/%s", ctrl.namespace, app.Spec.GetProject()))
@@ -1367,7 +1367,7 @@ func (ctrl *ApplicationController) processAppRefreshQueueItem() (processNext boo
 	if comparisonLevel == ComparisonWithNothing {
 		managedResources := make([]*appv1.ResourceDiff, 0)
 		if err := ctrl.cache.GetAppManagedResources(app.InstanceName(ctrl.namespace), &managedResources); err != nil {
-			logCtx.Warnf("Failed to get cached managed resources for tree reconciliation, fall back to full reconciliation")
+			logCtx.Warn("Failed to get cached managed resources for tree reconciliation, fall back to full reconciliation")
 		} else {
 			var tree *appv1.ApplicationTree
 			if tree, err = ctrl.getResourceTree(app, managedResources); err == nil {
@@ -1617,7 +1617,7 @@ func (ctrl *ApplicationController) persistAppStatus(orig *appv1.Application, new
 		return
 	}
 	if !modified {
-		logCtx.Infof("No status changes. Skipping patch")
+		logCtx.Info("No status changes. Skipping patch")
 		return
 	}
 	appClient := ctrl.applicationClientset.ArgoprojV1alpha1().Applications(orig.Namespace)
@@ -1625,7 +1625,7 @@ func (ctrl *ApplicationController) persistAppStatus(orig *appv1.Application, new
 	if err != nil {
 		logCtx.Warnf("Error updating application: %v", err)
 	} else {
-		logCtx.Infof("Update successful")
+		logCtx.Info("Update successful")
 	}
 }
 
@@ -1637,11 +1637,11 @@ func (ctrl *ApplicationController) autoSync(app *appv1.Application, syncStatus *
 	logCtx := log.WithFields(log.Fields{"application": app.QualifiedName()})
 
 	if app.Operation != nil {
-		logCtx.Infof("Skipping auto-sync: another operation is in progress")
+		logCtx.Info("Skipping auto-sync: another operation is in progress")
 		return nil
 	}
 	if app.DeletionTimestamp != nil && !app.DeletionTimestamp.IsZero() {
-		logCtx.Infof("Skipping auto-sync: deletion in progress")
+		logCtx.Info("Skipping auto-sync: deletion in progress")
 		return nil
 	}
 
@@ -1661,7 +1661,7 @@ func (ctrl *ApplicationController) autoSync(app *appv1.Application, syncStatus *
 			}
 		}
 		if requirePruneOnly {
-			logCtx.Infof("Skipping auto-sync: need to prune extra resources only but automated prune is disabled")
+			logCtx.Info("Skipping auto-sync: need to prune extra resources only but automated prune is disabled")
 			return nil
 		}
 	}
@@ -1723,7 +1723,7 @@ func (ctrl *ApplicationController) autoSync(app *appv1.Application, syncStatus *
 		}
 		if bAllNeedPrune {
 			message := fmt.Sprintf("Skipping sync attempt to %s: auto-sync will wipe out all resources", desiredCommitSHA)
-			logCtx.Warnf(message)
+			logCtx.Warn(message)
 			return &appv1.ApplicationCondition{Type: appv1.ApplicationConditionSyncError, Message: message}
 		}
 	}

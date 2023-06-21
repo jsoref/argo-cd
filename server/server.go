@@ -577,35 +577,35 @@ func (a *ArgoCDServer) watchSettings() {
 		newDexCfgBytes, err := dex.GenerateDexConfigYAML(a.settings, a.DexTLSConfig == nil || a.DexTLSConfig.DisableTLS)
 		errorsutil.CheckError(err)
 		if string(newDexCfgBytes) != string(prevDexCfgBytes) {
-			log.Infof("dex config modified. restarting")
+			log.Info("dex config modified. restarting")
 			break
 		}
 		if checkOIDCConfigChange(prevOIDCConfig, a.settings) {
-			log.Infof("oidc config modified. restarting")
+			log.Info("oidc config modified. restarting")
 			break
 		}
 		if prevURL != a.settings.URL {
-			log.Infof("url modified. restarting")
+			log.Info("url modified. restarting")
 			break
 		}
 		if prevGitHubSecret != a.settings.WebhookGitHubSecret {
-			log.Infof("github secret modified. restarting")
+			log.Info("github secret modified. restarting")
 			break
 		}
 		if prevGitLabSecret != a.settings.WebhookGitLabSecret {
-			log.Infof("gitlab secret modified. restarting")
+			log.Info("gitlab secret modified. restarting")
 			break
 		}
 		if prevBitbucketUUID != a.settings.WebhookBitbucketUUID {
-			log.Infof("bitbucket uuid modified. restarting")
+			log.Info("bitbucket uuid modified. restarting")
 			break
 		}
 		if prevBitbucketServerSecret != a.settings.WebhookBitbucketServerSecret {
-			log.Infof("bitbucket server secret modified. restarting")
+			log.Info("bitbucket server secret modified. restarting")
 			break
 		}
 		if prevGogsSecret != a.settings.WebhookGogsSecret {
-			log.Infof("gogs secret modified. restarting")
+			log.Info("gogs secret modified. restarting")
 			break
 		}
 		if !a.ArgoCDServerOpts.Insecure {
@@ -614,7 +614,7 @@ func (a *ArgoCDServer) watchSettings() {
 				newCert, newCertKey = tlsutil.EncodeX509KeyPairString(*a.settings.Certificate)
 			}
 			if newCert != prevCert || newCertKey != prevCertKey {
-				log.Infof("tls certificate modified. reloading certificate")
+				log.Info("tls certificate modified. reloading certificate")
 				// No need to break out of this loop since TlsConfig.GetCertificate will automagically reload the cert.
 			}
 		}
@@ -1088,7 +1088,7 @@ func newRedirectServer(port int, rootPath string) *http.Server {
 func registerDownloadHandlers(mux *http.ServeMux, base string) {
 	linuxPath, err := exec.LookPath("argocd")
 	if err != nil {
-		log.Warnf("argocd not in PATH")
+		log.Warn("argocd not in PATH")
 	} else {
 		mux.HandleFunc(base+"/argocd-linux-"+go_runtime.GOARCH, func(w http.ResponseWriter, r *http.Request) {
 			http.ServeFile(w, r, linuxPath)

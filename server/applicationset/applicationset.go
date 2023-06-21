@@ -359,7 +359,7 @@ func (s *Server) waitSync(appset *v1alpha1.ApplicationSet) {
 		}
 		time.Sleep(20 * time.Millisecond)
 	}
-	logCtx.Warnf("waitSync failed: timed out")
+	logCtx.Warn("waitSync failed: timed out")
 }
 
 func (s *Server) logAppSetEvent(a *v1alpha1.ApplicationSet, ctx context.Context, reason string, action string) {

@@ -2027,7 +2027,7 @@ func (mgr *SettingsManager) InitializeSettings(insecureModeEnabled bool) (*ArgoC
 	err = mgr.SaveSettings(cdSettings)
 	if apierrors.IsConflict(err) {
 		// assume settings are initialized by another instance of api server
-		log.Warnf("conflict when initializing settings. assuming updated by another replica")
+		log.Warn("conflict when initializing settings. assuming updated by another replica")
 		return mgr.GetSettings()
 	}
 	return cdSettings, nil

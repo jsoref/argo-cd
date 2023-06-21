@@ -803,7 +803,7 @@ func (s *Server) waitSync(app *appv1.Application) {
 		}
 		time.Sleep(20 * time.Millisecond)
 	}
-	logCtx.Warnf("waitSync failed: timed out")
+	logCtx.Warn("waitSync failed: timed out")
 }
 
 func (s *Server) updateApp(app *appv1.Application, newApp *appv1.Application, ctx context.Context, merge bool) (*appv1.Application, error) {

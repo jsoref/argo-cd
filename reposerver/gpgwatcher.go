@@ -58,7 +58,7 @@ func StartGPGWatcher(sourcePath string) error {
 						forceSync = true
 					}
 					if gpg.IsShortKeyID(path.Base(event.Name)) || forceSync {
-						log.Infof("Updating GPG keyring on filesystem event")
+						log.Info("Updating GPG keyring on filesystem event")
 						added, removed, err := gpg.SyncKeyRingFromDirectory(sourcePath)
 						if err != nil {
 							log.Errorf("Could not sync keyring: %s", err.Error())

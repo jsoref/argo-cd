@@ -513,7 +513,7 @@ func (s *Service) GenerateManifest(ctx context.Context, q *apiclient.ManifestReq
 		if q.HasMultipleSources && q.ApplicationSource.Path == "" && q.ApplicationSource.Chart == "" {
 			log.WithFields(map[string]interface{}{
 				"source": q.ApplicationSource,
-			}).Debugf("not generating manifests as path and chart fields are empty")
+			}).Debug("not generating manifests as path and chart fields are empty")
 			res = &apiclient.ManifestResponse{
 				Revision: commitSHA,
 			}

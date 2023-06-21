@@ -305,12 +305,12 @@ func CheckInvalidGenerators(applicationSetInfo *argoappsv1.ApplicationSet) error
 		aname := applicationSetInfo.ObjectMeta.Name
 		msg := "ApplicationSet %s contains unrecognized generators: %s"
 		errorMessage = fmt.Errorf(msg, aname, strings.Join(gnames, ", "))
-		log.Warnf(msg, aname, strings.Join(gnames, ", "))
+		log.Warn(msg, aname, strings.Join(gnames, ", "))
 	} else if hasInvalidGenerators {
 		name := applicationSetInfo.ObjectMeta.Name
 		msg := "ApplicationSet %s contains unrecognized generators"
 		errorMessage = fmt.Errorf(msg, name)
-		log.Warnf(msg, name)
+		log.Warn(msg, name)
 	}
 	return errorMessage
 }

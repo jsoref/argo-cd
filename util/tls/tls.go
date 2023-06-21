@@ -136,7 +136,7 @@ func getTLSConfigCustomizer(minVersionStr, maxVersionStr, tlsCiphersStr string) 
 	// Cipher suites for TLSv1.3 are not configurable
 	if minVersion == tls.VersionTLS13 {
 		if tlsCiphersStr != DefaultTLSCipherSuite {
-			log.Warnf("TLSv1.3 cipher suites are not configurable, ignoring value of --tlsciphers")
+			log.Warn("TLSv1.3 cipher suites are not configurable, ignoring value of --tlsciphers")
 		}
 		tlsCiphersStr = ""
 	}
@@ -413,7 +413,7 @@ func CreateServerTLSConfig(tlsCertPath, tlsKeyPath string, hosts []string) (*tls
 	}
 
 	if !tlsCertExists || !tlsKeyExists {
-		log.Infof("Generating self-signed TLS certificate for this session")
+		log.Info("Generating self-signed TLS certificate for this session")
 		c, err := GenerateX509KeyPair(CertOptions{
 			Hosts:        hosts,
 			Organization: "Argo CD",

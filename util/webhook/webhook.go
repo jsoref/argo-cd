@@ -4,13 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/argoproj/argo-cd/v2/util/glob"
 	"html"
 	"net/http"
 	"net/url"
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/argoproj/argo-cd/v2/util/glob"
 
 	gogsclient "github.com/gogits/go-gogs-client"
 	log "github.com/sirupsen/logrus"
@@ -61,23 +62,23 @@ type ArgoCDWebhookHandler struct {
 func NewHandler(namespace string, applicationNamespaces []string, appClientset appclientset.Interface, set *settings.ArgoCDSettings, settingsSrc settingsSource, repoCache *cache.Cache, serverCache *servercache.Cache, argoDB db.ArgoDB) *ArgoCDWebhookHandler {
 	githubWebhook, err := github.New(github.Options.Secret(set.WebhookGitHubSecret))
 	if err != nil {
-		log.Warnf("Unable to init the GitHub webhook")
+		log.Warn("Unable to init the GitHub webhook")
 	}
 	gitlabWebhook, err := gitlab.New(gitlab.Options.Secret(set.WebhookGitLabSecret))
 	if err != nil {
-		log.Warnf("Unable to init the GitLab webhook")
+		log.Warn("Unable to init the GitLab webhook")
 	}
 	bitbucketWebhook, err := bitbucket.New(bitbucket.Options.UUID(set.WebhookBitbucketUUID))
 	if err != nil {
-		log.Warnf("Unable to init the Bitbucket webhook")
+		log.Warn("Unable to init the Bitbucket webhook")
 	}
 	bitbucketserverWebhook, err := bitbucketserver.New(bitbucketserver.Options.Secret(set.WebhookBitbucketServerSecret))
 	if err != nil {
-		log.Warnf("Unable to init the Bitbucket Server webhook")
+		log.Warn("Unable to init the Bitbucket Server webhook")
 	}
 	gogsWebhook, err := gogs.New(gogs.Options.Secret(set.WebhookGogsSecret))
 	if err != nil {
-		log.Warnf("Unable to init the Gogs webhook")
+		log.Warn("Unable to init the Gogs webhook")
 	}
 
 	acdWebhook := ArgoCDWebhookHandler{
@@ -381,13 +382,13 @@ func appFilesHaveChanged(app *v1alpha1.Application, changedFiles []string) bool 
 				changed = true
 			}
 			if changed {
-				log.WithField("application", app.Name).Debugf("Application uses files that have changed")
+				log.WithField("application", app.Name).Debug("Application uses files that have changed")
 				return true
 			}
 		}
 	}
 
-	log.WithField("application", app.Name).Debugf("Application does not use any of the files that have changed")
+	log.WithField("application", app.Name).Debug("Application does not use any of the files that have changed")
 	return false
 }
 
@@ -433,27 +434,27 @@ func (a *ArgoCDWebhookHandler) Handler(w http.ResponseWriter, r *http.Request) {
 	case r.Header.Get("X-Gogs-Event") != "":
 		payload, err = a.gogs.Parse(r, gogs.PushEvent)
 		if errors.Is(err, gogs.ErrHMACVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("Gogs webhook HMAC verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Info("Gogs webhook HMAC verification failed")
 		}
 	case r.Header.Get("X-GitHub-Event") != "":
 		payload, err = a.github.Parse(r, github.PushEvent, github.PingEvent)
 		if errors.Is(err, github.ErrHMACVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("GitHub webhook HMAC verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Info("GitHub webhook HMAC verification failed")
 		}
 	case r.Header.Get("X-Gitlab-Event") != "":
 		payload, err = a.gitlab.Parse(r, gitlab.PushEvents, gitlab.TagEvents, gitlab.SystemHookEvents)
 		if errors.Is(err, gitlab.ErrGitLabTokenVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("GitLab webhook token verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Info("GitLab webhook token verification failed")
 		}
 	case r.Header.Get("X-Hook-UUID") != "":
 		payload, err = a.bitbucket.Parse(r, bitbucket.RepoPushEvent)
 		if errors.Is(err, bitbucket.ErrUUIDVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook UUID verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Info("BitBucket webhook UUID verification failed")
 		}
 	case r.Header.Get("X-Event-Key") != "":
 		payload, err = a.bitbucketserver.Parse(r, bitbucketserver.RepositoryReferenceChangedEvent, bitbucketserver.DiagnosticsPingEvent)
 		if errors.Is(err, bitbucketserver.ErrHMACVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook HMAC verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Info("BitBucket webhook HMAC verification failed")
 		}
 	default:
 		log.Debug("Ignoring unknown webhook event")
