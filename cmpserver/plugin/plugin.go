@@ -151,11 +151,10 @@ type CmdError struct {
 }
 
 func (ce *CmdError) Error() string {
-	res := fmt.Sprintf("`%v` failed %v", ce.Args, ce.Cause)
-	if ce.Stderr != "" {
-		res = fmt.Sprintf("%s: %s", res, ce.Stderr)
+	if ce.Stderr == "" {
+		return fmt.Sprintf("`%v` failed %v", ce.Args, ce.Cause)
 	}
-	return res
+	return fmt.Sprintf("`%v` failed %v: %s", ce.Args, ce.Cause, ce.Stderr)
 }
 
 func newCmdError(args string, cause error, stderr string) *CmdError {
@@ -216,20 +215,20 @@ func (s *Service) generateManifestGeneric(stream GenerateManifestStream) error {
 
 	metadata, err := cmp.ReceiveRepoStream(ctx, stream, workDir, s.initConstants.PluginConfig.Spec.PreserveFileMode)
 	if err != nil {
-		return fmt.Errorf("generate manifest error receiving stream: %w", err)
+		return fmt.Errorf("(%s) generate manifest error receiving stream: %w", metadata.AppName, err)
 	}
 
 	appPath := filepath.Clean(filepath.Join(workDir, metadata.AppRelPath))
 	if !strings.HasPrefix(appPath, workDir) {
-		return fmt.Errorf("illegal appPath: out of workDir bound")
+		return fmt.Errorf("(%s) illegal appPath `%s`: out of workDir bound", metadata.AppName, appPath)
 	}
 	response, err := s.generateManifest(ctx, appPath, metadata.GetEnv())
 	if err != nil {
-		return fmt.Errorf("error generating manifests: %w", err)
+		return fmt.Errorf("(%s) error generating manifests: %w", metadata.AppName, err)
 	}
 	err = stream.SendAndClose(response)
 	if err != nil {
-		return fmt.Errorf("error sending manifest response: %w", err)
+		return fmt.Errorf("(%s) error sending manifest response: %w", metadata.AppName, err)
 	}
 	return nil
 }
@@ -388,6 +387,7 @@ func (s *Service) GetParametersAnnouncement(stream apiclient.ConfigManagementPlu
 	if err != nil {
 		return fmt.Errorf("parameters announcement error receiving stream: %w", err)
 	}
+	log.Info(metadata.AppName)
 	appPath := filepath.Clean(filepath.Join(workDir, metadata.AppRelPath))
 	if !strings.HasPrefix(appPath, workDir) {
 		return fmt.Errorf("illegal appPath: out of workDir bound")
