@@ -61,7 +61,7 @@ func (s *Service) Init(workDir string) error {
 	return nil
 }
 
-func runCommand(ctx context.Context, command Command, path string, env []string) (string, error) {
+func runCommand(ctx context.Context, command Command, warnOnEmptyOutput string, path string, env []string) (string, error) {
 	if len(command.Command) == 0 {
 		return "", fmt.Errorf("Command is empty")
 	}
@@ -116,7 +116,7 @@ func runCommand(ctx context.Context, command Command, path string, env []string)
 		log.WithFields(log.Fields{
 			"stderr":  stderr.String(),
 			"command": command,
-		}).Warn("Plugin command returned zero output")
+		}).Warn(warnOnEmptyOutput)
 	}
 
 	return strings.TrimSuffix(output, "\n"), nil
@@ -246,13 +246,13 @@ func (s *Service) generateManifest(ctx context.Context, appDir string, envEntrie
 
 	env := append(os.Environ(), environ(envEntries)...)
 	if len(config.Spec.Init.Command) > 0 {
-		_, err := runCommand(ctx, config.Spec.Init, appDir, env)
+		_, err := runCommand(ctx, config.Spec.Init, "Plugin init returned zero output (this is ok)", appDir, env)
 		if err != nil {
 			return &apiclient.ManifestResponse{}, err
 		}
 	}
 
-	out, err := runCommand(ctx, config.Spec.Generate, appDir, env)
+	out, err := runCommand(ctx, config.Spec.Generate, "Plugin command returned zero output (this is likely problematic)", appDir, env)
 	if err != nil {
 		return &apiclient.ManifestResponse{}, err
 	}
@@ -357,7 +357,7 @@ func (s *Service) matchRepository(ctx context.Context, workdir string, envEntrie
 	if len(config.Spec.Discover.Find.Command.Command) > 0 {
 		log.Debugf("Going to try runCommand.")
 		env := append(os.Environ(), environ(envEntries)...)
-		find, err := runCommand(ctx, config.Spec.Discover.Find.Command, appPath, env)
+		find, err := runCommand(ctx, config.Spec.Discover.Find.Command, "Plugin discover reported it does not support this app", appPath, env)
 		if err != nil {
 			return false, true, fmt.Errorf("error running find command: %w", err)
 		}
@@ -410,7 +410,7 @@ func getParametersAnnouncement(ctx context.Context, appDir string, announcements
 
 	if len(command.Command) > 0 {
 		env := append(os.Environ(), environ(envEntries)...)
-		stdout, err := runCommand(ctx, command, appDir, env)
+		stdout, err := runCommand(ctx, command, "Plugin dynamic parameter announcements failed to return json (e.g. [])", appDir, env)
 		if err != nil {
 			return nil, fmt.Errorf("error executing dynamic parameter output command: %w", err)
 		}
