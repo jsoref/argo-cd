@@ -1497,6 +1497,7 @@ func currentSourceEqualsSyncedSource(app *appv1.Application) bool {
 // Additionally, it returns whether full refresh was requested or not.
 // If full refresh is requested then target and live state should be reconciled, else only live state tree should be updated.
 func (ctrl *ApplicationController) needRefreshAppStatus(app *appv1.Application, statusRefreshTimeout, statusHardRefreshTimeout time.Duration) (bool, appv1.RefreshType, CompareWith) {
+	// we want to add an attribute that can flow from the controller to the repo server to track the request
 	logCtx := log.WithFields(log.Fields{"application": app.QualifiedName()})
 	var reason string
 	compareWith := CompareWithLatest
