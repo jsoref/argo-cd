@@ -1,4 +1,4 @@
-# MacOS users
+# macOS users
 Below are known issues specific to macOS
 
 ## Port 5000
