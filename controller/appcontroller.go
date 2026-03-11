@@ -1929,7 +1929,7 @@ func (ctrl *ApplicationController) processAppRefreshQueueItem() (processNext boo
 	}
 	ts.AddCheckpoint("process_finalizers_ms")
 	patchDuration = ctrl.persistAppStatus(origApp, &app.Status)
-	// This is a partly a duplicate of patch_ms, but more descriptive and allows to have measurement for the next step.
+	// This is partly a duplicate of patch_ms, but more descriptive and allows to have measurement for the next step.
 	ts.AddCheckpoint("persist_app_status_ms")
 	return processNext
 }

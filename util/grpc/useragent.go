@@ -77,7 +77,7 @@ func userAgentEnforcer(ctx context.Context, clientName string, semVerConstraint 
 		return nil
 	}
 	// If we get here, the caller either did not supply user-agent, supplied one which we don't
-	// care about. This implies it is a from a custom generated client, so we permit the request.
+	// care about. This implies it is from a custom generated client, so we permit the request.
 	// We really only want to enforce user-agent version constraints for clients under our
 	// control which we know to have compatibility issues
 	return nil
