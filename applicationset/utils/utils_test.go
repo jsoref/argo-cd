@@ -129,7 +129,7 @@ func TestRenderTemplateParams(t *testing.T) {
 		},
 
 		{
-			name:        "templates are case sensitive",
+			name:        "templates are case-sensitive",
 			fieldVal:    "{{ONE}}",
 			expectedVal: "{{ONE}}",
 			params: map[string]any{
