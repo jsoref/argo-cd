@@ -856,7 +856,7 @@ on Kubernetes API/RBAC to power UI and CLI.
 
 ### Core Features
 
-* The synchronization process became much much faster and requires significantly less memory.
+* The synchronization process became much, much, faster and requires significantly less memory.
 * An additional caching that ensures that each repository's target revisions are queried only once per
   reconciliation cycle. This dramatically reduces the number of Git requests.
 * Improved Diffing Customizations: use JQ path expressions to exclude required fields from the diffing.
