@@ -1504,7 +1504,7 @@ func TestCacheControlHeaders(t *testing.T) {
 			expectedCacheControlHeaders: []string{"public, max-age=31536000, immutable"},
 		},
 		{
-			name:                        "main js bundle does not exists",
+			name:                        "main js bundle does not exist",
 			filename:                    "main.e4188e5adc97bbfc00c0.js",
 			createFile:                  false,
 			expectedStatus:              404,

@@ -352,7 +352,7 @@ func TestGiteaHasPath(t *testing.T) {
 		assert.True(t, ok)
 	})
 
-	t.Run("does not exists", func(t *testing.T) {
+	t.Run("does not exist", func(t *testing.T) {
 		ok, err := host.RepoHasPath(t.Context(), repo, "notathing")
 		require.NoError(t, err)
 		assert.False(t, ok)
