@@ -125,7 +125,7 @@ The `.spec.sourceNamespaces` field of the `AppProject` is a list that can contai
 > For backwards compatibility, Applications in the Argo CD control plane's namespace (`argocd`) are allowed to set their `.spec.project` field to reference any AppProject, regardless of the restrictions placed by the AppProject's `.spec.sourceNamespaces` field.
 
 > [!NOTE]
-> Currently it's not possible to have a applicationset in one namespace and have the application
+> Currently it's not possible to have an applicationset in one namespace and have the application
 > be generated in another. See [#11104](https://github.com/argoproj/argo-cd/issues/11104) for more info.
 
 ### Application names

@@ -75,7 +75,7 @@ func NewApplicationCommand(clientOpts *argocdclient.ClientOptions) *cobra.Comman
 		Example: `  # List all the applications.
   argocd app list
 
-  # Get the details of a application
+  # Get the details of an application
   argocd app get my-app
 
   # Set an override parameter
@@ -155,7 +155,7 @@ func NewApplicationCreateCommand(clientOpts *argocdclient.ClientOptions) *cobra.
   # Create a MultiSource app while yaml file contains an application with multiple sources
   argocd app create guestbook --file <path-to-yaml-file>
 
-  # Create a app using a custom tool:
+  # Create an app using a custom tool:
   argocd app create kasane --repo https://github.com/argoproj/argocd-example-apps.git --path plugins/kasane --dest-namespace default --dest-server https://kubernetes.default.svc --config-management-plugin kasane`,
 		Run: func(c *cobra.Command, args []string) {
 			ctx := c.Context()

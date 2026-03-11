@@ -837,9 +837,9 @@ type ApplicationSetConditionStatus string
 
 // Application Condition Status
 const (
-	// ApplicationSetConditionStatusTrue indicates that a application has been successfully established
+	// ApplicationSetConditionStatusTrue indicates that an application has been successfully established
 	ApplicationSetConditionStatusTrue ApplicationSetConditionStatus = "True"
-	// ApplicationSetConditionStatusFalse indicates that a application attempt has failed
+	// ApplicationSetConditionStatusFalse indicates that an application attempt has failed
 	ApplicationSetConditionStatusFalse ApplicationSetConditionStatus = "False"
 	// ApplicationSetConditionStatusUnknown indicates that the application condition status could not be reliably determined
 	ApplicationSetConditionStatusUnknown ApplicationSetConditionStatus = "Unknown"

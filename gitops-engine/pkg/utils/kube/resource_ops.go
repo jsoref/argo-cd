@@ -303,7 +303,7 @@ func (k *kubectlResourceOperations) UpdateResource(ctx context.Context, obj *uns
 	return resourceIf.Update(ctx, obj, updateOptions)
 }
 
-// ApplyResource performs an apply of a unstructured resource
+// ApplyResource performs an apply of an unstructured resource
 func (k *kubectlServerSideDiffDryRunApplier) ApplyResource(_ context.Context, obj *unstructured.Unstructured, dryRunStrategy cmdutil.DryRunStrategy, force, validate, serverSideApply bool, manager string) (string, error) {
 	span := k.tracer.StartSpan("ApplyResource")
 	span.SetBaggageItem("kind", obj.GetKind())
@@ -329,7 +329,7 @@ func (k *kubectlServerSideDiffDryRunApplier) ApplyResource(_ context.Context, ob
 	})
 }
 
-// ApplyResource performs an apply of a unstructured resource
+// ApplyResource performs an apply of an unstructured resource
 func (k *kubectlResourceOperations) ApplyResource(ctx context.Context, obj *unstructured.Unstructured, dryRunStrategy cmdutil.DryRunStrategy, force, validate, serverSideApply bool, manager string) (string, error) {
 	span := k.tracer.StartSpan("ApplyResource")
 	span.SetBaggageItem("kind", obj.GetKind())

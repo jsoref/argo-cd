@@ -407,7 +407,7 @@ func emptyResourceActionFromLua(i any) bool {
 }
 
 func noAvailableActions(jsonBytes []byte) bool {
-	// When the Lua script returns an empty table, it is decoded as a empty array.
+	// When the Lua script returns an empty table, it is decoded as an empty array.
 	return string(jsonBytes) == "[]"
 }
 

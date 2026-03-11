@@ -1337,7 +1337,7 @@ type SyncOperationResource struct {
 	Exclude   bool   `json:"-"`
 }
 
-// RevisionHistories is a array of history, oldest first and newest last
+// RevisionHistories is an array of history, oldest first and newest last
 type RevisionHistories []RevisionHistory
 
 // LastRevisionHistory returns the latest history item from the revision history

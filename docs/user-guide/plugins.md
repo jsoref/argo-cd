@@ -133,7 +133,7 @@ and place it anywhere in your `PATH`:
 sudo mv ./argocd-foo /usr/local/bin
 ```
 
-You may now invoke your plugin as a argocd command:
+You may now invoke your plugin as an argocd command:
 ```bash
 argocd foo
 ```

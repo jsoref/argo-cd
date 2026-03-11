@@ -22,7 +22,7 @@ func NewCloser(closeFn func() error) Closer {
 	return &inlineCloser{close: closeFn}
 }
 
-// Close is a convenience function to close a object that has a Close() method, ignoring any errors
+// Close is a convenience function to close an object that has a Close() method, ignoring any errors
 // Used to satisfy errcheck lint
 func Close(c Closer) {
 	if err := c.Close(); err != nil {

@@ -87,7 +87,7 @@ func userAgentEnforcer(ctx context.Context, clientName string, semVerConstraint 
 // The heuristic is that a single default 'grpc-go' user-agent was specified with one of the
 // previous versions of grpc-go we used in the past (1.15.0, 1.10.0).
 // Starting in v0.11, both of the gRPC clients we maintain (pkg/apiclient and grpc-gateway) started
-// supplying a explicit user-agent tied to the Argo CD version.
+// supplying an explicit user-agent tied to the Argo CD version.
 func isLegacyClient(userAgents []string) bool {
 	return len(userAgents) == 1 && (userAgents[0] == "grpc-go/1.15.0" || userAgents[0] == "grpc-go/1.10.0")
 }

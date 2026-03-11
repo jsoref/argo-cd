@@ -216,7 +216,7 @@ The `override` action privilege can be used to allow passing arbitrary manifests
 
 **Attention:** This allows users to completely change/delete the deployed resources of the application.
 
-While the `sync` action privilege gives the right to synchronize the objects in the cluster to the desired state as defined in the `Application` Object, the `override` action privilege will allow a user to synchronize arbitrary local manifests to the Application. These manifests will be used _instead of_ the configured source, until the next sync is performed. After performing such a override sync, the application will most probably be OutOfSync with the state defined via the `Application` object.
+While the `sync` action privilege gives the right to synchronize the objects in the cluster to the desired state as defined in the `Application` Object, the `override` action privilege will allow a user to synchronize arbitrary local manifests to the Application. These manifests will be used _instead of_ the configured source, until the next sync is performed. After performing such an override sync, the application will most probably be OutOfSync with the state defined via the `Application` object.
 It is not possible to perform an `override` sync when auto-sync is enabled.
 
 New since v3.2:

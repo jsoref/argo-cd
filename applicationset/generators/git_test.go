@@ -1370,7 +1370,7 @@ env: testing
 			// If we find those files also satisfy the exclude pattern, we remove them from map
 			// This is generally done by the g.repos.GetFiles() function.
 			// With the below mock setup, we make sure that if the GetFiles() function gets called
-			// for a include or exclude pattern, it should always return the includeFiles or excludeFiles.
+			// for an include or exclude pattern, it should always return the includeFiles or excludeFiles.
 			for _, pattern := range testCaseCopy.excludePattern {
 				argoCDServiceMock.EXPECT().GetFiles(mock.Anything, mock.Anything, mock.Anything, mock.Anything, pattern, mock.Anything, mock.Anything).
 					Return(testCaseCopy.excludeFiles, testCaseCopy.repoPathsError)
@@ -1707,7 +1707,7 @@ env: testing
 			// If we find those files also satisfy the exclude pattern, we remove them from map
 			// This is generally done by the g.repos.GetFiles() function.
 			// With the below mock setup, we make sure that if the GetFiles() function gets called
-			// for a include or exclude pattern, it should always return the includeFiles or excludeFiles.
+			// for an include or exclude pattern, it should always return the includeFiles or excludeFiles.
 			for _, pattern := range testCaseCopy.excludePattern {
 				argoCDServiceMock.EXPECT().GetFiles(mock.Anything, mock.Anything, mock.Anything, mock.Anything, pattern, mock.Anything, mock.Anything).
 					Return(testCaseCopy.excludeFiles, testCaseCopy.repoPathsError)
@@ -1938,7 +1938,7 @@ func TestGitGeneratorParamsFromFilesWithExcludeOptionGoTemplate(t *testing.T) {
 			// If we find those files also satisfy the exclude pattern, we remove them from map
 			// This is generally done by the g.repos.GetFiles() function.
 			// With the below mock setup, we make sure that if the GetFiles() function gets called
-			// for a include or exclude pattern, it should always return the includeFiles or excludeFiles.
+			// for an include or exclude pattern, it should always return the includeFiles or excludeFiles.
 			for _, pattern := range testCaseCopy.excludePattern {
 				argoCDServiceMock.EXPECT().GetFiles(mock.Anything, mock.Anything, mock.Anything, mock.Anything, pattern, mock.Anything, mock.Anything).
 					Return(testCaseCopy.excludeFiles, testCaseCopy.repoPathsError)

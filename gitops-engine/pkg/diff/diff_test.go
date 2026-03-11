@@ -287,7 +287,7 @@ func TestThreeWayDiff(t *testing.T) {
 	}
 	liveDep := configDep.DeepCopy()
 
-	// 2. add a extra field to the live. this simulates kubernetes adding default values in the
+	// 2. add an extra field to the live. this simulates kubernetes adding default values in the
 	// object. We should not consider defaulted values as a difference
 	liveDep.SetNamespace("default")
 	configUn := mustToUnstructured(configDep)

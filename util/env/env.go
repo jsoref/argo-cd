@@ -40,7 +40,7 @@ func ParseNumFromEnv(env string, defaultValue, minimum, maximum int) int {
 	return int(num)
 }
 
-// Helper function to parse a int64 from an environment variable. Returns a
+// Helper function to parse an int64 from an environment variable. Returns a
 // default if env is not set, is not parseable to a number, exceeds maximum (if
 // maximum is greater than 0) or is less than minimum.
 func ParseInt64FromEnv(env string, defaultValue, minimum, maximum int64) int64 {
@@ -51,7 +51,7 @@ func ParseInt64FromEnv(env string, defaultValue, minimum, maximum int64) int64 {
 
 	num, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
-		log.Warnf("Could not parse '%s' as a int64 from environment %s", str, env)
+		log.Warnf("Could not parse '%s' as an int64 from environment %s", str, env)
 		return defaultValue
 	}
 	if num < minimum {
