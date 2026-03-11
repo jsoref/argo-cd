@@ -19,7 +19,7 @@ argocd proj windows enable-manual-sync PROJECT ID [flags]
 #Enabling manual sync for a general case
 argocd proj windows enable-manual-sync PROJECT ID
 
-#Enabling manual sync for a windows set on the default project with Id 2
+#Enabling manual sync for a windows set on the default project with ID 2
 argocd proj windows enable-manual-sync default 2
 
 #Enabling manual sync with a custom message

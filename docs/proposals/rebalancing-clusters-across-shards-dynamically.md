@@ -68,7 +68,7 @@ For other scenarios, some users install controller with only `argocd-application
 
 The application controllers will claim one of the available shards by checking which shard is not present in the ConfigMap or is assigned to an unhealthy controller. We will store the assignment list of Application Controller to Shard in ConfigMap. The mapping of Application Controller to Shard will store the below information:
 
-* Name/Id of the shard
+* Name/ID of the shard
 * Name of the Application Controller currently managing the shard
 * Last time of successful update to ConfigMap (Heartbeat)
 
