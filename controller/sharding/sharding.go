@@ -149,8 +149,8 @@ func RoundRobinDistributionFunction(clusters clusterAccessor, replicas int) Dist
 			if c.Shard != nil && int(*c.Shard) < replicas {
 				return int(*c.Shard)
 			}
-			clusterIndexdByClusterIdMap := createClusterIndexByClusterIdMap(clusters)
-			clusterIndex, ok := clusterIndexdByClusterIdMap[c.ID]
+			clusterIndexedByClusterIdMap := createClusterIndexByClusterIdMap(clusters)
+			clusterIndex, ok := clusterIndexedByClusterIdMap[c.ID]
 			if !ok {
 				log.Warnf("Cluster with id=%s not found in cluster map.", c.ID)
 				return -1
