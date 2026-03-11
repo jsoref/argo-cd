@@ -1728,7 +1728,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 
 We know that for many of our users, they want to deploy existing Helm charts using Argo CD. Up until now that has required you to create an Argo CD app in a Git repo that does nothing but point to that chart. Now you can use a Helm chart repository is the same way as a Git repository.
 
-On top of that, we've improved support for Helm apps. The most common types of Helm hooks such as `pre-install` and `post-install` are supported as well as a the delete policy `before-hook-creation` which makes it easier to work with hooks.
+On top of that, we've improved support for Helm apps. The most common types of Helm hooks such as `pre-install` and `post-install` are supported as well as the delete policy `before-hook-creation` which makes it easier to work with hooks.
 
 https://youtu.be/GP7xtrnNznw
 

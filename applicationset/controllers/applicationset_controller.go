@@ -1237,7 +1237,7 @@ func (r *ApplicationSetReconciler) updateApplicationSetApplicationStatus(ctx con
 
 			if currentAppStatus.Status == argov1alpha1.ProgressiveSyncProgressing {
 				// If the status has reached progressing, we know a sync has been triggered. No matter the result of that operation,
-				// we want an the app to reach the Healthy state for the current revision.
+				// we want the app to reach the Healthy state for the current revision.
 				if appHealthStatus == health.HealthStatusHealthy && appSyncStatus == argov1alpha1.SyncStatusCodeSynced {
 					newAppStatus.LastTransitionTime = &now
 					newAppStatus.Status = argov1alpha1.ProgressiveSyncHealthy
