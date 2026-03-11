@@ -250,7 +250,7 @@ func TestAzureDevOpsGetDefaultBranchStripsRefsName(t *testing.T) {
 	})
 }
 
-func TestAzureDevOpsGetBranchesDefultBranchOnly(t *testing.T) {
+func TestAzureDevOpsGetBranchesDefaultBranchOnly(t *testing.T) {
 	organization := "myorg"
 	teamProject := "myorg_project"
 	repoName := "myorg_project_repo"
