@@ -1221,12 +1221,12 @@ func TestGitlabHasPath(t *testing.T) {
 			exists: false,
 		},
 		{
-			name:   "noexistent file in noexistent directory",
+			name:   "nonexistent file in nonexistent directory",
 			path:   "notathing/notathing.yaml",
 			exists: false,
 		},
 		{
-			name:   "noexistent file in nested noexistent directory",
+			name:   "nonexistent file in nested nonexistent directory",
 			path:   "notathing/notathing/notathing.yaml",
 			exists: false,
 		},

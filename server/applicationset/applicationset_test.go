@@ -782,7 +782,7 @@ func TestListResourceEvents(t *testing.T) {
 		assert.EqualError(t, err, "namespace 'NOT-ALLOWED' is not permitted")
 	})
 
-	t.Run("ListResourceEvents for non-existent appset", func(t *testing.T) {
+	t.Run("ListResourceEvents for nonexistent appset", func(t *testing.T) {
 		appSetServer := newTestAppSetServer(t, appSet1, appSet2)
 
 		appsetQuery := applicationset.ApplicationSetGetQuery{Name: "DoesNotExist"}

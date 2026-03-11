@@ -1219,11 +1219,11 @@ func TestHelmWithMissingValueFiles(t *testing.T) {
 		ProjectSourceRepos: []string{"*"},
 	}
 
-	// Should fail since we're passing a non-existent values file, and error should indicate that
+	// Should fail since we're passing a nonexistent values file, and error should indicate that
 	_, err := service.GenerateManifest(t.Context(), req)
 	require.ErrorContains(t, err, missingValuesFile+": no such file or directory")
 
-	// Should template without error even if defining a non-existent values file
+	// Should template without error even if defining a nonexistent values file
 	req.ApplicationSource.Helm.IgnoreMissingValueFiles = true
 	_, err = service.GenerateManifest(t.Context(), req)
 	require.NoError(t, err)

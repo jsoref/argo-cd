@@ -13,7 +13,7 @@ tests:
     inputPath: testdata/degraded-invalid.yaml
   - healthStatus:
       status: Degraded
-      message: "Product spec contains reference(s) to non existing resources"
+      message: "Product spec contains reference(s) to nonexistent resources"
     inputPath: testdata/degraded-orphan.yaml
   - healthStatus:
       status: Progressing

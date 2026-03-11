@@ -26,7 +26,7 @@ func TestGetSignedRequest(t *testing.T) {
 		assert.Empty(t, url)
 	})
 
-	t.Run("returns error for non-existent profile", func(t *testing.T) {
+	t.Run("returns error for nonexistent profile", func(t *testing.T) {
 		t.Parallel()
 		ctx := context.Background()
 		profile := "argocd-k8s-auth-test-nonexistent-profile-12345"

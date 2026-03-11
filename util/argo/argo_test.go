@@ -696,7 +696,7 @@ func TestFilterByPath(t *testing.T) {
 	})
 
 	t.Run("No match found", func(t *testing.T) {
-		res := FilterByPath(apps, "example/app/non-existent")
+		res := FilterByPath(apps, "example/app/nonexistent")
 		assert.Empty(t, res)
 	})
 }

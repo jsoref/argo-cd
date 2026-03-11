@@ -101,7 +101,7 @@ func Untar(dstPath string, r io.Reader, maxSize int64, preserveFileMode bool) er
 // Callers must make sure dstPath is:
 //   - a full path
 //   - points to an empty directory or
-//   - points to a non existing directory
+//   - points to a nonexistent directory
 func untar(dstPath string, r io.Reader, preserveFileMode bool) error {
 	tr := tar.NewReader(r)
 

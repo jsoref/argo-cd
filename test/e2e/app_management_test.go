@@ -3222,7 +3222,7 @@ spec:
     path: guestbook
     targetRevision: HEAD
   destination:
-    server: https://non-existent-cluster
+    server: https://nonexistent-cluster
     namespace: default
 status:
   reconciledAt: "2023-01-01T00:00:00Z"
@@ -3363,8 +3363,8 @@ func TestServerSideDiffErrorHandling(t *testing.T) {
 		CreateApp().
 		Then().
 		And(func(_ *Application) {
-			// Test server-side diff with non-existent app should fail gracefully
-			_, err := fixture.RunCli("app", "diff", "non-existent-app", "--server-side-diff")
+			// Test server-side diff with nonexistent app should fail gracefully
+			_, err := fixture.RunCli("app", "diff", "nonexistent-app", "--server-side-diff")
 			require.Error(t, err)
 			// Error occurred as expected - this verifies the command fails gracefully
 		})

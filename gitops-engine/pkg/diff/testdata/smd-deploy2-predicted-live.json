@@ -93,7 +93,7 @@
                             "exec": {
                                 "command": [
                                     "cat",
-                                    "non-existent-file"
+                                    "nonexistent-file"
                                 ]
                             },
                             "initialDelaySeconds": 5,

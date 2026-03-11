@@ -117,7 +117,7 @@ func Test_modifyNamespacedResourceList(t *testing.T) {
 			expectedResult: true,
 		},
 		{
-			name: "Remove non-existent item",
+			name: "Remove nonexistent item",
 			initialList: []metav1.GroupKind{
 				{Group: "apps", Kind: "Deployment"},
 			},
@@ -191,7 +191,7 @@ func Test_modifyAllowClusterResourceList(t *testing.T) {
 			expectedResult: true,
 		},
 		{
-			name: "Remove non-existent item",
+			name: "Remove nonexistent item",
 			initialList: []v1alpha1.ClusterResourceRestrictionItem{
 				{Group: "apps", Kind: "Deployment", Name: ""},
 			},

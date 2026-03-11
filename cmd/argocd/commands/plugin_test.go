@@ -102,7 +102,7 @@ func TestNormalCommandError(t *testing.T) {
 	setupPluginPath(t)
 
 	pluginHandler := NewDefaultPluginHandler()
-	args := []string{"argocd", "version", "--non-existent-flag"}
+	args := []string{"argocd", "version", "--nonexistent-flag"}
 	cmd := NewVersionCmd(&argocdclient.ClientOptions{}, nil)
 	cmd.SetArgs(args[1:])
 	cmd.SilenceErrors = true
@@ -112,7 +112,7 @@ func TestNormalCommandError(t *testing.T) {
 	require.Error(t, err)
 
 	pluginErr := pluginHandler.HandleCommandExecutionError(err, true, args)
-	assert.EqualError(t, pluginErr, "unknown flag: --non-existent-flag")
+	assert.EqualError(t, pluginErr, "unknown flag: --nonexistent-flag")
 }
 
 // TestUnknownCommandNoPlugin tests the scenario when the command is neither a normal ArgoCD command
@@ -122,7 +122,7 @@ func TestUnknownCommandNoPlugin(t *testing.T) {
 	cmd := NewCommand()
 	cmd.SilenceErrors = true
 	cmd.SilenceUsage = true
-	args := []string{"argocd", "non-existent"}
+	args := []string{"argocd", "nonexistent"}
 	cmd.SetArgs(args[1:])
 
 	err := cmd.Execute()

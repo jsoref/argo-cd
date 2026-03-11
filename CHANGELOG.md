@@ -2145,7 +2145,7 @@ Argo CD introduces Custom Resource Actions to allow users to provide their own L
 - Fix hardcoded 'git' user in `util/git.NewClient` (#1555)
 - Application controller becomes unresponsive (#1476)
 - Load target resource using K8S if conversion fails (#1414)
-- Can't ignore a non-existent pointer anymore (#1586)
+- Can't ignore a nonexistent pointer anymore (#1586)
 - Impossible to sync to HEAD from UI if auto-sync is enabled (#1579)
 - Application controller is unable to delete self-referenced app (#1570)
 - Prevent reconciliation loop for self-managed apps (#1533)
