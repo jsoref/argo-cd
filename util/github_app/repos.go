@@ -8,7 +8,7 @@ import (
 	"github.com/argoproj/argo-cd/v3/util/db"
 )
 
-// NewAuthCredentials returns a GtiHub App credentials lookup by repo-creds url.
+// NewAuthCredentials returns a GitHub App credentials lookup by repo-creds url.
 func NewAuthCredentials(creds db.RepoCredsDB) github_app_auth.Credentials {
 	return &repoAsCredentials{RepoCredsDB: creds}
 }
