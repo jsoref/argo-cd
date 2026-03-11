@@ -388,7 +388,7 @@ func NewManager(log *log.Entry, namespace string, sg SettingsGetter, ag Applicat
 	}
 }
 
-// ExtensionRegistry is an in memory registry that contains contains all
+// ExtensionRegistry is an in memory registry that contains all
 // proxies for all extensions. The key is the extension name defined in
 // the Argo CD configmap.
 type ExtensionRegistry map[string]ProxyRegistry
