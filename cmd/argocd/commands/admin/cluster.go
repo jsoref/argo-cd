@@ -394,7 +394,7 @@ func NewClusterEnableNamespacedMode() *cobra.Command {
 	clientConfig = cli.AddKubectlFlagsToCmd(&command)
 	command.Flags().BoolVar(&dryRun, "dry-run", true, "Print what will be performed")
 	command.Flags().BoolVar(&clusterResources, "cluster-resources", false, "Indicates if cluster level resources should be managed.")
-	command.Flags().IntVar(&namespacesCount, "max-namespace-count", 0, "Max number of namespaces that cluster should managed managed namespaces is less or equal to specified count")
+	command.Flags().IntVar(&namespacesCount, "max-namespace-count", 0, "Max number of namespaces that cluster should manage; managed namespaces are less or equal to specified count")
 
 	return &command
 }
