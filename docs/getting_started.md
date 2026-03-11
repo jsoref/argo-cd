@@ -36,7 +36,7 @@ This default installation will have a self-signed certificate and cannot be acce
 Do one of:
 
 * Follow the [instructions to configure a certificate](operator-manual/tls.md) (and ensure that the client OS trusts it).
-* Configure the client OS to trust the self signed certificate.
+* Configure the client OS to trust the self-signed certificate.
 * Use the --insecure flag on all Argo CD CLI operations in this guide.
 
 > [!NOTE]
