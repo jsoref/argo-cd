@@ -2547,7 +2547,7 @@ func TestProcessRequestedAppOperation_FailedHasRetries(t *testing.T) {
 }
 
 func TestProcessRequestedAppOperation_RunningPreviouslyFailed(t *testing.T) {
-	failedAttemptFinisedAt := time.Now().Add(-time.Minute * 5)
+	failedAttemptFinishedAt := time.Now().Add(-time.Minute * 5)
 	app := newFakeApp()
 	app.Operation = &v1alpha1.Operation{
 		Sync:  &v1alpha1.SyncOperation{},
@@ -2556,7 +2556,7 @@ func TestProcessRequestedAppOperation_RunningPreviouslyFailed(t *testing.T) {
 	app.Status.OperationState.Operation = *app.Operation
 	app.Status.OperationState.Phase = synccommon.OperationRunning
 	app.Status.OperationState.RetryCount = 1
-	app.Status.OperationState.FinishedAt = &metav1.Time{Time: failedAttemptFinisedAt}
+	app.Status.OperationState.FinishedAt = &metav1.Time{Time: failedAttemptFinishedAt}
 	app.Status.OperationState.SyncResult.Resources = []*v1alpha1.ResourceResult{{
 		Name:   "guestbook",
 		Kind:   "Deployment",
@@ -2592,11 +2592,11 @@ func TestProcessRequestedAppOperation_RunningPreviouslyFailed(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, string(synccommon.OperationSucceeded), phase)
 	assert.Equal(t, "successfully synced (no more tasks)", message)
-	assert.Truef(t, finishedAt.After(failedAttemptFinisedAt), "finishedAt was expected to be updated. The retry was not performed.")
+	assert.Truef(t, finishedAt.After(failedAttemptFinishedAt), "finishedAt was expected to be updated. The retry was not performed.")
 }
 
 func TestProcessRequestedAppOperation_RunningPreviouslyFailedBackoff(t *testing.T) {
-	failedAttemptFinisedAt := time.Now().Add(-time.Second)
+	failedAttemptFinishedAt := time.Now().Add(-time.Second)
 	app := newFakeApp()
 	app.Operation = &v1alpha1.Operation{
 		Sync: &v1alpha1.SyncOperation{},
@@ -2613,7 +2613,7 @@ func TestProcessRequestedAppOperation_RunningPreviouslyFailedBackoff(t *testing.
 	app.Status.OperationState.Phase = synccommon.OperationRunning
 	app.Status.OperationState.Message = "pending retry"
 	app.Status.OperationState.RetryCount = 1
-	app.Status.OperationState.FinishedAt = &metav1.Time{Time: failedAttemptFinisedAt}
+	app.Status.OperationState.FinishedAt = &metav1.Time{Time: failedAttemptFinishedAt}
 	app.Status.OperationState.SyncResult.Resources = []*v1alpha1.ResourceResult{{
 		Name:   "guestbook",
 		Kind:   "Deployment",
