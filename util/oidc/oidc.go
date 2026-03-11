@@ -653,7 +653,7 @@ func (a *ClientApp) GetValueFromEncryptedCache(ctx context.Context, key string) 
 	return value, err
 }
 
-// SetValueFromEncyrptedCache is a convenience method for encrypting a value and storing it in the cache at a given key.
+// SetValueFromEncryptedCache is a convenience method for encrypting a value and storing it in the cache at a given key.
 // Cache expiration is set based on input.
 func (a *ClientApp) SetValueInEncryptedCache(ctx context.Context, key string, value []byte, expiration time.Duration) error {
 	_, span := tracer.Start(ctx, "oidc.ClientApp.SetValueInEncryptedCache")
