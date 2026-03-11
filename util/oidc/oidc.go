@@ -362,7 +362,7 @@ func (a *ClientApp) verifyAppState(r *http.Request, w http.ResponseWriter, state
 	return redirectURL, pkceVerifier, nil
 }
 
-// isValidRedirectURL checks whether the given redirectURL matches on of the
+// isValidRedirectURL checks whether the given redirectURL matches one of the
 // allowed URLs to redirect to.
 //
 // In order to be considered valid,the protocol and host (including port) have
