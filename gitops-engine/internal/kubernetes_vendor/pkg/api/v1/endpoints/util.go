@@ -26,7 +26,7 @@ import (
 	v1 "k8s.io/api/core/v1"
 )
 
-// LessEndpointAddress compares IP addresses lexicographically and returns true if first argument is lesser than second
+// LessEndpointAddress compares IP addresses lexicographically and returns true if first argument is less than second
 func LessEndpointAddress(a, b *v1.EndpointAddress) bool {
 	ipComparison := bytes.Compare([]byte(a.IP), []byte(b.IP))
 	if ipComparison != 0 {
