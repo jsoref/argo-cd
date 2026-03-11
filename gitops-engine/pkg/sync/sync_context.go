@@ -490,7 +490,7 @@ func (sc *syncContext) Sync() {
 	} else {
 		// Perform a `kubectl apply --dry-run` against all the manifests. This will detect most (but
 		// not all) validation issues with the user's manifests (e.g. will detect syntax issues, but
-		// will not not detect if they are mutating immutable fields). If anything fails, we will refuse
+		// will not detect if they are mutating immutable fields). If anything fails, we will refuse
 		// to perform the sync. we only wish to do this once per operation, performing additional dry-runs
 		// is harmless, but redundant. The indicator we use to detect if we have already performed
 		// the dry-run for this operation, is if the resource or hook list is empty.
