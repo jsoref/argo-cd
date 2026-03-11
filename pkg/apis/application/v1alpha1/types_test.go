@@ -114,7 +114,7 @@ func TestAppProject_IsDestinationPermitted(t *testing.T) {
 		isPermitted bool
 	}{
 		{
-			name: "server an namespace match",
+			name: "server and namespace match",
 			projDest: []ApplicationDestination{{
 				Server: "https://kubernetes.default.svc", Namespace: "default",
 			}},

@@ -217,7 +217,7 @@ func TestDiffConfigBuilder(t *testing.T) {
 		assert.Equal(t, f.noCache, diffConfig.NoCache())
 		assert.Equal(t, f.ignoreRoles, diffConfig.IgnoreAggregatedRoles())
 	})
-	t.Run("will return error if retrieving diff from cache an no appName configured", func(t *testing.T) {
+	t.Run("will return error if retrieving diff from cache and no appName configured", func(t *testing.T) {
 		// given
 		f := setup()
 
