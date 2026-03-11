@@ -102,7 +102,7 @@ mariadb:
   db:
     name: bitnami_wordpress
     user: bn_wordpress
-    ## If the password is not specified, mariadb will generates a random password
+    ## If the password is not specified, mariadb will generate a random password
     ##
     # password:
 
