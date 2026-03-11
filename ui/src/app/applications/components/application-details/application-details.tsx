@@ -1160,7 +1160,7 @@ Are you sure you want to disable auto-sync and rollback application '${props.mat
                                                     isAppSelected={isAppSelected}
                                                     updateApp={(app: models.Application, query: {validate?: boolean}) => updateApp(app, query)}
                                                     selectedNode={selectedNode}
-                                                    appCxt={{...appContext, apis: appContext} as unknown as AppContext}
+                                                    appCtx={{...appContext, apis: appContext} as unknown as AppContext}
                                                 />
                                             </SlidingPanel>
                                         )}
