@@ -2630,7 +2630,7 @@ the behavior of v0.8.
 + Support IAM Authentication for managing external K8s clusters (issue #482)
 + Compatibility with cert manager (issue #617)
 * Enable TLS for repo server (issue #553)
-* Split out dex into it's own deployment (instead of sidecar) (issue #555)
+* Split out dex into its own deployment (instead of sidecar) (issue #555)
 + [UI] Support selection of helm values files in App creation wizard (issue #499)
 + [UI] Support specifying source revision in App creation wizard allow (issue #503)
 + [UI] Improve resource diff rendering (issue #457)

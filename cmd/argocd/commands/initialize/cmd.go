@@ -21,7 +21,7 @@ func InitCommand(cmd *cobra.Command) *cobra.Command {
 	cli.AddKubectlFlagsToSet(flags)
 	// copy k8s persistent flags into argocd command flags
 	flags.VisitAll(func(flag *pflag.Flag) {
-		// skip Kubernetes server flags since argocd has it's own server flag
+		// skip Kubernetes server flags since argocd has its own server flag
 		if flag.Name == "server" {
 			return
 		}

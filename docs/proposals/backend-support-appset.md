@@ -226,7 +226,7 @@ spec:
 
 The Application Set will follow the same design as the rest of ArgoCD project by having separate components with different responsibilities. With that, Application Set Controller will not expose any API (internal or external) and be a simple Kubernetes Controller with a single responsibility of reconciling ApplicationSet resources. In order to expose the API endpoints for Application Set controller, we need to come up with a new additional server running Application Set controller + Application Set API.
 
-Later, we would plan to move the code of this new server into existing controller package, but this would require a separate proposal on it's own.
+Later, we would plan to move the code of this new server into existing controller package, but this would require a separate proposal on its own.
 
 ## Alternatives
 

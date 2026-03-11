@@ -253,7 +253,7 @@ func (a *ArgoCDWebhookHandler) affectedRevisionInfo(payloadIf any) (webURLs []st
 			}
 		}
 
-	// Bitbucket does not include a list of changed files anywhere in it's payload
+	// Bitbucket does not include a list of changed files anywhere in its payload
 	// so we cannot update changedFiles for this type of payload
 	case bitbucketserver.RepositoryReferenceChangedPayload:
 
@@ -282,7 +282,7 @@ func (a *ArgoCDWebhookHandler) affectedRevisionInfo(payloadIf any) (webURLs []st
 		// payload alone. To be safe, we just return true and let the controller check for himself.
 		touchedHead = true
 
-		// Bitbucket does not include a list of changed files anywhere in it's payload
+		// Bitbucket does not include a list of changed files anywhere in its payload
 		// so we cannot update changedFiles for this type of payload
 
 	case gogsclient.PushPayload:
