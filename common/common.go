@@ -358,7 +358,7 @@ const (
 	// When introducing breaking changes to the API or datastructures, this number should be bumped.
 	// The value here may be lower than the current value in VERSION
 	MinClientVersion = "1.4.0"
-	// CacheVersion is an objects version cached using util/cache/cache.go.
+	// CacheVersion is an object's version cached using util/cache/cache.go.
 	// Number should be bumped in case of backward incompatible change to make sure cache is invalidated after upgrade.
 	CacheVersion = "1.8.3"
 )
