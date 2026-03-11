@@ -7673,7 +7673,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 				Properties: map[string]spec.Schema{
 					"group": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
+							Description: "GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -7688,7 +7688,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 					},
 					"api": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The Gitlab API URL to talk to.",
+							Description: "The GitLab API URL to talk to.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -7722,7 +7722,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 					},
 					"topic": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Filter repos list based on Gitlab Topic.",
+							Description: "Filter repos list based on GitLab Topic.",
 							Type:        []string{"string"},
 							Format:      "",
 						},

@@ -103,7 +103,7 @@ func (g *GitlabProvider) ListRepos(_ context.Context, cloneProtocol string) ([]*
 			case "https":
 				url = gitlabRepo.HTTPURLToRepo
 			default:
-				return nil, fmt.Errorf("unknown clone protocol for Gitlab %v", cloneProtocol)
+				return nil, fmt.Errorf("unknown clone protocol for GitLab %v", cloneProtocol)
 			}
 
 			var repoLabels []string

@@ -74,7 +74,7 @@ spec:
   sourceRepos:
     # Do not use the test repo in argoproj
     - '!ssh://git@GITHUB.com:argoproj/test'
-    # Nor any Gitlab repo under group/ 
+    # Nor any GitLab repo under group/ 
     - '!https://gitlab.com/group/**'
     # Any other repo is fine though
     - '*'

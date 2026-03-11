@@ -116,7 +116,7 @@ spec:
 * `insecure`: By default (false) - Skip checking the validity of the SCM's certificate - useful for self-signed TLS certificates.
 * `caRef`: Optional `ConfigMap` name and key containing the GitLab certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
 
-As a preferable alternative to setting `insecure` to true, you can configure self-signed TLS certificates for Gitlab by [mounting self-signed certificate to the applicationset controller](./Generators-SCM-Provider.md#self-signed-tls-certificates).
+As a preferable alternative to setting `insecure` to true, you can configure self-signed TLS certificates for GitLab by [mounting self-signed certificate to the applicationset controller](./Generators-SCM-Provider.md#self-signed-tls-certificates).
 
 ## Gitea
 
@@ -478,11 +478,11 @@ The Pull Request Generator will requeue when the next action occurs.
 
 For more information about each event, please refer to the [official documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads).
 
-### Gitlab webhook configuration
+### GitLab webhook configuration
 
 Enable checkbox for "Merge request events" in triggers list.
 
-![Add Gitlab Webhook](../../assets/applicationset/webhook-config-merge-request-gitlab.png "Add Gitlab Merge request Webhook")
+![Add GitLab Webhook](../../assets/applicationset/webhook-config-merge-request-gitlab.png "Add GitLab Merge request Webhook")
 
 The Pull Request Generator will requeue when the next action occurs.
 

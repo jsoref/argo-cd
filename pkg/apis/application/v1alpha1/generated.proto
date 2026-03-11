@@ -2511,13 +2511,13 @@ message SCMProviderGeneratorGithub {
 
 // SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
 message SCMProviderGeneratorGitlab {
-  // Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
+  // GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
   optional string group = 1;
 
   // Recurse through subgroups (true) or scan only the base group (false).  Defaults to "false"
   optional bool includeSubgroups = 2;
 
-  // The Gitlab API URL to talk to.
+  // The GitLab API URL to talk to.
   optional string api = 3;
 
   // Authentication token reference.
@@ -2532,7 +2532,7 @@ message SCMProviderGeneratorGitlab {
   // When recursing through subgroups, also include shared Projects (true) or scan only the subgroups under same path (false).  Defaults to "true"
   optional bool includeSharedProjects = 7;
 
-  // Filter repos list based on Gitlab Topic.
+  // Filter repos list based on GitLab Topic.
   optional string topic = 8;
 
   // ConfigMap key holding the trusted certificates

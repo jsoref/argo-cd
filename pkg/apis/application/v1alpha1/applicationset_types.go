@@ -502,11 +502,11 @@ type SCMProviderGeneratorGithub struct {
 
 // SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
 type SCMProviderGeneratorGitlab struct {
-	// Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
+	// GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
 	Group string `json:"group" protobuf:"bytes,1,opt,name=group"`
 	// Recurse through subgroups (true) or scan only the base group (false).  Defaults to "false"
 	IncludeSubgroups bool `json:"includeSubgroups,omitempty" protobuf:"varint,2,opt,name=includeSubgroups"`
-	// The Gitlab API URL to talk to.
+	// The GitLab API URL to talk to.
 	API string `json:"api,omitempty" protobuf:"bytes,3,opt,name=api"`
 	// Authentication token reference.
 	TokenRef *SecretRef `json:"tokenRef,omitempty" protobuf:"bytes,4,opt,name=tokenRef"`
@@ -516,7 +516,7 @@ type SCMProviderGeneratorGitlab struct {
 	Insecure bool `json:"insecure,omitempty" protobuf:"varint,6,opt,name=insecure"`
 	// When recursing through subgroups, also include shared Projects (true) or scan only the subgroups under same path (false).  Defaults to "true"
 	IncludeSharedProjects *bool `json:"includeSharedProjects,omitempty" protobuf:"varint,7,opt,name=includeSharedProjects"`
-	// Filter repos list based on Gitlab Topic.
+	// Filter repos list based on GitLab Topic.
 	Topic string `json:"topic,omitempty" protobuf:"bytes,8,opt,name=topic"`
 	// ConfigMap key holding the trusted certificates
 	CARef *ConfigMapKeyRef `json:"caRef,omitempty" protobuf:"bytes,9,opt,name=caRef"`

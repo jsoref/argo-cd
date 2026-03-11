@@ -162,11 +162,11 @@ func (g *SCMProviderGenerator) GenerateParams(appSetGenerator *argoprojiov1alpha
 		}
 		token, err := utils.GetSecretRef(ctx, g.client, providerConfig.TokenRef, applicationSetInfo.Namespace, g.tokenRefStrictMode)
 		if err != nil {
-			return nil, fmt.Errorf("error fetching Gitlab token: %w", err)
+			return nil, fmt.Errorf("error fetching GitLab token: %w", err)
 		}
 		provider, err = scm_provider.NewGitlabProvider(providerConfig.Group, token, providerConfig.API, providerConfig.AllBranches, providerConfig.IncludeSubgroups, providerConfig.WillIncludeSharedProjects(), providerConfig.Insecure, g.scmRootCAPath, providerConfig.Topic, caCerts)
 		if err != nil {
-			return nil, fmt.Errorf("error initializing Gitlab service: %w", err)
+			return nil, fmt.Errorf("error initializing GitLab service: %w", err)
 		}
 	case providerConfig.Gitea != nil:
 		token, err := utils.GetSecretRef(ctx, g.client, providerConfig.Gitea.TokenRef, applicationSetInfo.Namespace, g.tokenRefStrictMode)
