@@ -1718,7 +1718,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 - #2754 BeforeHookCreation should be the default hook
 - #2767 Fix bug whereby retry does not work for CLI
 - #2770 Always cache miss for manifests
-- #1345 argocd-application-controller: can not retrieve list of objects using index : Index with name namespace does not exist
+- #1345 argocd-application-controller: cannot retrieve list of objects using index : Index with name namespace does not exist
 
 ## v1.3.0 (2019-11-13)
 

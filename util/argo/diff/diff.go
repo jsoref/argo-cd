@@ -257,10 +257,10 @@ func (c *diffConfig) IgnoreNormalizerOpts() normalizers.IgnoreNormalizerOpts {
 func (c *diffConfig) Validate() error {
 	msg := "diffConfig validation error"
 	if c.ignores == nil {
-		return fmt.Errorf("%s: ResourceIgnoreDifferences can not be nil", msg)
+		return fmt.Errorf("%s: ResourceIgnoreDifferences cannot be nil", msg)
 	}
 	if c.overrides == nil {
-		return fmt.Errorf("%s: ResourceOverride can not be nil", msg)
+		return fmt.Errorf("%s: ResourceOverride cannot be nil", msg)
 	}
 	if !c.noCache {
 		if c.appName == "" {
@@ -412,7 +412,7 @@ func (c *diffConfig) DiffFromCache(appName string) (bool, []*v1alpha1.ResourceDi
 // the diff. None of the attributes in the lives and targets params will be modified.
 func preDiffNormalize(lives, targets []*unstructured.Unstructured, diffConfig DiffConfig) (*NormalizationResult, error) {
 	if diffConfig == nil {
-		return nil, errors.New("preDiffNormalize error: diffConfig can not be nil")
+		return nil, errors.New("preDiffNormalize error: diffConfig cannot be nil")
 	}
 	err := diffConfig.Validate()
 	if err != nil {
