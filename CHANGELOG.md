@@ -682,7 +682,7 @@ as there are no conflicts with other Kubernetes tools, and you can easily instal
 
 * Argo CD API server caches RBAC checks that significantly improves the GET /api/v1/applications API performance (#7587)
 * Argo CD RBAC supports regex matches (#7165)
-* Health check support for KubeVirt (#7176), Cassandra (#7017), Openshift Route (#7112), DeploymentConfig (#7114), Confluent (#6957) and SparkApplication (#7434) CRDs.
+* Health check support for KubeVirt (#7176), Cassandra (#7017), OpenShift Route (#7112), DeploymentConfig (#7114), Confluent (#6957) and SparkApplication (#7434) CRDs.
 * Persistent banner (#7312) with custom positioning (#7462)
 * Cluster name support in project destinations (#7198)
 * around 30 more features and a total of 84 bug fixes
