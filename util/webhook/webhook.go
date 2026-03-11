@@ -561,12 +561,12 @@ func newBitbucketClient(_ context.Context, repository *v1alpha1.Repository, apiB
 		if repository.Username == "x-token-auth" {
 			bbClient, err = bb.NewOAuthbearerToken(repository.Password)
 			if err != nil {
-				return nil, fmt.Errorf("error creating BitBucket Cloud client with oauth bearer token: %w", err)
+				return nil, fmt.Errorf("error creating Bitbucket Cloud client with oauth bearer token: %w", err)
 			}
 		} else {
 			bbClient, err = bb.NewBasicAuth(repository.Username, repository.Password)
 			if err != nil {
-				return nil, fmt.Errorf("error creating BitBucket Cloud client with basic auth: %w", err)
+				return nil, fmt.Errorf("error creating Bitbucket Cloud client with basic auth: %w", err)
 			}
 		}
 	} else {
@@ -577,7 +577,7 @@ func newBitbucketClient(_ context.Context, repository *v1alpha1.Repository, apiB
 		}
 		bbClient, err = bb.NewOAuthbearerToken(repository.BearerToken)
 		if err != nil {
-			return nil, fmt.Errorf("error creating BitBucket Cloud client with oauth bearer token: %w", err)
+			return nil, fmt.Errorf("error creating Bitbucket Cloud client with oauth bearer token: %w", err)
 		}
 	}
 	// parse and set the target URL of the Bitbucket server in the client
@@ -661,12 +661,12 @@ func (a *ArgoCDWebhookHandler) Handler(w http.ResponseWriter, r *http.Request) {
 	case r.Header.Get("X-Hook-UUID") != "":
 		payload, err = a.bitbucket.Parse(r, bitbucket.RepoPushEvent)
 		if errors.Is(err, bitbucket.ErrUUIDVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook UUID verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Infof("Bitbucket webhook UUID verification failed")
 		}
 	case r.Header.Get("X-Event-Key") != "":
 		payload, err = a.bitbucketserver.Parse(r, bitbucketserver.RepositoryReferenceChangedEvent, bitbucketserver.DiagnosticsPingEvent)
 		if errors.Is(err, bitbucketserver.ErrHMACVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook HMAC verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Infof("Bitbucket webhook HMAC verification failed")
 		}
 	default:
 		log.Debug("Ignoring unknown webhook event")

@@ -221,9 +221,9 @@ If you want to access a private repository, you must also provide the credential
 In case of Bitbucket App Token, go with `bearerToken` section.
 * `tokenRef`: A `Secret` name and key containing the app token to use for requests.
 
-In case of self-signed BitBucket Server certificates, the following options can be useful:
+In case of self-signed Bitbucket Server certificates, the following options can be useful:
 * `insecure`: By default (false) - Skip checking the validity of the SCM's certificate - useful for self-signed TLS certificates.
-* `caRef`: Optional `ConfigMap` name and key containing the BitBucket server certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
+* `caRef`: Optional `ConfigMap` name and key containing the Bitbucket server certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
 
 Available clone protocols are `ssh` and `https`.
 

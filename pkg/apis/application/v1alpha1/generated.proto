@@ -813,13 +813,13 @@ message BasicAuthBitbucketServer {
   optional SecretRef passwordRef = 2;
 }
 
-// BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.
 message BearerTokenBitbucket {
   // Password (or personal access token) reference.
   optional SecretRef tokenRef = 1;
 }
 
-// BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.
 message BearerTokenBitbucketCloud {
   // Password (or personal access token) reference.
   optional SecretRef tokenRef = 1;
@@ -1871,7 +1871,7 @@ message RepoCreds {
   // UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
   optional bool useAzureWorkloadIdentity = 24;
 
-  // BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+  // BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
   optional string bearerToken = 25;
 
   // InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.
@@ -1960,7 +1960,7 @@ message Repository {
   // UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
   optional bool useAzureWorkloadIdentity = 24;
 
-  // BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+  // BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
   optional string bearerToken = 25;
 
   // InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.

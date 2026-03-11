@@ -8061,7 +8061,7 @@
       }
     },
     "v1alpha1BearerTokenBitbucket": {
-      "description": "BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.",
+      "description": "BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.",
       "type": "object",
       "properties": {
         "tokenRef": {
@@ -8070,7 +8070,7 @@
       }
     },
     "v1alpha1BearerTokenBitbucketCloud": {
-      "description": "BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.",
+      "description": "BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.",
       "type": "object",
       "properties": {
         "tokenRef": {
@@ -9521,7 +9521,7 @@
       "properties": {
         "bearerToken": {
           "type": "string",
-          "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+          "title": "BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server"
         },
         "enableOCI": {
           "type": "boolean",
@@ -9620,7 +9620,7 @@
       "properties": {
         "bearerToken": {
           "type": "string",
-          "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+          "title": "BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server"
         },
         "connectionState": {
           "$ref": "#/definitions/v1alpha1ConnectionState"

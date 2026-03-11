@@ -83,7 +83,7 @@ func NewBitbucketCloudServiceBasicAuth(baseURL, username, password, owner, repos
 
 	bitbucketClient, err := bitbucket.NewBasicAuth(username, password)
 	if err != nil {
-		return nil, fmt.Errorf("error creating BitBucket Cloud client with basic auth: %w", err)
+		return nil, fmt.Errorf("error creating Bitbucket Cloud client with basic auth: %w", err)
 	}
 	bitbucketClient.SetApiBaseURL(*url)
 
@@ -102,7 +102,7 @@ func NewBitbucketCloudServiceBearerToken(baseURL, bearerToken, owner, repository
 
 	bitbucketClient, err := bitbucket.NewOAuthbearerToken(bearerToken)
 	if err != nil {
-		return nil, fmt.Errorf("error creating BitBucket Cloud client with oauth bearer token: %w", err)
+		return nil, fmt.Errorf("error creating Bitbucket Cloud client with oauth bearer token: %w", err)
 	}
 	bitbucketClient.SetApiBaseURL(*url)
 

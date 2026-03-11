@@ -748,13 +748,13 @@ type PullRequestGeneratorBitbucket struct {
 	BearerToken *BearerTokenBitbucketCloud `json:"bearerToken,omitempty" protobuf:"bytes,5,opt,name=bearerToken"`
 }
 
-// BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.
 type BearerTokenBitbucket struct {
 	// Password (or personal access token) reference.
 	TokenRef *SecretRef `json:"tokenRef" protobuf:"bytes,1,opt,name=tokenRef"`
 }
 
-// BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.
 type BearerTokenBitbucketCloud struct {
 	// Password (or personal access token) reference.
 	TokenRef *SecretRef `json:"tokenRef" protobuf:"bytes,1,opt,name=tokenRef"`

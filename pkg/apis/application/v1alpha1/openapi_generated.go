@@ -2675,7 +2675,7 @@ func schema_pkg_apis_application_v1alpha1_BearerTokenBitbucket(ref common.Refere
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.",
+				Description: "BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"tokenRef": {
@@ -2697,7 +2697,7 @@ func schema_pkg_apis_application_v1alpha1_BearerTokenBitbucketCloud(ref common.R
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.",
+				Description: "BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"tokenRef": {

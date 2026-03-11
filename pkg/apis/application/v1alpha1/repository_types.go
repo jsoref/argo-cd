@@ -53,7 +53,7 @@ type RepoCreds struct {
 	NoProxy string `json:"noProxy,omitempty" protobuf:"bytes,23,opt,name=noProxy"`
 	// UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
 	UseAzureWorkloadIdentity bool `json:"useAzureWorkloadIdentity,omitempty" protobuf:"bytes,24,opt,name=useAzureWorkloadIdentity"`
-	// BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+	// BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
 	BearerToken string `json:"bearerToken,omitempty" protobuf:"bytes,25,opt,name=bearerToken"`
 	// InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.
 	InsecureOCIForceHttp bool `json:"insecureOCIForceHttp,omitempty" protobuf:"bytes,26,opt,name=insecureOCIForceHttp"` //nolint:revive //FIXME(var-naming)
@@ -110,7 +110,7 @@ type Repository struct {
 	NoProxy string `json:"noProxy,omitempty" protobuf:"bytes,23,opt,name=noProxy"`
 	// UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
 	UseAzureWorkloadIdentity bool `json:"useAzureWorkloadIdentity,omitempty" protobuf:"bytes,24,opt,name=useAzureWorkloadIdentity"`
-	// BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+	// BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
 	BearerToken string `json:"bearerToken,omitempty" protobuf:"bytes,25,opt,name=bearerToken"`
 	// InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.
 	InsecureOCIForceHttp bool `json:"insecureOCIForceHttp,omitempty" protobuf:"bytes,26,opt,name=insecureOCIForceHttp"` //nolint:revive //FIXME(var-naming)
