@@ -109,7 +109,7 @@ There is currently a delay between each sync wave in order to give other control
 
 ## Combining Sync waves and hooks
 
-While you can use sync waves on their own, for maximum flexibility you can combine them with hooks. This way you can use sync phases for coarse grained ordering and sync waves for defining the exact order of a resource within an individual phase.
+While you can use sync waves on their own, for maximum flexibility you can combine them with hooks. This way you can use sync phases for coarse-grained ordering and sync waves for defining the exact order of a resource within an individual phase.
 
 ![waves](how_waves_work.png)
 
