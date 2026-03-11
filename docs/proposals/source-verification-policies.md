@@ -29,7 +29,7 @@ Argo CD would ever only verify the signature on the commit that's pointed to by 
 
 Source verification policies are an evolution of the legacy signature verification in Argo CD.
 It brings new verification modes, the possibility of treating multiple sources in an Application with different strictness.
-It also sets the foundation to implement more verification methods in the future that are not gpg, nor git specific.
+It also sets the foundation to implement more verification methods in the future that are neither gpg nor git specific.
 
 ## Motivation
 
