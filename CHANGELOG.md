@@ -2750,7 +2750,7 @@ RBAC policy rules, need to be rewritten to include one extra column with the eff
 * Remove installer in favor of kubectl apply instructions
 * Add validation when setting application parameters
 * Cascade deletion is decided during app deletion, instead of app creation
-- Fix git authentication implementation when using using SSH key
+- Fix git authentication implementation when using SSH key
 - app-name label was inadvertently injected into spec.selector if selector was omitted from v1beta1 specs
 
 ## v0.5.4 (2018-06-27)
