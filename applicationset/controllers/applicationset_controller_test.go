@@ -5312,7 +5312,7 @@ func TestUpdateApplicationSetApplicationStatus(t *testing.T) {
 			},
 		},
 		{
-			name: "application status is removed when applciation is deleted",
+			name: "application status is removed when application is deleted",
 			appSet: newDefaultAppSet(2, []v1alpha1.ApplicationSetApplicationStatus{
 				{
 					Application:     "app1",

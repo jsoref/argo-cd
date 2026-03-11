@@ -81,7 +81,7 @@ func NewExportCommand() *cobra.Command {
 				acdClients.applications = client.Resource(applicationsResource)
 			}
 			if len(applicationsetNamespaces) > 0 {
-				acdClients.applicationSets = client.Resource(appplicationSetResource)
+				acdClients.applicationSets = client.Resource(applicationSetResource)
 			}
 
 			acdConfigMap, err := acdClients.configMaps.Get(ctx, common.ArgoCDConfigMapName, metav1.GetOptions{})
@@ -216,7 +216,7 @@ func NewImportCommand() *cobra.Command {
 				acdClients.applications = client.Resource(applicationsResource)
 			}
 			if len(applicationsetNamespaces) > 0 {
-				acdClients.applicationSets = client.Resource(appplicationSetResource)
+				acdClients.applicationSets = client.Resource(applicationSetResource)
 			}
 
 			// pruneObjects tracks live objects, and it's current resource version. any remaining
@@ -303,7 +303,7 @@ func NewImportCommand() *cobra.Command {
 					if !secutil.IsNamespaceEnabled(bakObj.GetNamespace(), namespace, applicationsetNamespaces) {
 						continue
 					}
-					dynClient = client.Resource(appplicationSetResource).Namespace(bakObj.GetNamespace())
+					dynClient = client.Resource(applicationSetResource).Namespace(bakObj.GetNamespace())
 				}
 
 				// If there is a live object, remove the tracking annotations/label that might conflict
@@ -394,7 +394,7 @@ func NewImportCommand() *cobra.Command {
 							}
 						}
 					case application.ApplicationSetKind:
-						dynClient = client.Resource(appplicationSetResource).Namespace(liveObj.GetNamespace())
+						dynClient = client.Resource(applicationSetResource).Namespace(liveObj.GetNamespace())
 					default:
 						log.Fatalf("Unexpected kind '%s' in prune list", key.Kind)
 					}

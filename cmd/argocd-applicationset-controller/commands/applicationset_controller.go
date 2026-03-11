@@ -73,7 +73,7 @@ func NewCommand() *cobra.Command {
 		globalPreservedAnnotations   []string
 		globalPreservedLabels        []string
 		enableGitHubAPIMetrics       bool
-		metricsAplicationsetLabels   []string
+		metricsApplicationsetLabels  []string
 		enableScmProviders           bool
 		webhookParallelism           int
 		tokenRefStrictMode           bool
@@ -233,7 +233,7 @@ func NewCommand() *cobra.Command {
 
 			metrics := appsetmetrics.NewApplicationsetMetrics(
 				utils.NewAppsetLister(mgr.GetClient()),
-				metricsAplicationsetLabels,
+				metricsApplicationsetLabels,
 				func(appset *appv1alpha1.ApplicationSet) bool {
 					return utils.IsNamespaceAllowed(applicationSetNamespaces, appset.Namespace)
 				})
@@ -299,7 +299,7 @@ func NewCommand() *cobra.Command {
 	command.Flags().StringSliceVar(&globalPreservedAnnotations, "preserved-annotations", env.StringsFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_GLOBAL_PRESERVED_ANNOTATIONS", []string{}, ","), "Sets global preserved field values for annotations")
 	command.Flags().StringSliceVar(&globalPreservedLabels, "preserved-labels", env.StringsFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_GLOBAL_PRESERVED_LABELS", []string{}, ","), "Sets global preserved field values for labels")
 	command.Flags().IntVar(&webhookParallelism, "webhook-parallelism-limit", env.ParseNumFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_WEBHOOK_PARALLELISM_LIMIT", 50, 1, 1000), "Number of webhook requests processed concurrently")
-	command.Flags().StringSliceVar(&metricsAplicationsetLabels, "metrics-applicationset-labels", []string{}, "List of Application labels that will be added to the argocd_applicationset_labels metric")
+	command.Flags().StringSliceVar(&metricsApplicationsetLabels, "metrics-applicationset-labels", []string{}, "List of Application labels that will be added to the argocd_applicationset_labels metric")
 	command.Flags().BoolVar(&enableGitHubAPIMetrics, "enable-github-api-metrics", env.ParseBoolFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_GITHUB_API_METRICS", false), "Enable GitHub API metrics for generators that use the GitHub API")
 	command.Flags().IntVar(&maxResourcesStatusCount, "max-resources-status-count", env.ParseNumFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_MAX_RESOURCES_STATUS_COUNT", 5000, 0, math.MaxInt), "Max number of resources stored in appset status.")
 	command.Flags().DurationVar(&cacheSyncPeriod, "cache-sync-period", env.ParseDurationFromEnv("ARGOCD_APPLICATIONSET_CONTROLLER_CACHE_SYNC_PERIOD", time.Hour*10, 0, time.Hour*24), "Period at which the manager client cache is forcefully resynced with the Kubernetes API server. 0 disables periodic resync.")
