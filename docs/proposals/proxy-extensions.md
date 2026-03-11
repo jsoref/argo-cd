@@ -79,7 +79,7 @@ Possible solutions:
 #### [G-2] Argo CD admins should be able to define rbacs to define which users can invoke specific extensions
 
 Argo CD Admins must be able to define which extensions are allowed to be
-executed by the logged in user. This should be fine grained by Argo CD
+executed by the logged in user. This should be fine-grained by Argo CD
 project like the current rbac implementation.
 
 ----

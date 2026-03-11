@@ -24,7 +24,7 @@ func NewServer(db db.ArgoDB, enf *rbac.Enforcer) *Server {
 }
 
 // TODO: RBAC policies are currently an all-or-nothing approach, so there is no
-// fine grained control for certificate manipulation. Either a user has access
+// fine-grained control for certificate manipulation. Either a user has access
 // to a given certificate operation (get/create/delete), or it doesn't.
 
 // Returns a list of configured certificates that match the query
