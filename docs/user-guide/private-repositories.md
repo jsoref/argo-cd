@@ -248,7 +248,7 @@ You can also set up credentials to serve as templates for connecting repositorie
 
 To set up a credential template using the Web UI, simply fill in all relevant credential information in the __Connect repo using SSH__ or __Connect repo using HTTPS__ dialogues (as described above), but select __Save as credential template__ instead of __Connect__ to save the credential template. Be sure to only enter the prefix URL (i.e. `https://github.com/argoproj`) instead of the complete repository URL (i.e. `https://github.com/argoproj/argocd-example-apps`) in the field __Repository URL__
 
-To manage credential templates using the CLI, use the `repocreds` sub-command, for example `argocd repocreds add https://github.com/argoproj --username youruser --password yourpass` would setup a credential template for the URL prefix `https://github.com/argoproj` using the specified username/password combination. Similar to the `repo` sub-command, you can also list and remove repository credentials using the `argocd repocreds list` and `argocd repocreds rm` commands, respectively.
+To manage credential templates using the CLI, use the `repocreds` sub-command, for example `argocd repocreds add https://github.com/argoproj --username youruser --password yourpass` would set up a credential template for the URL prefix `https://github.com/argoproj` using the specified username/password combination. Similar to the `repo` sub-command, you can also list and remove repository credentials using the `argocd repocreds list` and `argocd repocreds rm` commands, respectively.
 
 In order for Argo CD to use a credential template for any given repository, the following conditions must be met:
 
@@ -268,7 +268,7 @@ The following is an example CLI session, depicting repository credential set-up:
 $ argocd repo add https://docker-build/repos/argocd-example-apps
 FATA[0000] rpc error: code = Unknown desc = authentication required 
 
-# Setup a credential template for all repos under https://docker-build/repos
+# Set up a credential template for all repos under https://docker-build/repos
 $ argocd repocreds add https://docker-build/repos --username test --password test
 repository credentials for 'https://docker-build/repos' added
 

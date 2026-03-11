@@ -15,7 +15,7 @@ to determine privileges in Argo.
 
 ### Creating a new client in Keycloak
 
-First we need to setup a new client.
+First we need to set up a new client.
 
 Start by logging into your keycloak server, select the realm you want to use (`master` by default)
 and then go to __Clients__ and click the __Create client__ button at the top.
@@ -91,7 +91,7 @@ You will also be able to authenticate using argo-cd command line.
 
 ### Creating a new client in Keycloak
 
-First we need to setup a new client.
+First we need to set up a new client.
 
 Start by logging into your keycloak server, select the realm you want to use (`master` by default)
 and then go to __Clients__ and click the __Create client__ button at the top.
