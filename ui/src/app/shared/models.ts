@@ -9,7 +9,7 @@ interface ItemsList<T> {
     items: T[];
     /**
      * Kind is a string value representing the REST resource this object represents.
-     * Servers may infer this from the endpoint the client submits requests to.
+     * Servers may infer this from the endpoint to which the client submits requests.
      */
     kind?: string;
     metadata: models.ListMeta;
