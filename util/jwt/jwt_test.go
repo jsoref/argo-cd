@@ -86,7 +86,7 @@ func TestGetUserIdentifier(t *testing.T) {
 			want: "dex-user",
 		},
 		{
-			name: "when both dex and sub defined but dex user_id empty - fallback to sub",
+			name: "when both dex and sub defined but dex user_id empty - fall back to sub",
 			claims: jwt.MapClaims{
 				"sub": "test:apiKey",
 				"federated_claims": map[string]any{

@@ -73,8 +73,8 @@ describe('ResourceIcon', () => {
         });
     });
 
-    describe('fallback to kind-based icons (with non-matching group) - THIS IS THE BUG FIX', () => {
-        it('should fallback to kind-based icon for Ingress with networking.k8s.io group', () => {
+    describe('fall back to kind-based icons (with non-matching group) - THIS IS THE BUG FIX', () => {
+        it('should fall back to kind-based icon for Ingress with networking.k8s.io group', () => {
             // This is the main bug fix test case
             // Ingress has group 'networking.k8s.io' which is NOT in resourceCustomizations
             // But Ingress IS in resourceIcons, so it should still show the icon
@@ -85,7 +85,7 @@ describe('ResourceIcon', () => {
             expect(imgs[0].props.src).toBe('assets/images/resources/ing.svg');
         });
 
-        it('should fallback to kind-based icon for Service with core group', () => {
+        it('should fall back to kind-based icon for Service with core group', () => {
             const testRenderer = renderer.create(<ResourceIcon group='' kind='Service' />);
             const testInstance = testRenderer.root;
             const imgs = testInstance.findAllByType('img');
@@ -94,7 +94,7 @@ describe('ResourceIcon', () => {
         });
     });
 
-    describe('fallback to initials (no matching group or kind)', () => {
+    describe('fall back to initials (no matching group or kind)', () => {
         it('should show initials for unknown resource with unknown group', () => {
             const testRenderer = renderer.create(<ResourceIcon group='unknown.example.io' kind='UnknownResource' />);
             const testInstance = testRenderer.root;

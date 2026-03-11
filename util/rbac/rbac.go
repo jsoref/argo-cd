@@ -186,7 +186,7 @@ func (e *Enforcer) tryGetCasbinEnforcer(project string, policy string) (CasbinEn
 	var enforcer CasbinEnforcer
 	if policy != "" {
 		if enforcer, err = newEnforcerSafe(matchFunc, e.model, newAdapter(e.adapter.builtinPolicy, e.adapter.userDefinedPolicy, policy)); err != nil {
-			// fallback to default policy if project policy is invalid
+			// fall back to default policy if project policy is invalid
 			log.Errorf("Failed to load project '%s' policy", project)
 			enforcer, err = newEnforcerSafe(matchFunc, e.model, e.adapter)
 		}

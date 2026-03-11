@@ -513,7 +513,7 @@ func (c *nativeHelmChart) GetTags(chart string, noCache bool) ([]string, error) 
 			Password: helmPassword,
 		})
 
-		// Try to fallback to the environment config, but we shouldn't error if the file is not set
+		// Try to fall back to the environment config, but we shouldn't error if the file is not set
 		if c.creds.GetUsername() == "" && helmPassword == "" {
 			store, _ := credentials.NewStoreFromDocker(credentials.StoreOptions{})
 			if store != nil {

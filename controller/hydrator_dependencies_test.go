@@ -96,7 +96,7 @@ func TestGetHydratorCommitMessageTemplate_WhenTemplateisNotDefined_FallbackToDef
 
 	tmpl, err := ctrl.GetHydratorCommitMessageTemplate()
 	require.NoError(t, err)
-	assert.NotEmpty(t, tmpl) // should fallback to default
+	assert.NotEmpty(t, tmpl) // should fall back to default
 	assert.Equal(t, settings.CommitMessageTemplate, tmpl)
 }
 

@@ -1760,7 +1760,7 @@ func (ctrl *ApplicationController) processAppRefreshQueueItem() (processNext boo
 	}()
 
 	if comparisonLevel == ComparisonWithNothing {
-		// If the destination cluster is invalid, fallback to the normal reconciliation flow
+		// If the destination cluster is invalid, fall back to the normal reconciliation flow
 		if destCluster, err = argo.GetDestinationCluster(context.Background(), app.Spec.Destination, ctrl.db); err == nil {
 			managedResources := make([]*appv1.ResourceDiff, 0)
 			if err := ctrl.cache.GetAppManagedResources(app.InstanceName(ctrl.namespace), &managedResources); err == nil {
