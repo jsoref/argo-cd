@@ -152,7 +152,7 @@ Make sure that:
 
 ## Configuring the groups claim
 
-In order for ArgoCD to provide the groups the user is in we need to configure a groups claim that can be included in the authentication token.
+In order for ArgoCD to provide the user's groups, in we need to configure a groups claim that can be included in the authentication token.
 
 To do this we'll start by creating a new __Client Scope__ called _groups_.
 
