@@ -336,7 +336,7 @@ spec:
 }
 
 // Make sure that if a hook is invalid (must pass the dry-run client), it fails without affecting other hooks.
-func TestInvalidlHookWaitsForOtherHooksToComplete(t *testing.T) {
+func TestInvalidHookWaitsForOtherHooksToComplete(t *testing.T) {
 	existingHook := `
 apiVersion: v1
 kind: Pod
