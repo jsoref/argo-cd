@@ -285,7 +285,7 @@ func (g *SCMProviderGenerator) githubProvider(ctx context.Context, github *argop
 	if github.AppSecretName != "" {
 		auth, err := g.GitHubApps.GetAuthSecret(ctx, github.AppSecretName)
 		if err != nil {
-			return nil, fmt.Errorf("error fetching Github app secret: %w", err)
+			return nil, fmt.Errorf("error fetching GitHub app secret: %w", err)
 		}
 
 		if g.enableGitHubAPIMetrics {
@@ -296,7 +296,7 @@ func (g *SCMProviderGenerator) githubProvider(ctx context.Context, github *argop
 
 	token, err := utils.GetSecretRef(ctx, g.client, github.TokenRef, applicationSetInfo.Namespace, g.tokenRefStrictMode)
 	if err != nil {
-		return nil, fmt.Errorf("error fetching Github token: %w", err)
+		return nil, fmt.Errorf("error fetching GitHub token: %w", err)
 	}
 
 	if g.enableGitHubAPIMetrics {

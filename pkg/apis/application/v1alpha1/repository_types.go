@@ -33,7 +33,7 @@ type RepoCreds struct {
 	TLSClientCertKey string `json:"tlsClientCertKey,omitempty" protobuf:"bytes,6,opt,name=tlsClientCertKey"`
 	// GithubAppPrivateKey specifies the private key PEM data for authentication via GitHub app
 	GithubAppPrivateKey string `json:"githubAppPrivateKey,omitempty" protobuf:"bytes,7,opt,name=githubAppPrivateKey"`
-	// GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication
+	// GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication
 	GithubAppId int64 `json:"githubAppID,omitempty" protobuf:"bytes,8,opt,name=githubAppID"`
 	// GithubAppInstallationId specifies the ID of the installed GitHub App for GitHub app authentication
 	GithubAppInstallationId int64 `json:"githubAppInstallationID,omitempty" protobuf:"bytes,9,opt,name=githubAppInstallationID"`
@@ -90,7 +90,7 @@ type Repository struct {
 	InheritedCreds bool `json:"inheritedCreds,omitempty" protobuf:"bytes,13,opt,name=inheritedCreds"`
 	// EnableOCI specifies whether helm-oci support should be enabled for this repo
 	EnableOCI bool `json:"enableOCI,omitempty" protobuf:"bytes,14,opt,name=enableOCI"`
-	// Github App Private Key PEM data
+	// GitHub App Private Key PEM data
 	GithubAppPrivateKey string `json:"githubAppPrivateKey,omitempty" protobuf:"bytes,15,opt,name=githubAppPrivateKey"`
 	// GithubAppId specifies the ID of the GitHub app used to access the repo
 	GithubAppId int64 `json:"githubAppID,omitempty" protobuf:"bytes,16,opt,name=githubAppID"`

@@ -1888,7 +1888,7 @@ func TestSimpleSCMProviderGeneratorTokenRefStrictKo(t *testing.T) {
 			// app should be listed
 			output, err := fixture.RunCli("appset", "get", ctx.GetName())
 			require.NoError(t, err)
-			assert.Contains(t, output, fmt.Sprintf("scm provider: error fetching Github token: secret %s/%s is not a valid SCM creds secret", fixture.TestNamespace(), secretName))
+			assert.Contains(t, output, fmt.Sprintf("scm provider: error fetching GitHub token: secret %s/%s is not a valid SCM creds secret", fixture.TestNamespace(), secretName))
 			err2 := utils.GetE2EFixtureK8sClient(t).KubeClientset.CoreV1().Secrets(fixture.TestNamespace()).Delete(t.Context(), secretName, metav1.DeleteOptions{})
 			assert.NoError(t, err2)
 		})

@@ -1841,7 +1841,7 @@ message RepoCreds {
   // GithubAppPrivateKey specifies the private key PEM data for authentication via GitHub app
   optional string githubAppPrivateKey = 7;
 
-  // GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication
+  // GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication
   optional int64 githubAppID = 8;
 
   // GithubAppInstallationId specifies the ID of the installed GitHub App for GitHub app authentication
@@ -1930,7 +1930,7 @@ message Repository {
   // EnableOCI specifies whether helm-oci support should be enabled for this repo
   optional bool enableOCI = 14;
 
-  // Github App Private Key PEM data
+  // GitHub App Private Key PEM data
   optional string githubAppPrivateKey = 15;
 
   // GithubAppId specifies the ID of the GitHub app used to access the repo

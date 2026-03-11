@@ -42,7 +42,7 @@ spec:
       github:
         # The GitHub organization or user.
         owner: myorg
-        # The Github repository
+        # The GitHub repository
         repo: myrepository
         # For GitHub Enterprise (optional)
         api: https://git.example.com/
@@ -456,7 +456,7 @@ The configuration is almost the same as the one described [in the Git generator]
 > [!NOTE]
 > The ApplicationSet controller webhook does not use the same [API server webhook](../webhook.md). ApplicationSet exposes a webhook server as a service of type ClusterIP. An ApplicationSet specific Ingress resource needs to be created to expose this service to the webhook source.
 
-### Github webhook configuration
+### GitHub webhook configuration
 
 In section 1, _"Create the webhook in the Git provider"_, add an event so that a webhook request will be sent when a pull request is created, closed, or label changed.
 

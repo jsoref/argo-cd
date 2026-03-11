@@ -96,7 +96,7 @@ jobs:
   argocd-image-provenance:
     needs: [setup-variables, argocd-image]
     permissions:
-      actions: read # for detecting the Github Actions environment.
+      actions: read # for detecting the GitHub Actions environment.
       id-token: write # for creating OIDC tokens for signing.
       packages: write # for uploading attestations. (https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/container/README.md#known-issues)
     # Must be refernced by a tag. https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/container/README.md#referencing-the-slsa-generator
@@ -188,7 +188,7 @@ jobs:
   goreleaser-provenance:
     needs: [goreleaser, setup-variables]
     permissions:
-      actions: read # for detecting the Github Actions environment
+      actions: read # for detecting the GitHub Actions environment
       id-token: write # Needed for provenance signing and ID
       contents: write #  Needed for release uploads
     if: github.repository == 'argoproj/argo-cd' || needs.setup-variables.outputs.allow_fork_release == 'true'
@@ -274,7 +274,7 @@ jobs:
   sbom-provenance:
     needs: [generate-sbom, setup-variables]
     permissions:
-      actions: read # for detecting the Github Actions environment
+      actions: read # for detecting the GitHub Actions environment
       id-token: write # Needed for provenance signing and ID
       contents: write #  Needed for release uploads
     if: github.repository == 'argoproj/argo-cd' || needs.setup-variables.outputs.allow_fork_release == 'true'

@@ -5788,7 +5788,7 @@ func schema_pkg_apis_application_v1alpha1_RepoCreds(ref common.ReferenceCallback
 					},
 					"githubAppID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication",
+							Description: "GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication",
 							Type:        []string{"integer"},
 							Format:      "int64",
 						},
@@ -5999,7 +5999,7 @@ func schema_pkg_apis_application_v1alpha1_Repository(ref common.ReferenceCallbac
 					},
 					"githubAppPrivateKey": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Github App Private Key PEM data",
+							Description: "GitHub App Private Key PEM data",
 							Type:        []string{"string"},
 							Format:      "",
 						},

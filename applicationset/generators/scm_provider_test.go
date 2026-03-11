@@ -194,7 +194,7 @@ func TestAllowedSCMProvider(t *testing.T) {
 		providerConfig *argoprojiov1alpha1.SCMProviderGenerator
 	}{
 		{
-			name: "Error Github",
+			name: "Error GitHub",
 			providerConfig: &argoprojiov1alpha1.SCMProviderGenerator{
 				Github: &argoprojiov1alpha1.SCMProviderGeneratorGithub{
 					API: "https://myservice.mynamespace.svc.cluster.local",

@@ -147,7 +147,7 @@ spec:
         github:
           # The GitHub organization or user.
           owner: myorg
-          # The Github repository
+          # The GitHub repository
           repo: myrepository
           # For GitHub Enterprise (optional)
           api: https://git.example.com/

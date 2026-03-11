@@ -113,7 +113,7 @@ func containLabels(expectedLabels []string, gotLabels []*github.Label) bool {
 	return true
 }
 
-// Get the Github pull request label names.
+// Get the GitHub pull request label names.
 func getGithubPRLabelNames(gitHubLabels []*github.Label) []string {
 	var labelNames []string
 	for _, gitHubLabel := range gitHubLabels {
