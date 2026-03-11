@@ -113,7 +113,7 @@ The git repository would have an expected structure, such that the scripts and U
 │       │   │   └── action.lua
 ```
 
-Note that it may be necessary to support multiple versions of a resource (e.g. v1alpha1 vs. a v1 version of a custom esource), and so the path structure may need to also support incorporating the version in the path. For example:
+Note that it may be necessary to support multiple versions of a resource (e.g. v1alpha1 vs. a v1 version of a custom esource), and so the path structure may also need to support incorporating the version in the path. For example:
 
 ```
 ├── argoproj.io
