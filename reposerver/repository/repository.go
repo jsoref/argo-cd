@@ -1176,7 +1176,7 @@ func isSourcePermitted(url string, repos []string) bool {
 	return p.IsSourcePermitted(v1alpha1.ApplicationSource{RepoURL: url})
 }
 
-// parseKubeVersion is an helper function to remove the non-semantic information supported by kubernetes
+// parseKubeVersion is a helper function to remove the non-semantic information supported by kubernetes
 // that may not be supported in all helm versions: https://github.com/helm/helm/pull/31091
 func parseKubeVersion(version string) (string, error) {
 	if version == "" {

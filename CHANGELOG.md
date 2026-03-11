@@ -2263,7 +2263,7 @@ any load balancer, ingress controller, or API gateway.
 Argo CD introduces some additional CLI commands:
 
 * `argocd app edit APPNAME` - to edit an application spec using preferred EDITOR
-* `argocd proj edit PROJNAME` - to edit an project spec using preferred EDITOR
+* `argocd proj edit PROJNAME` - to edit a project spec using preferred EDITOR
 * `argocd app patch APPNAME` - to patch an application spec
 * `argocd app patch-resource APPNAME` - to patch a specific resource which is part of an application
 

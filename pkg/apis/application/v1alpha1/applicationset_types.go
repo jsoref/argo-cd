@@ -1019,7 +1019,7 @@ func (status *ApplicationSetStatus) SetConditions(conditions []ApplicationSetCon
 	for i := range conditions {
 		condition := conditions[i]
 		if isEvaluated, ok := evaluatedTypes[condition.Type]; !ok || !isEvaluated {
-			// ignore an new condition when it is not evaluated
+			// ignore a new condition when it is not evaluated
 			continue
 		}
 

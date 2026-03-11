@@ -131,7 +131,7 @@ func LegacyDistributionFunction(replicas int) DistributionFunction {
 	}
 }
 
-// RoundRobinDistributionFunction returns a DistributionFunction using an homogeneous distribution algorithm:
+// RoundRobinDistributionFunction returns a DistributionFunction using a homogeneous distribution algorithm:
 // for a given cluster the function will return the shard number based on the modulo of the cluster rank in
 // the cluster's list sorted by uid on the shard number.
 // This function ensures a homogeneous distribution: each shards got assigned the same number of

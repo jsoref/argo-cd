@@ -372,7 +372,7 @@ func (e *Enforcer) CreateEnforcerWithRuntimePolicy(project string, policy string
 	return e.getCasbinEnforcer(project, policy)
 }
 
-// EnforceWithCustomEnforcer wraps enforce with an custom enforcer
+// EnforceWithCustomEnforcer wraps enforce with a custom enforcer
 func (e *Enforcer) EnforceWithCustomEnforcer(enf CasbinEnforcer, rvals ...any) bool {
 	return enforce(enf, e.defaultRole, e.claimsEnforcerFunc, rvals...)
 }

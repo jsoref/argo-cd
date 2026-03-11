@@ -61,7 +61,7 @@ jobs:
       - name: Obtain access token
         id: idtoken
         run: |
-          # get an token from github
+          # get a token from github
           echo "getting token from GitHub"
           GH_TOKEN_RESPONSE=$(curl -sSf \
             "${{steps.script.outputs.IDTOKENURL}}" \

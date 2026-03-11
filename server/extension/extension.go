@@ -159,7 +159,7 @@ type ExtensionConfig struct {
 }
 
 // BackendConfig defines the backend service configurations that will
-// be used by an specific extension. An extension can have multiple services
+// be used by a specific extension. An extension can have multiple services
 // associated. This is necessary when Argo CD is managing applications in
 // external clusters. In this case, each cluster may have its own backend
 // service.

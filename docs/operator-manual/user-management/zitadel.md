@@ -101,7 +101,7 @@ Paste the following code into the action:
 
 ```javascript
 /**
- * sets the roles an additional claim in the token with roles as value an project as key
+ * sets the roles an additional claim in the token with roles as value a project as key
  *
  * The role claims of the token look like the following:
  *
