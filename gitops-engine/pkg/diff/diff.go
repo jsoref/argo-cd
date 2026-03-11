@@ -884,7 +884,7 @@ func Normalize(un *unstructured.Unstructured, opts ...Option) {
 	}
 
 	// Skip the full normalization (ignoreDifferences + knownTypes) for server-side diff
-	// In the case an ignoreDifferences field is required, it needs to be present in the config
+	// In the case when an ignoreDifferences field is required, it needs to be present in the config
 	// before server-side diff is calculated and normalized before final comparison.
 	if !o.skipFullNormalize {
 		err := o.normalizer.Normalize(un)
