@@ -7668,7 +7668,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SCMProviderGeneratorGitlab defines connection info specific to Gitlab.",
+				Description: "SCMProviderGeneratorGitlab defines connection info specific to GitLab.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"group": {

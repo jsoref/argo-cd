@@ -500,7 +500,7 @@ type SCMProviderGeneratorGithub struct {
 	AllBranches bool `json:"allBranches,omitempty" protobuf:"varint,5,opt,name=allBranches"`
 }
 
-// SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
+// SCMProviderGeneratorGitlab defines connection info specific to GitLab.
 type SCMProviderGeneratorGitlab struct {
 	// GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
 	Group string `json:"group" protobuf:"bytes,1,opt,name=group"`

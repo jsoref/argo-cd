@@ -2521,7 +2521,7 @@ which have a dependency to external helm repositories.
 * Update dependencies to k8s v1.12 and client-go v9.0 (#729)
 - add argo cluster permission to view logs (#766) (@conorfennell)
 - Fix issue where applications could not be deleted on k8s v1.12
-- Allow 'syncApplication' action to reference target revision rather then hard-coding to 'HEAD' (#69) (@chrisgarland)
+- Allow 'syncApplication' action to reference target revision rather than hard-coding to 'HEAD' (#69) (@chrisgarland)
 - Issue #768 - Fix application wizard crash
 
 ## v0.10.4 (2018-11-07)

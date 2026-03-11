@@ -2509,7 +2509,7 @@ message SCMProviderGeneratorGithub {
   optional bool allBranches = 5;
 }
 
-// SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
+// SCMProviderGeneratorGitlab defines connection info specific to GitLab.
 message SCMProviderGeneratorGitlab {
   // GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
   optional string group = 1;

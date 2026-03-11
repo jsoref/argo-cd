@@ -362,7 +362,7 @@ func TestExtractNestedItem(t *testing.T) {
 			},
 		},
 		{
-			name:     "depth is greater then list of field size",
+			name:     "depth is greater than list of field size",
 			obj:      map[string]any{"test1": "1234567890"},
 			fields:   []string{"test1"},
 			depth:    4,
