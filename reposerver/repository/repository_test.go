@@ -4749,7 +4749,7 @@ func TestGetRefs_CacheWithLock(t *testing.T) {
 
 func TestGetRefs_CacheUnlockedOnUpdateFailed(t *testing.T) {
 	// Worst case the ttl on the lock expires and the lock is removed
-	// however if the holder of the lock fails to update the cache the caller should remove the lock
+	// however if the holder of the lock fails to update the cache, the caller should remove the lock
 	// to allow other callers to attempt to update the cache as quickly as possible
 	dir := t.TempDir()
 	initGitRepo(t, newGitRepoOptions{
@@ -4778,7 +4778,7 @@ func TestGetRefs_CacheUnlockedOnUpdateFailed(t *testing.T) {
 
 func TestGetRefs_CacheLockTryLockGitRefCacheError(t *testing.T) {
 	// Worst case the ttl on the lock expires and the lock is removed
-	// however if the holder of the lock fails to update the cache the caller should remove the lock
+	// however if the holder of the lock fails to update the cache, the caller should remove the lock
 	// to allow other callers to attempt to update the cache as quickly as possible
 	dir := t.TempDir()
 	initGitRepo(t, newGitRepoOptions{
