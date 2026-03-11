@@ -161,7 +161,7 @@ The sidecar will be responsible for cloning repos specified in `ArgoCDExtension`
 
 Some changes are required in the Argo CD API server:
 
-1. It will serve Javascript assets mounted by the sidecar in the well known location to the UI at an endpoint (i.e. `/api/v1/extensions/<resource-kind>`)
+1. It will serve JavaScript assets mounted by the sidecar in the well known location to the UI at an endpoint (i.e. `/api/v1/extensions/<resource-kind>`)
 2. It will retrieve Actions Lua scripts from the same well known location mounted by the sidecar instead of from `argocd-cm`
 
 

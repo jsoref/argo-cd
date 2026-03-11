@@ -728,7 +728,7 @@ spec:
       http:
         paths:
         - pathType: ImplementationSpecific
-          path: "/*"   # "*" is needed. Without this, the UI Javascript and CSS will not load properly
+          path: "/*"   # "*" is needed. Without this, the UI JavaScript and CSS will not load properly
           backend:
             service:
               name: argocd-server
