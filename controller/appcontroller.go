@@ -285,7 +285,7 @@ func NewApplicationController(
 				shard := env.ParseNumFromEnv(common.EnvControllerShard, -1, -math.MaxInt32, math.MaxInt32)
 				shard, err := sharding.GetOrUpdateShardFromConfigMap(kubeClientset.(*kubernetes.Clientset), settingsMgr, int(*appControllerDeployment.Spec.Replicas), shard)
 				if err != nil {
-					return fmt.Errorf("error while updating the heartbeat for to the Shard Mapping ConfigMap: %w", err)
+					return fmt.Errorf("error while updating the heartbeat for the Shard Mapping ConfigMap: %w", err)
 				}
 
 				// update the shard number in the clusterSharding, and resync all applications if the shard number is updated
