@@ -14,7 +14,7 @@ function getStatusBasedOnPhase(obj, hs)
     return hs
 end
 
-function getReadyContitionStatus(obj, hs)
+function getReadyConditionStatus(obj, hs)
     if obj.status ~= nil and obj.status.conditions ~= nil then
         for i, condition in ipairs(obj.status.conditions) do
         if condition.type == "Ready" and condition.status == "False" then
@@ -35,6 +35,6 @@ if obj.spec.paused ~= nil and obj.spec.paused then
 end
 
 getStatusBasedOnPhase(obj, hs)
-getReadyContitionStatus(obj, hs)
+getReadyConditionStatus(obj, hs)
 
 return hs
