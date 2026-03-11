@@ -45,7 +45,7 @@ const (
 
 	// ApplicationsResourcesNamespace is the namespace into which temporary resources (such as Deployments/Pods/etc)
 	// can be deployed, such as using it as the target namespace in an Application resource.
-	// Note: this is NOT the namespace the ApplicationSet controller is deployed to; see ArgoCDNamespace.
+	// Note: this is NOT the namespace to which the ApplicationSet controller is deployed; see ArgoCDNamespace.
 	ApplicationsResourcesNamespace = "applicationset-e2e"
 
 	TestingLabel = "e2e.argoproj.io"
