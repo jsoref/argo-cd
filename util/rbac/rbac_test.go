@@ -325,7 +325,7 @@ func TestClaimsEnforcerFunc(t *testing.T) {
 	assert.True(t, enf.Enforce(&claims, "applications", "get", "foo/bar"))
 }
 
-// TestDefaultRoleWithRuntimePolicy tests the ability for a default role to still take affect when
+// TestDefaultRoleWithRuntimePolicy tests the ability for a default role to still take effect when
 // enforcing a runtime policy
 func TestDefaultRoleWithRuntimePolicy(t *testing.T) {
 	kubeclientset := fake.NewClientset()
