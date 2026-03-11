@@ -387,7 +387,7 @@ func printClusterDetails(clusters []argoappv1.Cluster) {
 		fmt.Printf("  Cert validation:       %v\n", !cluster.Config.Insecure)
 		fmt.Printf("\nAuthentication\n\n")
 		fmt.Printf("  Basic authentication:  %v\n", cluster.Config.Username != "")
-		fmt.Printf("  oAuth authentication:  %v\n", cluster.Config.BearerToken != "")
+		fmt.Printf("  OAuth authentication:  %v\n", cluster.Config.BearerToken != "")
 		fmt.Printf("  AWS authentication:    %v\n", cluster.Config.AWSAuthConfig != nil)
 		fmt.Printf("\nDisable compression: %v\n", cluster.Config.DisableCompression)
 		fmt.Printf("\nUse proxy: %v\n", cluster.Config.ProxyUrl != "")

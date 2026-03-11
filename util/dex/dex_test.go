@@ -91,7 +91,7 @@ connectors:
     - name: your-github-org
 `
 
-var goodDexConfigWithOauthOverrides = `
+var goodDexConfigWithOAuthOverrides = `
 oauth2:
   passwordConnector: ldap
 connectors:
@@ -416,7 +416,7 @@ func Test_GenerateDexConfig(t *testing.T) {
 	t.Run("Override dex oauth2 configuration", func(t *testing.T) {
 		s := settings.ArgoCDSettings{
 			URL:       "http://localhost",
-			DexConfig: goodDexConfigWithOauthOverrides,
+			DexConfig: goodDexConfigWithOAuthOverrides,
 		}
 		config, err := GenerateDexConfigYAML(&s, false)
 		require.NoError(t, err)

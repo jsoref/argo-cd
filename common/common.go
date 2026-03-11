@@ -168,13 +168,13 @@ const (
 	CallbackEndpoint = "/auth/callback"
 	// DexCallbackEndpoint is Argo CD's final callback endpoint when Dex is configured
 	DexCallbackEndpoint = "/api/dex/callback"
-	// ArgoCDClientAppName is name of the Oauth client app used when registering our web app to dex
+	// ArgoCDClientAppName is name of the OAuth client app used when registering our web app to dex
 	ArgoCDClientAppName = "Argo CD"
-	// ArgoCDClientAppID is the Oauth client ID we will use when registering our app to dex
+	// ArgoCDClientAppID is the OAuth client ID we will use when registering our app to dex
 	ArgoCDClientAppID = "argo-cd"
-	// ArgoCDCLIClientAppName is name of the Oauth client app used when registering our CLI to dex
+	// ArgoCDCLIClientAppName is name of the OAuth client app used when registering our CLI to dex
 	ArgoCDCLIClientAppName = "Argo CD CLI"
-	// ArgoCDCLIClientAppID is the Oauth client ID we will use when registering our CLI to dex
+	// ArgoCDCLIClientAppID is the OAuth client ID we will use when registering our CLI to dex
 	ArgoCDCLIClientAppID = "argo-cd-cli"
 	// DexFederatedScope allows to receive the federated_claims from Dex. https://dexidp.io/docs/configuration/custom-scopes-claims-clients/
 	DexFederatedScope = "federated:id"
