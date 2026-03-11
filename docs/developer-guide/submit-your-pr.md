@@ -81,7 +81,7 @@ If any of these tests in the CI pipeline fail, it means that some of your contri
 
 We use [CodeCov](https://codecov.io) in our CI pipeline to check for test coverage, and once you submit your PR, it will run and report on the coverage difference as a comment within your PR. If the difference is too high in the negative, i.e. your submission introduced a significant drop in code coverage, the CI check will fail.
 
-Whenever you develop a new feature or submit a bug fix, please also write appropriate unit tests for it. If you write a completely new module, please aim for at least 80% of coverage.
+Whenever you develop a new feature or submit a bug fix, please write appropriate unit tests for it. If you write a completely new module, please aim for at least 80% of coverage.
 If you want to see how much coverage just a specific module (i.e. your new one) has, you can set the `TEST_MODULE` to the (fully qualified) name of that module with `make test`, i.e.:
 
 ```bash
