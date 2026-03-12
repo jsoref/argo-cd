@@ -1644,7 +1644,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 - fix: prevent user from seeing/deleting resources not permitted in project (#2908) (#2910)
 - fix: self-heal should retry syncing an application after specified delay
 - fix: stop logging dex config secrets #(2904) (#2937)
-- fix: stop using jsondiffpatch on clientside to render resource difference  (#2869)
+- fix: stop using jsondiffpatch on client-side to render resource difference  (#2869)
 - fix: Target Revision truncated #2736
 - fix: UI should re-trigger SSO login if SSO JWT token expires (#2891)
 - fix: update argocd-util import was not working properly (#2939)
