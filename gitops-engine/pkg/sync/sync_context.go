@@ -781,7 +781,7 @@ func (sc *syncContext) terminateHooksPreemptively(tasks syncTasks) bool {
 		}
 
 		if task.liveObj == nil {
-			// if we terminate preemtively after the task was run, it will not contain the live object yet
+			// if we terminate preemptively after the task was run, it will not contain the live object yet
 			liveObj, err := sc.getResource(task)
 			if err != nil && !apierrors.IsNotFound(err) {
 				sc.setResourceResult(task, task.syncStatus, common.OperationError, fmt.Sprintf("Failed to get live resource: %v", err))
