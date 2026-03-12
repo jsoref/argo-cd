@@ -1712,7 +1712,7 @@ func TestMerge(t *testing.T) {
 	assert.Equal(t, rstNew.Status, rst.Status)
 }
 
-func TestMergeWitoutUpdate(t *testing.T) {
+func TestMergeWithoutUpdate(t *testing.T) {
 	rst := resourceState{
 		Group:     "group",
 		Kind:      "kind",
