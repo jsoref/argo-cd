@@ -442,7 +442,7 @@ func Error(message, err string, matchers ...func(string, string) bool) Expectati
 	}
 }
 
-// ErrorRegex asserts that the last command was an error that matches given regex epxression
+// ErrorRegex asserts that the last command was an error that matches given regex expression
 func ErrorRegex(messagePattern, err string) Expectation {
 	return Error(messagePattern, err, func(actual, expected string) bool {
 		return regexp.MustCompile(expected).MatchString(actual)
