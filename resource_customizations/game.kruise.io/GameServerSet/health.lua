@@ -25,7 +25,7 @@ if obj.status and obj.metadata.generation == obj.status.observedGeneration then
     return hs
   end
 
-  -- 4) ReadyRelicas not enough
+  -- 4) ReadyReplicas not enough
   if (obj.status.readyReplicas or 0) < (obj.status.replicas or 0) then
     hs.status  = "Progressing"
     hs.message = "ReadyReplicas " ..
