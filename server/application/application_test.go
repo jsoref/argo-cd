@@ -1227,19 +1227,19 @@ func testListAppsWithLabels(t *testing.T, appQuery application.ApplicationQuery,
 	}
 
 	invalidTests := []struct {
-		testName    string
-		label       string
-		errorMesage string
+		testName     string
+		label        string
+		errorMessage string
 	}{
 		{
-			testName:    "Set based filtering using '>' operator",
-			label:       "key1>value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '>' operator",
+			label:        "key1>value1",
+			errorMessage: "error parsing the selector",
 		},
 		{
-			testName:    "Set based filtering using '<' operator",
-			label:       "key1<value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '<' operator",
+			label:        "key1<value1",
+			errorMessage: "error parsing the selector",
 		},
 	}
 	// test invalid scenarios
@@ -1247,7 +1247,7 @@ func testListAppsWithLabels(t *testing.T, appQuery application.ApplicationQuery,
 		t.Run(invalidTest.testName, func(t *testing.T) {
 			appQuery.Selector = &invalidTest.label
 			_, err := appServer.List(t.Context(), &appQuery)
-			assert.ErrorContains(t, err, invalidTest.errorMesage)
+			assert.ErrorContains(t, err, invalidTest.errorMessage)
 		})
 	}
 }
