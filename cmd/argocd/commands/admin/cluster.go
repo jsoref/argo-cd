@@ -669,7 +669,7 @@ func NewGenClusterConfigCommand(pathOpts *clientcmd.PathOptions) *cobra.Command 
 			}
 			if clusterOpts.ClusterEndpoint == string(cmdutil.KubePublicEndpoint) {
 				// Ignore `kube-public` cluster endpoints, since this command is intended to run without invoking any network connections.
-				log.Warn("kube-public cluster endpoints are not supported. Falling back to the endpoint listed in the kubconfig context.")
+				log.Warn("kube-public cluster endpoints are not supported. Falling back to the endpoint listed in the kubeconfig context.")
 			}
 			if clusterOpts.Shard >= 0 {
 				clst.Shard = &clusterOpts.Shard
