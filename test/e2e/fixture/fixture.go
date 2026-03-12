@@ -1283,7 +1283,7 @@ func RestartRepoServer(t *testing.T) {
 	}
 }
 
-// RestartAPIServer performs a restart of the API server deployemt and waits
+// RestartAPIServer performs a restart of the API server deployment and waits
 // until the rollout has completed.
 func RestartAPIServer(t *testing.T) {
 	t.Helper()
