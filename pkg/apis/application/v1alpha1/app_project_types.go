@@ -68,7 +68,7 @@ func (proj *AppProject) GetRoleByName(name string) (*ProjectRole, int, error) {
 
 // GetJWTTokenFromSpec looks up the index of a JWTToken in a project by id (new token), if not then by the issue at time (old token)
 func (proj *AppProject) GetJWTTokenFromSpec(roleName string, issuedAt int64, id string) (*JWTToken, int, error) {
-	// This is for backward compatibility. In the oder version, JWTTokens are stored under spec.role
+	// This is for backward compatibility. In the older version, JWTTokens are stored under spec.role
 	role, _, err := proj.GetRoleByName(roleName)
 	if err != nil {
 		return nil, -1, err
