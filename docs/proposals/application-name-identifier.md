@@ -98,7 +98,7 @@ installation ID allows separate two Argo CD instances that manages resources in 
 
 The `trackingMethod` setting should be available at the system level and the application level to
 allow the smooth transition from the old `app.kubernetes.io/instance` label to the new tracking method.
-Using the app leverl settings users will be able to first switch applications one by one to the new tracking method
+Using the app level settings users will be able to first switch applications one by one to the new tracking method
 and prepare for the migration. Next system level setting can be changed to `annotation` or `annotation+label`
 and not-migrated applications can be configured to use `labels` using application level setting.
 
