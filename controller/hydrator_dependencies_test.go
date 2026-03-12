@@ -79,7 +79,7 @@ func TestGetRepoObjs(t *testing.T) {
 	assert.Equal(t, "ConfigMap", objs[0].GetKind())
 }
 
-func TestGetHydratorCommitMessageTemplate_WhenTemplateisNotDefined_FallbackToDefault(t *testing.T) {
+func TestGetHydratorCommitMessageTemplate_WhenTemplateIsNotDefined_FallbackToDefault(t *testing.T) {
 	cm := test.NewConfigMap()
 	cmBytes, _ := json.Marshal(cm)
 
