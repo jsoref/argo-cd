@@ -13,7 +13,7 @@ import (
 func applyTemplatePatch(app *appv1.Application, templatePatch string) (*appv1.Application, error) {
 	appString, err := json.Marshal(app)
 	if err != nil {
-		return nil, fmt.Errorf("error while marhsalling Application %w", err)
+		return nil, fmt.Errorf("error while marshalling Application %w", err)
 	}
 
 	convertedTemplatePatch, err := utils.ConvertYAMLToJSON(templatePatch)
@@ -33,7 +33,7 @@ func applyTemplatePatch(app *appv1.Application, templatePatch string) (*appv1.Ap
 	finalApp := appv1.Application{}
 	err = json.Unmarshal(data, &finalApp)
 	if err != nil {
-		return nil, fmt.Errorf("error while unmarhsalling patched application: %w", err)
+		return nil, fmt.Errorf("error while unmarshalling patched application: %w", err)
 	}
 
 	// Prevent changes to the `project` field. This helps prevent malicious template patches

@@ -191,12 +191,12 @@ func NewDiffReconcileResults() *cobra.Command {
 func toUnstructured(val any) (*unstructured.Unstructured, error) {
 	data, err := json.Marshal(val)
 	if err != nil {
-		return nil, fmt.Errorf("error while marhsalling value: %w", err)
+		return nil, fmt.Errorf("error while marshalling value: %w", err)
 	}
 	res := make(map[string]any)
 	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return nil, fmt.Errorf("error while unmarhsalling data: %w", err)
+		return nil, fmt.Errorf("error while unmarshalling data: %w", err)
 	}
 	return &unstructured.Unstructured{Object: res}, nil
 }
