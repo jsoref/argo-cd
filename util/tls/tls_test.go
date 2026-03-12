@@ -283,7 +283,7 @@ func TestGeneratePEM(t *testing.T) {
 		assert.Nil(t, key)
 	})
 
-	t.Run("Create PEM from certficate options", func(t *testing.T) {
+	t.Run("Create PEM from certificate options", func(t *testing.T) {
 		opts := CertOptions{Hosts: []string{"localhost"}, Organization: "Acme"}
 		cert, key, err := generatePEM(opts)
 		require.NoError(t, err)
