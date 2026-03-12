@@ -604,7 +604,7 @@ func TestPrintApplicationHistoryTableWithMultipleSources(t *testing.T) {
 				"1a",
 				"1b",
 			},
-			// added Source just for testing the fuction
+			// added Source just for testing the function
 			Source: v1alpha1.ApplicationSource{
 				TargetRevision: "-1",
 				RepoURL:        "ignore",
