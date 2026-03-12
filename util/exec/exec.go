@@ -210,9 +210,9 @@ func RunCommandExt(cmd *exec.Cmd, opts CmdOpts) (string, error) {
 		fatalTimeout = opts.FatalTimeout
 	}
 
-	var timoutCh <-chan time.Time
+	var timeoutCh <-chan time.Time
 	if timeout != 0 {
-		timoutCh = time.NewTimer(timeout).C
+		timeoutCh = time.NewTimer(timeout).C
 	}
 
 	var fatalTimeoutCh <-chan time.Time
@@ -228,7 +228,7 @@ func RunCommandExt(cmd *exec.Cmd, opts CmdOpts) (string, error) {
 
 	select {
 	// noinspection ALL
-	case <-timoutCh:
+	case <-timeoutCh:
 		// send timeout signal
 		_ = cmd.Process.Signal(timeoutBehavior.Signal)
 		// wait on timeout signal and fall back to fatal timeout signal
