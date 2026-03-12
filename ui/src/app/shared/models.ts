@@ -578,7 +578,7 @@ export interface AppProjectStatus {
 export interface LogEntry {
     content: string;
     timeStamp: models.Time;
-    // first field is inferred on the fly and indicats first log line received from backend
+    // first field is inferred on the fly and indicates first log line received from backend
     first?: boolean;
     last: boolean;
     timeStampStr: string;
