@@ -166,7 +166,7 @@ From the [GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advi
 * chore: Implement tests to validate aws auth retry (#9627)
 * chore: Implement a retry in aws auth command (#9618)
 * test: Remove temp directories from repo server tests (#9501)
-* test: Make context tests idempodent (#9502)
+* test: Make context tests idempotent (#9502)
 * test: fix plugin var test for OSX (#9590)
 * docs: Document how to deploy from the root of the git repository (#9632)
 * docs: added environment variables documentation (#8680)
