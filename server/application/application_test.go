@@ -1539,7 +1539,7 @@ func TestCreateAppUpsert(t *testing.T) {
 		createReq := application.ApplicationCreateRequest{
 			Application: testApp,
 		}
-		// Call Create() instead of adding the object to the tesst server to make sure the app is correctly normalized.
+		// Call Create() instead of adding the object to the test server to make sure the app is correctly normalized.
 		_, err := appServer.Create(t.Context(), &createReq)
 		require.NoError(t, err)
 
@@ -1552,7 +1552,7 @@ func TestCreateAppUpsert(t *testing.T) {
 		appServer := newTestAppServer(t)
 		testApp := newTestApp()
 
-		// Call Create() instead of adding the object to the tesst server to make sure the app is correctly normalized.
+		// Call Create() instead of adding the object to the test server to make sure the app is correctly normalized.
 		_, err := appServer.Create(t.Context(), &application.ApplicationCreateRequest{
 			Application: testApp,
 		})
