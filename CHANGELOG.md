@@ -482,7 +482,7 @@ This is mainly a security related release and updates compatibility with Kuberne
 - chore: Go mod tidy
 - test: Remove circular symlinks from testdata (#9886)
 - test: Fix e2e tests for release-2.2 branch
-- chore: bump redoc vesion to avoid CVE-2021-23820 (#8604)
+- chore: bump redoc version to avoid CVE-2021-23820 (#8604)
 - chore(deps): bump moment from 2.29.3 to 2.29.4 in /ui (#9897)
 - chore: upgrade moment to latest version to fix CVE (#9005)
 - chore: move dependencies to dev dependencies (#8541)
