@@ -797,7 +797,7 @@ func threeWayMergePatch(orig, config, live *unstructured.Unstructured) ([]byte, 
 		}
 		patch, err := strategicpatch.CreateThreeWayMergePatch(origBytes, configBytes, liveBytes, lookupPatchMeta, true)
 		if err != nil {
-			return nil, nil, fmt.Errorf("failed to construct thre way merge patch: %w", err)
+			return nil, nil, fmt.Errorf("failed to construct three way merge patch: %w", err)
 		}
 		newVersionedObject := func() (runtime.Object, error) {
 			return scheme.Scheme.New(orig.GroupVersionKind())
@@ -815,7 +815,7 @@ func threeWayMergePatch(orig, config, live *unstructured.Unstructured) ([]byte, 
 
 	patch, err := jsonmergepatch.CreateThreeWayJSONMergePatch(origBytes, configBytes, liveBytes)
 	if err != nil {
-		return nil, nil, fmt.Errorf("failed to construct thre way merge patch: %w", err)
+		return nil, nil, fmt.Errorf("failed to construct three way merge patch: %w", err)
 	}
 	return patch, nil, nil
 }
