@@ -4021,7 +4021,7 @@ func TestBuildAppDependencyList(t *testing.T) {
 			},
 		},
 		{
-			name: "multiple 'NotIn' selectors remove Applications with mising labels on any match",
+			name: "multiple 'NotIn' selectors remove Applications with missing labels on any match",
 			appSet: v1alpha1.ApplicationSet{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:      "name",
