@@ -292,7 +292,7 @@ func TestStringsFromEnv(t *testing.T) {
 		sep      string
 	}{
 		{"List of strings", "one,two,three", []string{"one", "two", "three"}, def, ","},
-		{"Comma separated with other delimeter", "one,two,three", []string{"one,two,three"}, def, ";"},
+		{"Comma separated with other delimiter", "one,two,three", []string{"one,two,three"}, def, ";"},
 		{"With trimmed white space", "one, two   ,    three", []string{"one", "two", "three"}, def, ","},
 		{"Env not set", "", def, def, ","},
 	}
