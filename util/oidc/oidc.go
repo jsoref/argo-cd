@@ -900,7 +900,7 @@ func (a *ClientApp) SetGroupsFromUserInfo(ctx context.Context, claims jwt.Claims
 	if iss != sessionManagerClaimsIssuer && a.settings.UserInfoGroupsEnabled() && a.settings.UserInfoPath() != "" {
 		userInfo, unauthorized, err := a.GetUserInfo(ctx, groupClaims, a.settings.IssuerURL(), a.settings.UserInfoPath())
 		if unauthorized {
-			return groupClaims, fmt.Errorf("error while quering userinfo endpoint: %w", err)
+			return groupClaims, fmt.Errorf("error while querying userinfo endpoint: %w", err)
 		}
 		if err != nil {
 			return groupClaims, fmt.Errorf("error fetching user info endpoint: %w", err)
