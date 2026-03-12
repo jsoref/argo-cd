@@ -3922,7 +3922,7 @@ func Test_validateGroupName(t *testing.T) {
 		{"Runaway quote in unqouted string", "foo,bar\",baz", false},
 		{"Runaway quote in quoted string", "\"foo,\"bar,baz\"", false},
 		{"Invalid characters unqouted", "foo\nbar", false},
-		{"Invalid characters qouted", "\"foo\nbar\"", false},
+		{"Invalid characters quoted", "\"foo\nbar\"", false},
 		{"Runaway quote 1", "\"foo", false},
 		{"Runaway quote 2", "foo\"", false},
 	}
