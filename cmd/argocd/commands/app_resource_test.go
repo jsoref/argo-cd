@@ -556,7 +556,7 @@ func TestReconstructObject(t *testing.T) {
 			},
 		},
 		{
-			name: "complex object nesteed at depth 2",
+			name: "complex object nested at depth 2",
 			extracted: []any{map[string]any{
 				"obj1": map[string]any{
 					"key1": "value1",
