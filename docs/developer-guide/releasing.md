@@ -116,4 +116,4 @@ The release process does not allow a manual release process. Image signatures an
 |.github/workflows/image-reuse.yaml  |Reusable workflow used to generate container images     |
 |.github/workflows/init-release.yaml |Used to generate manifest and `VERSION` file            |
 |.github/workflows/release.yaml      |Build image, CLI binaries, provenances, sbom, post jobs |
-|./hack/trigger-release.sh           |Ensures all pre-requistes are met and pushes the tag    |  
+|./hack/trigger-release.sh           |Ensures all prerequisites are met and pushes the tag    |
