@@ -244,7 +244,7 @@ Unless the user motivation for the downgrade is a bug in Argo CD implementation,
 
 ### How to handle local manifests?
 
-The current implementation rejects them when GPG is turned on and projest's signing keys are declared.
+The current implementation rejects them when GPG is turned on and project's signing keys are declared.
 Can be done selectively based on source integrity criteria applicability (Git/OCI/Helm & repo).
 
 ### Where to configure verification policies?
