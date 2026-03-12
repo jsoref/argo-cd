@@ -1,7 +1,7 @@
 tests:
 - healthStatus:
     status: Healthy
-    message: "CronJobSucess Success"
+    message: "CronJobSuccess Success"
   inputPath: testdata/ok.yaml
 - healthStatus:
     status: Degraded
