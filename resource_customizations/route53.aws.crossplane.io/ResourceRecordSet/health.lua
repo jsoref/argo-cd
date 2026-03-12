@@ -27,7 +27,7 @@ if obj.status ~= nil then
       hs.message = suspended_message
     elseif ready == false and synced == true and suspended == false then
       hs.status = "Progressing"
-      hs.message = "Waiting for resourcrecordset to be available"
+      hs.message = "Waiting for resourcerecordset to be available"
     else
       hs.status = "Degraded"
       hs.message = synced_message
@@ -37,5 +37,5 @@ if obj.status ~= nil then
 end
 
 hs.status = "Progressing"
-hs.message = "Waiting for resourcrecordset to be created"
+hs.message = "Waiting for resourcerecordset to be created"
 return hs
