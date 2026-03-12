@@ -45,7 +45,7 @@ func TestGetCallBack(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, proxy, url.String())
 	})
-	t.Run("custom proxy present, noProxy filteres request", func(t *testing.T) {
+	t.Run("custom proxy present, noProxy filters request", func(t *testing.T) {
 		proxy := "http://proxy:8888"
 		noProxy := "argoproj.io"
 		url, err := GetCallback(proxy, noProxy)(&http.Request{URL: &url.URL{Host: "argoproj.io"}})
