@@ -56,7 +56,7 @@ If the number of available shards is changed (i.e. one or more application contr
 ### Why use Deployments instead of StatefulSet:
 StatefulSet is a Kubernetes resource that manages multiple pods that have unique identities, and are not interchangeable (unlike a regular Kubernetes Deployment, in which pods are stateless and can be destroyed and recreated as often as needed). 
 
-Stateless applications scale horizontally very easily as compared to stateful applications due to the fact that infrastructure allows adding as many computing resources as needed. Changing the StatefulSet to Deployments for Application Controller will allow us to dynamically scale the replicas without restarting existing application controller pods. Also, the shard to application controller assignment would help in making sure the shards are scaled and distributed across the available healhty replicas of application controllers.
+Stateless applications scale horizontally very easily as compared to stateful applications due to the fact that infrastructure allows adding as many computing resources as needed. Changing the StatefulSet to Deployments for Application Controller will allow us to dynamically scale the replicas without restarting existing application controller pods. Also, the shard to application controller assignment would help in making sure the shards are scaled and distributed across the available healthy replicas of application controllers.
 
 ### Distributing shards among Application Controllers:
 
