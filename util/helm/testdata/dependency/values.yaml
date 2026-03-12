@@ -74,7 +74,7 @@ externalDatabase:
   ## Database host
   host: localhost
 
-  ## non-root Username for Wordpress Database
+  ## non-root Username for WordPress Database
   user: bn_wordpress
 
   ## Database password
@@ -165,7 +165,7 @@ readinessProbe:
   successThreshold: 1
 
 ## Configure the ingress resource that allows you to access the
-## Wordpress installation. Set up the URL
+## WordPress installation. Set up the URL
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
 ##
 ingress:
