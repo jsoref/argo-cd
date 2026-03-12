@@ -35,7 +35,7 @@ func TestGetAdditionalNamespaces(t *testing.T) {
 			expected:      argocdAdditionalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{}},
 		},
 		{
-			description:   "empty strings in respective keys in cm shoud return empty namespace list",
+			description:   "empty strings in respective keys in cm should return empty namespace list",
 			CmdParamsKeys: map[string]any{applicationsetNamespacesCmdParamsKey: "", applicationNamespacesCmdParamsKey: ""},
 			expected:      argocdAdditionalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{}},
 		},
