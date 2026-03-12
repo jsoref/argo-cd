@@ -207,7 +207,7 @@ func AddHelmHTTPSCredentialsTLSClientCert(t *testing.T) {
 	errors.NewHandler(t).FailOnErr(fixture.RunCli(args...))
 }
 
-// AddHelmoOCICredentialsWithoutUserPass adds credentials for Helm OIC repo to context
+// AddHelmoOCICredentialsWithoutUserPass adds credentials for Helm OCI repo to context
 func AddHelmoOCICredentialsWithoutUserPass(t *testing.T) {
 	t.Helper()
 	args := []string{
