@@ -524,7 +524,7 @@ func TwoWayDiff(config, live *unstructured.Unstructured) (*DiffResult, error) {
 // created or being deleted. Will return error if both are nil or if none are nil.
 func handleResourceCreateOrDeleteDiff(config, live *unstructured.Unstructured) (*DiffResult, error) {
 	if live != nil && config != nil {
-		return nil, errors.New("unnexpected state: expected live or config to be null: not create or delete operation")
+		return nil, errors.New("unexpected state: expected live or config to be null: not create or delete operation")
 	}
 	if live != nil {
 		liveData, err := json.Marshal(live)
