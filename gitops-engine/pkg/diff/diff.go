@@ -98,7 +98,7 @@ func Diff(config, live *unstructured.Unstructured, opts ...Option) (*DiffResult,
 		return r, nil
 	}
 
-	// TODO The two variables bellow are necessary because there is a cyclic
+	// TODO The two variables below are necessary because there is a cyclic
 	// dependency with the kube package that blocks the usage of constants
 	// from common package. common package needs to be refactored and exclude
 	// dependency from kube.
