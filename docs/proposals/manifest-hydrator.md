@@ -97,7 +97,7 @@ Ensuring that hydration is deterministic assures the developer that the output f
 
 ###### Avoiding Esoteric Behavior
 
-We should avoid the developer needing to know Argo CD-specific behavior in order to reproduce hydration. Tools like Helm, Kustimize, etc. have excellent public-facing documentation which the developer should be able to take advantage of without needing to know quirks of Argo CD.
+We should avoid the developer needing to know Argo CD-specific behavior in order to reproduce hydration. Tools like Helm, Kustomize, etc. have excellent public-facing documentation which the developer should be able to take advantage of without needing to know quirks of Argo CD.
 
 ##### Reliable Previews
 
