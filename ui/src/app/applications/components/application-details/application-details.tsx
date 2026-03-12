@@ -37,7 +37,7 @@ import {ApplicationHydrateOperationState} from '../application-hydrate-operation
 
 interface ApplicationDetailsState {
     page: number;
-    revision?: string; // Which type of revision panelto show SYNC_STATUS_REVISION or OPERATION_STATE_REVISION
+    revision?: string; // Which type of revision panel to show SYNC_STATUS_REVISION or OPERATION_STATE_REVISION
     groupedResources?: ResourceStatus[];
     slidingPanelPage?: number;
     filteredGraph?: any[];
