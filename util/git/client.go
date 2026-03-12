@@ -555,7 +555,7 @@ func (m *nativeGitClient) LsFiles(path string, enableNewGitFileGlobbing bool) ([
 	if err != nil {
 		return nil, err
 	}
-	// remove last element, which is blank regardless of whether we're using nullbyte or newline
+	// remove last element, which is blank regardless of whether we're using null-byte or newline
 	ss := strings.Split(out, "\000")
 	return ss[:len(ss)-1], nil
 }
