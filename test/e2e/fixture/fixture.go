@@ -1003,13 +1003,13 @@ func RunCli(args ...string) (string, error) {
 }
 
 // RunCliWithStdin executes an Argo CD CLI command with optional stdin input and authentication.
-func RunCliWithStdin(stdin string, isKubeConextOnlyCli bool, args ...string) (string, error) {
+func RunCliWithStdin(stdin string, isKubeContextOnlyCli bool, args ...string) (string, error) {
 	if plainText {
 		args = append(args, "--plaintext")
 	}
 
 	// For commands executed with Kubernetes context server argument causes a conflict (for those commands server argument is for KubeAPI server), also authentication is not required
-	if !isKubeConextOnlyCli {
+	if !isKubeContextOnlyCli {
 		args = append(args, "--server", apiServerAddress, "--auth-token", token)
 	}
 
