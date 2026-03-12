@@ -114,6 +114,6 @@ func (s *server) Environ(id string) []string {
 		fmt.Sprintf("%s=%s", ASKPASS_NONCE_ENV, id),
 		"GIT_TERMINAL_PROMPT=0",
 		"ARGOCD_BINARY_NAME=argocd-git-ask-pass",
-		fmt.Sprintf("%s=%s", AKSPASS_SOCKET_PATH_ENV, s.socketPath),
+		fmt.Sprintf("%s=%s", ASKPASS_SOCKET_PATH_ENV, s.socketPath),
 	}
 }
