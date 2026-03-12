@@ -118,7 +118,7 @@ func (*AppStreamRequest) XXX_OneofWrappers() []interface{} {
 	}
 }
 
-// ManifestRequestMetadata defines the metada related to the file being sent
+// ManifestRequestMetadata defines the metadata related to the file being sent
 // to the CMP server.
 type ManifestRequestMetadata struct {
 	// appName refers to the ArgoCD Application name
