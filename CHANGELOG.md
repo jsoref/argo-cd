@@ -1604,7 +1604,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 * feat: Adds support for Helm charts to be a semver range. Closes #2552 (#2606)
 * feat: Adds tracing to key external invocations. (#2811)
 * feat: argocd-util should allow editing project policies in bulk  (#2615)
-* feat: Displays controllerrevsion's revision in the UI. Closes #2306 (#2702)
+* feat: Displays controllerrevision's revision in the UI. Closes #2306 (#2702)
 * feat: Issue #2559 - Add gauge Prometheus metric which represents the number of pending manifest requests. (#2658)
 * feat: Make ConvertToVersion maybe 1090% faster on average (#2820)
 * feat: namespace isolation (#2839)
