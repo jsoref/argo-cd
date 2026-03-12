@@ -147,7 +147,7 @@ func TestSetTokenCookie(t *testing.T) {
 	}
 }
 
-// TestRoundTripper just copy request headers to the resposne.
+// TestRoundTripper just copy request headers to the response.
 type TestRoundTripper struct{}
 
 func (rt TestRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
