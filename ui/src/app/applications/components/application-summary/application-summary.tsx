@@ -110,7 +110,7 @@ export const ApplicationSummary = (props: ApplicationSummaryProps) => {
         },
         {
             title: 'NOTIFICATION SUBSCRIPTIONS',
-            view: false, // eventually the subscription input values will be merged in 'ANNOTATIONS', therefore 'ANNOATIONS' section is responsible to represent subscription values,
+            view: false, // eventually the subscription input values will be merged in 'ANNOTATIONS', therefore 'ANNOTATIONS' section is responsible to represent subscription values,
             edit: () => <EditNotificationSubscriptions {...notificationSubscriptions} />
         },
         {
