@@ -5,19 +5,19 @@ import (
 )
 
 type FakeService struct {
-	listPullReuests []*PullRequest
-	listError       error
+	listPullRequests []*PullRequest
+	listError        error
 }
 
 var _ PullRequestService = (*FakeService)(nil)
 
-func NewFakeService(_ context.Context, listPullReuests []*PullRequest, listError error) (PullRequestService, error) {
+func NewFakeService(_ context.Context, listPullRequests []*PullRequest, listError error) (PullRequestService, error) {
 	return &FakeService{
-		listPullReuests: listPullReuests,
-		listError:       listError,
+		listPullRequests: listPullRequests,
+		listError:        listError,
 	}, nil
 }
 
 func (g *FakeService) List(_ context.Context) ([]*PullRequest, error) {
-	return g.listPullReuests, g.listError
+	return g.listPullRequests, g.listError
 }
