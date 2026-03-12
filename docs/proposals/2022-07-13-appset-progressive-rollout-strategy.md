@@ -29,7 +29,7 @@ As cluster operators, we would like to make changes to ApplicationSets which may
 
 ### Goals
 
-Users are able to make a single change to ApplicationSet that is updated across the generated Applications in a controlled manner. When this enhancement is enabled, Applications are updated in a declaractive order, instead of simultaneously.
+Users are able to make a single change to ApplicationSet that is updated across the generated Applications in a controlled manner. When this enhancement is enabled, Applications are updated in a declarative order, instead of simultaneously.
 
 ### Non-Goals
 
