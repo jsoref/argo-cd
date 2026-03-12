@@ -47,7 +47,7 @@ const (
 	defaultAppResyncPeriodJitter = 60
 	// Default time in seconds for application hard resync period
 	defaultAppHardResyncPeriod = 0
-	// Default time in seconds for ignoring consecutive errors when comminicating with repo-server
+	// Default time in seconds for ignoring consecutive errors when communicating with repo-server
 	defaultRepoErrorGracePeriod = defaultAppResyncPeriod + defaultAppResyncPeriodJitter
 )
 
