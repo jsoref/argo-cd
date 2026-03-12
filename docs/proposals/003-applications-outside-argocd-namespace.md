@@ -15,7 +15,7 @@ last-updated: 2021-06-05
 
 # Allow Application resources to exist in any namespace
 
-Improve Argo CDs multi-tenancy model to allow Application CRs to be created
+Improve Argo CD's multi-tenancy model to allow Application CRs to be created
 and consumed from different namespaces than the control plane's namespace.
 
 Related issues:
