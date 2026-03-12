@@ -1162,7 +1162,7 @@ func (s *Server) Delete(ctx context.Context, q *application.ApplicationDeleteReq
 
 	patchFinalizer := false
 	if q.Cascade == nil || *q.Cascade {
-		// validate the propgation policy
+		// validate the propagation policy
 		policyFinalizer := getPropagationPolicyFinalizer(q.GetPropagationPolicy())
 		if policyFinalizer == "" {
 			return nil, status.Errorf(codes.InvalidArgument, "invalid propagation policy: %s", *q.PropagationPolicy)
