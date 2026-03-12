@@ -248,7 +248,7 @@ func (t *tgz) tgzFile(path string, fi os.FileInfo, err error) error {
 		return fmt.Errorf("error creating a tar file header: %w", err)
 	}
 
-	// update the name to correctly reflect the desired destination when untaring
+	// update the name to correctly reflect the desired destination when untarring
 	header.Name = relativePath
 
 	if err := t.tarWriter.WriteHeader(header); err != nil {
