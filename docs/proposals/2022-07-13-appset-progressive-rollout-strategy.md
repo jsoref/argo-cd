@@ -154,7 +154,7 @@ We do not believe this proposal results in any new security considerations for t
 
 If this proposal is implemented, I believe the next logical step would be to solve the case where users would like to control rollout order for Application resources with a consistent specification, but changes being pushed to the upstream `source` of the Application. A common use case is an update to an unversioned "wrapper" helm chart that depends on a versioned upstream chart. The wrapper chart is often used to apply simple supplementary resources in a gitops pattern, such as company specific RBAC configuration, or ExternalSecrets configuration. These supplementary resources do not typically warrant publishing a versioned wrapper chart, making it difficult to implement changes to the chart's templates or value files and roll them out in an ordered way with the ApplicationSet changes discussed here.
 
-Implementing progressive rollout stragies to handled changes upstream of the generated Application source could be difficult, since the applicationset controller would need to intercept the sync operation of the Application to prevent the changes from syncing automatically.
+Implementing progressive rollout strategies to handled changes upstream of the generated Application source could be difficult, since the applicationset controller would need to intercept the sync operation of the Application to prevent the changes from syncing automatically.
 
 Added maintenance burden on the ArgoCD team is always a risk with the addition of new features.
 
