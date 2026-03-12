@@ -1323,7 +1323,7 @@ userInfoPath: /`,
 			a, err := NewClientApp(cdSettings, "", nil, "/argo-cd", userInfoCache)
 			require.NoError(t, err, "failed creating clientapp")
 
-			// prepoluate cache to predict what the GetUserInfo function will return to the SetGroupsFromUserInfo function (without having to mock the userinfo response)
+			// prepopulate cache to predict what the GetUserInfo function will return to the SetGroupsFromUserInfo function (without having to mock the userinfo response)
 			encryptionKey, err := cdSettings.GetServerEncryptionKey()
 			require.NoError(t, err, "failed obtaining encryption key from settings")
 
