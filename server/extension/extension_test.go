@@ -43,7 +43,7 @@ func TestValidateHeaders(t *testing.T) {
 		assert.Equal(t, "app-name", rr.ApplicationName)
 		assert.Equal(t, "project-name", rr.ProjectName)
 	})
-	t.Run("will return error if application is malformatted", func(t *testing.T) {
+	t.Run("will return error if application is malformed", func(t *testing.T) {
 		// given
 		r, err := http.NewRequestWithContext(t.Context(), http.MethodGet, "http://null", http.NoBody)
 		require.NoError(t, err, "error initializing request")
