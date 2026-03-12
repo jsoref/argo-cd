@@ -1300,7 +1300,7 @@ Are you sure you want to disable auto-sync and rollback application '${props.mat
                           {
                               iconClassName: 'fa fa-check',
                               title: <ActionMenuItem actionLabel='Confirm Pruning' />,
-                              action: () => confirmDeletion(app, 'Confirm Prunning', 'Are you sure you want to confirm resources pruning?')
+                              action: () => confirmDeletion(app, 'Confirm Pruning', 'Are you sure you want to confirm resources pruning?')
                           }
                       ]
                     : []),
