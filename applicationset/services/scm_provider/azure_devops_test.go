@@ -353,7 +353,7 @@ func TestAzureDevopsGetBranches(t *testing.T) {
 			expectedProcessingErrorMsg: "empty branch result",
 		},
 		{
-			name:        "GetBranches when git client retrievel fails returns error",
+			name:        "GetBranches when git client retrieval fails returns error",
 			clientError: errors.New("Could not get Azure Devops API client"),
 			allBranches: true,
 		},
