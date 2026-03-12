@@ -52,7 +52,7 @@ export const PodTerminalViewer: React.FC<PodTerminalViewerProps> = ({
     let webSocket: WebSocket;
     const keyEvent = new ReplaySubject<KeyboardEvent>(2);
     let connSubject = new ReplaySubject<ShellFrame>(100);
-    let incommingMessage = new Subject<ShellFrame>();
+    let incomingMessage = new Subject<ShellFrame>();
     const unsubscribe = new Subject<void>();
     let connected = false;
 
@@ -106,7 +106,7 @@ export const PodTerminalViewer: React.FC<PodTerminalViewerProps> = ({
 
     const handleConnectionMessage = (frame: ShellFrame) => {
         terminal.write(frame.data);
-        incommingMessage.next(frame);
+        incomingMessage.next(frame);
     };
 
     const disconnect = () => {
@@ -123,8 +123,8 @@ export const PodTerminalViewer: React.FC<PodTerminalViewerProps> = ({
             terminal.dispose();
         }
 
-        incommingMessage.complete();
-        incommingMessage = new Subject<ShellFrame>();
+        incomingMessage.complete();
+        incomingMessage = new Subject<ShellFrame>();
     };
 
     function initTerminal(node: HTMLElement) {
@@ -225,7 +225,7 @@ export const PodTerminalViewer: React.FC<PodTerminalViewerProps> = ({
                 terminal.dispose();
             }
 
-            incommingMessage.complete();
+            incomingMessage.complete();
         };
     }, [containerName]);
 
