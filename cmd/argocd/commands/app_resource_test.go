@@ -672,7 +672,7 @@ spec:
 	assert.Contains(t, output, "FIELD           VALUE", "Missing or incorrect header line for table print with not showing names.")
 	assert.Contains(t, output, "apiVersion      vX", "Missing or incorrect row in table related to apiVersion with not showing names.")
 	assert.Contains(t, output, "kind            test", "Missing or incorrect row in the table related to kind with not showing names.")
-	assert.Contains(t, output, "spec.testfield  testvalue", "Missing or incorrect row in the table related to spec.testefield with not showing names.")
+	assert.Contains(t, output, "spec.testfield  testvalue", "Missing or incorrect row in the table related to spec.testfield with not showing names.")
 	assert.NotContains(t, output, "metadata.name   testvalue", "Missing or incorrect row in the table related to metadata.name with not showing names.")
 }
 
