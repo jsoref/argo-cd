@@ -2393,7 +2393,7 @@ has a minimum client version of v0.12.0. Older CLI clients will be rejected.
 - Fix ability to unset ApplicationSource specific parameters
 - Fix force resource delete API (#1033)
 - Incorrect PermissionDenied error during app creation when using project roles + user-defined RBAC (#1019)
-- Fix `kubctl convert` issue preventing deployment of extensions/NetworkPolicy (#1012)
+- Fix `kubectl convert` issue preventing deployment of extensions/NetworkPolicy (#1012)
 - Do not allow metadata.creationTimestamp to affect sync status (#1021)
 - Graceful handling of clusters where API resource discovery is partially successful (#1018)
 - Handle k8s resources circular dependency (#1016)
