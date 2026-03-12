@@ -118,7 +118,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-failed.pagerdutyv2: "<serviceID for Pagerduty>"
+    notifications.argoproj.io/subscribe.on-sync-failed.pagerdutyv2: "<serviceID for PagerDuty>"
 ```
 
 > [!NOTE]
