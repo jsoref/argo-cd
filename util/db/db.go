@@ -16,8 +16,8 @@ import (
 	"github.com/argoproj/argo-cd/v3/util/settings"
 )
 
-// SecretMaperValidation determine whether the secret should be transformed(i.e. trailing CRLF characters trimmed)
-type SecretMaperValidation struct {
+// SecretMapperValidation determine whether the secret should be transformed(i.e. trailing CRLF characters trimmed)
+type SecretMapperValidation struct {
 	Dest      *string
 	Transform func(string) string
 }
