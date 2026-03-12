@@ -253,7 +253,7 @@ func (s *Server) List(ctx context.Context, q *applicationset.ApplicationSetListQ
 
 	newItems := make([]v1alpha1.ApplicationSet, 0)
 	for _, a := range appsets {
-		// Skip any applicationsets that is neither in the conrol plane's namespace
+		// Skip any applicationsets that is neither in the control plane's namespace
 		// nor in the list of enabled namespaces.
 		if !security.IsNamespaceEnabled(a.Namespace, s.ns, s.enabledNamespaces) {
 			continue
