@@ -66,7 +66,7 @@ Using env variables to enable profiling mode, the agent can be started with the 
 
 ```bash
 export GITOPS_ENGINE_PROFILE=web
-# optional, default pprofile address is 127.0.0.1:6060
+# optional, default profile address is 127.0.0.1:6060
 export GITOPS_ENGINE_PROFILE_HOST=127.0.0.1
 export GITOPS_ENGINE_PROFILE_PORT=6060
 ```
