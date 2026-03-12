@@ -109,7 +109,7 @@ The Argo CD UI should be updated to populate fields in the List and Watch API re
 
 The Argo CD UI displays the breakdown of the applications by the sync status, health status etc. Stats numbers are calculated on the client side
 and rely on the full list of applications returned by the API server. The server side pagination will break the stats calculation. The proposal is to
-intoduce a new `stats` field to the Applications List API response. The field will contain the breakdown of the applications by various statuses.
+introduce a new `stats` field to the Applications List API response. The field will contain the breakdown of the applications by various statuses.
 
 ```golang
 type ApplicationLabelStats struct {
