@@ -203,7 +203,7 @@ func buildConfigFromFS(templatesDir string, triggersDir string) (map[string]serv
 	templatesCfg := map[string]services.Notification{}
 	err := filepath.Walk(templatesDir, func(p string, info os.FileInfo, e error) error {
 		if e != nil {
-			return fmt.Errorf("error navigating the templates dirctory: %s : %w", templatesDir, e)
+			return fmt.Errorf("error navigating the templates directory: %s : %w", templatesDir, e)
 		}
 		if info.IsDir() {
 			return nil
@@ -227,7 +227,7 @@ func buildConfigFromFS(templatesDir string, triggersDir string) (map[string]serv
 	triggersCfg := map[string][]triggers.Condition{}
 	err = filepath.Walk(triggersDir, func(p string, info os.FileInfo, e error) error {
 		if e != nil {
-			return fmt.Errorf("error navigating the triggers dirctory: %s : %w", triggersDir, e)
+			return fmt.Errorf("error navigating the triggers directory: %s : %w", triggersDir, e)
 		}
 		if info.IsDir() {
 			return nil

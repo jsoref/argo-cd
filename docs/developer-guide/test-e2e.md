@@ -8,7 +8,7 @@ Git repository via file url: `file:///tmp/argo-e2e***`.
 
 > [!NOTE]
 > You might get an error such as `unable to ls-remote HEAD on repository: failed to list refs: repository not found` when querying the local repository exposed through the e2e server running in a container.
-> This is often caused by `/tmp` directoring sharing protection. You can configure a different directory with `ARGOCD_E2E_DIR`, or disable the directory sharing protection.
+> This is often caused by `/tmp` directory sharing protection. You can configure a different directory with `ARGOCD_E2E_DIR`, or disable the directory sharing protection.
 >
 > **Rancher Desktop Volume Sharing**
 >
