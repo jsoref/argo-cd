@@ -526,7 +526,7 @@ const (
 	settingsPasswordPatternKey = "passwordPattern"
 	// inClusterEnabledKey is the key to configure whether to allow in-cluster server address
 	inClusterEnabledKey = "cluster.inClusterEnabled"
-	// settingsServerRBACEDisableFineGrainedInheritance is the key to configure find-grained RBAC inheritance
+	// settingsServerRBACDisableFineGrainedInheritance is the key to configure find-grained RBAC inheritance
 	settingsServerRBACDisableFineGrainedInheritance = "server.rbac.disableApplicationFineGrainedRBACInheritance"
 	// MaxPodLogsToRender the maximum number of pod logs to render
 	settingsMaxPodLogsToRender = "server.maxPodLogsToRender"
