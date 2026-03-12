@@ -25,7 +25,7 @@ func (c *Consequences) AndCLIOutput(block func(output string, err error)) *Conse
 	return c
 }
 
-// For use after running export with the exported resources desirialized
+// For use after running export with the exported resources deserialized
 func (c *Consequences) AndExportedResources(block func(resources *utils.ExportedResources, err error)) {
 	result, err := utils.GetExportedResourcesFromOutput(c.actions.lastOutput)
 	block(&result, err)
