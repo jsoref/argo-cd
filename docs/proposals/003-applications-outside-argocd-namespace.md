@@ -78,7 +78,7 @@ tenants, e.g.
   mentioned Git repository, restricts destination to above mentioned namespace
   and restricts allowed resources to be `Application`.
 
-* Create an appropriate `Application` in Argo CD, which uses above mentionend
+* Create an appropriate `Application` in Argo CD, which uses above mentioned
   Git repository as source, and above mentioned Namespace as destination
 
 ### Goals
