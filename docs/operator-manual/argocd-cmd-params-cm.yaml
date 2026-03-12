@@ -315,7 +315,7 @@ data:
   applicationsetcontroller.policy: ""
   # If applicationsetcontroller.policy is empty, this flag has no effect. If applicationsetcontroller.policy is set,
   # this flag controls whether the policy set in the controller can be overridden by the ApplicationSet resource
-  # (i.e. the spec.syncPlicy.applicationSync field). Set it to "true" to allow overrides. "" or "false" will disable
+  # (i.e. the spec.syncPolicy.applicationSync field). Set it to "true" to allow overrides. "" or "false" will disable
   # overrides. (default "")
   applicationsetcontroller.enable.policy.override: ""
   # Max concurrent reconciliation limit for the controller (default 10)
