@@ -2107,7 +2107,7 @@ func TestUseAzureWorkloadIdentity(t *testing.T) {
 			ExpectedResult: false,
 		},
 		{
-			Name:           "OIDC config isnot defined",
+			Name:           "OIDC config is not defined",
 			Settings:       &ArgoCDSettings{},
 			ExpectedResult: false,
 		},
