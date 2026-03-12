@@ -10,7 +10,7 @@ tests:
 - healthStatus:
     status: Degraded
     message: "Schema violations found: spec.preserveUnknownFields: Invalid value: true: must be false"
-  inputPath: testdata/crd-v1-non-structual-degraded.yaml
+  inputPath: testdata/crd-v1-non-structural-degraded.yaml
 - healthStatus:
     status: Degraded
     message: "CRD is not established"
