@@ -48,7 +48,7 @@ to reduce amount of data returned by the API server and improve the UI responsiv
 ### Non-Goals
 
 * The API Server is known to use a lot of CPU while applying very large RBAC policies to a large number of applications.
-  Even with pagination API still need to apply RBAC policies to return "last page" response. So the issueis not addressed by this proposal.
+  Even with pagination API still need to apply RBAC policies to return "last page" response. So the issue is not addressed by this proposal.
 
 ## Proposal
 
