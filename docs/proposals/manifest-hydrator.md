@@ -525,7 +525,7 @@ An organization with strong requirements around change auditing might enable man
 
 This proposal would involve introducing a component capable of pushing to git.
 
-We'll need to consider what git permissions setup to recommend, what security features we should recommend enabling (e.g. branch protection), etc.
+We'll need to consider what git permissions to recommend, what security features we should recommend enabling (e.g. branch protection), etc.
 
 We'll also need to consider how to store the git push secrets. It's probable that they'll need to be stored in a namespace separate from the other Argo CD components to provide a bit extra protection.
 
