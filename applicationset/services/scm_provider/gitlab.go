@@ -108,7 +108,7 @@ func (g *GitlabProvider) ListRepos(_ context.Context, cloneProtocol string) ([]*
 
 			var repoLabels []string
 			if len(gitlabRepo.Topics) == 0 {
-				// fallback to for gitlab prior to 14.5
+				// fallback for gitlab prior to 14.5
 				//nolint:staticcheck
 				repoLabels = gitlabRepo.TagList
 			} else {
