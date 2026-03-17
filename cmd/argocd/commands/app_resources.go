@@ -189,7 +189,7 @@ func extractNestedItem(obj map[string]any, fields []string, depth int) map[strin
 
 // extractItemsFromList processes a list of objects and extracts specific fields from each item.
 func extractItemsFromList(list []any, fields []string) []any {
-	var extratedObjs []any
+	var extractedObjs []any
 	for _, e := range list {
 		extractedObj := make(map[string]any)
 		if o, ok := e.(map[string]any); ok {
@@ -199,10 +199,10 @@ func extractItemsFromList(list []any, fields []string) []any {
 			}
 			err := unstructured.SetNestedField(extractedObj, value, fields...)
 			errors.CheckError(err)
-			extratedObjs = append(extratedObjs, extractedObj)
+			extractedObjs = append(extractedObjs, extractedObj)
 		}
 	}
-	return extratedObjs
+	return extractedObjs
 }
 
 // reconstructObject rebuilds the original object structure by placing extracted items back into their proper nested location.

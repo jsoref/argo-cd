@@ -100,7 +100,7 @@ func GetDistributionFunction(clusters clusterAccessor, apps appAccessor, shardin
 
 // LegacyDistributionFunction returns a DistributionFunction using a stable distribution algorithm:
 // for a given cluster the function will return the shard number based on the cluster id. This function
-// is lightweight and can be distributed easily, however, it does not ensure an homogenous distribution as
+// is lightweight and can be distributed easily, however, it does not ensure a homogeneous distribution as
 // some shards may get assigned more clusters than others. It is the legacy function distribution that is
 // kept for compatibility reasons
 func LegacyDistributionFunction(replicas int) DistributionFunction {
@@ -131,10 +131,10 @@ func LegacyDistributionFunction(replicas int) DistributionFunction {
 	}
 }
 
-// RoundRobinDistributionFunction returns a DistributionFunction using an homogeneous distribution algorithm:
+// RoundRobinDistributionFunction returns a DistributionFunction using a homogeneous distribution algorithm:
 // for a given cluster the function will return the shard number based on the modulo of the cluster rank in
 // the cluster's list sorted by uid on the shard number.
-// This function ensures an homogenous distribution: each shards got assigned the same number of
+// This function ensures a homogeneous distribution: each shards got assigned the same number of
 // clusters +/-1 , but with the drawback of a reshuffling of clusters across shards in case of some changes
 // in the cluster list
 
@@ -149,8 +149,8 @@ func RoundRobinDistributionFunction(clusters clusterAccessor, replicas int) Dist
 			if c.Shard != nil && int(*c.Shard) < replicas {
 				return int(*c.Shard)
 			}
-			clusterIndexdByClusterIdMap := createClusterIndexByClusterIdMap(clusters)
-			clusterIndex, ok := clusterIndexdByClusterIdMap[c.ID]
+			clusterIndexedByClusterIdMap := createClusterIndexByClusterIdMap(clusters)
+			clusterIndex, ok := clusterIndexedByClusterIdMap[c.ID]
 			if !ok {
 				log.Warnf("Cluster with id=%s not found in cluster map.", c.ID)
 				return -1
@@ -498,7 +498,7 @@ func GetClusterSharding(kubeClient kubernetes.Interface, settingsMgr *settings.S
 				errors.CheckError(err)
 			}
 			if shardNumber > replicasCount {
-				log.Warnf("Calculated shard number %d is greated than the number of replicas count. Defaulting to 0", shardNumber)
+				log.Warnf("Calculated shard number %d is greater than the number of replicas count. Defaulting to 0", shardNumber)
 				shardNumber = 0
 			}
 		}

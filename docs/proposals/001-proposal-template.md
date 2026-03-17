@@ -33,7 +33,7 @@ The `Summary` is required for producing accurate user-focused documentation
 such as release notes or a development roadmap. It should be possible to collect this information
 before implementation begins in order to avoid requiring implementors to split their attention
 between writing release notes and implementing the feature itself. Before you get started with this document,
-please feel free to have a conversation on this with the maintainers/community on Github that would help
+please feel free to have a conversation on this with the maintainers/community on GitHub that would help
 drive a more organized thought process for the formal proposal here.
 
 ## Motivation

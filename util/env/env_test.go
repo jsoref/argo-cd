@@ -292,7 +292,7 @@ func TestStringsFromEnv(t *testing.T) {
 		sep      string
 	}{
 		{"List of strings", "one,two,three", []string{"one", "two", "three"}, def, ","},
-		{"Comma separated with other delimeter", "one,two,three", []string{"one,two,three"}, def, ";"},
+		{"Comma separated with other delimiter", "one,two,three", []string{"one,two,three"}, def, ";"},
 		{"With trimmed white space", "one, two   ,    three", []string{"one", "two", "three"}, def, ","},
 		{"Env not set", "", def, def, ","},
 	}
@@ -330,7 +330,7 @@ func TestParseStringToStringFromEnv(t *testing.T) {
 		{"success, two pairs with spaces", "key1 = value1, key2 = value2", map[string]string{"key1": "value1", "key2": "value2"}, def, ","},
 		{"failure, one key", "key1", map[string]string{}, def, ","},
 		{"failure, duplicate keys", "key1=value1,key1=value2", map[string]string{}, def, ","},
-		{"failure, one key ending with two successive equals to", "key1==", map[string]string{}, def, ","},
+		{"failure, one key ending with two successive equals", "key1==", map[string]string{}, def, ","},
 		{"failure, one valid pair and invalid one key", "key1=value1,key2", map[string]string{}, def, ","},
 		{"failure, two valid pairs and invalid two keys", "key1=value1,key2=value2,key3,key4", map[string]string{}, def, ","},
 	}

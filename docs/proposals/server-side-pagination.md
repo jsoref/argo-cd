@@ -48,7 +48,7 @@ to reduce amount of data returned by the API server and improve the UI responsiv
 ### Non-Goals
 
 * The API Server is known to use a lot of CPU while applying very large RBAC policies to a large number of applications.
-  Even with pagination API still need to apply RBAC policies to return "last page" response. So the issueis not addressed by this proposal.
+  Even with pagination API still need to apply RBAC policies to return "last page" response. So the issue is not addressed by this proposal.
 
 ## Proposal
 
@@ -109,7 +109,7 @@ The Argo CD UI should be updated to populate fields in the List and Watch API re
 
 The Argo CD UI displays the breakdown of the applications by the sync status, health status etc. Stats numbers are calculated on the client side
 and rely on the full list of applications returned by the API server. The server side pagination will break the stats calculation. The proposal is to
-intoduce a new `stats` field to the Applications List API response. The field will contain the breakdown of the applications by various statuses.
+introduce a new `stats` field to the Applications List API response. The field will contain the breakdown of the applications by various statuses.
 
 ```golang
 type ApplicationLabelStats struct {

@@ -604,7 +604,7 @@ func TestPrintApplicationHistoryTableWithMultipleSources(t *testing.T) {
 				"1a",
 				"1b",
 			},
-			// added Source just for testing the fuction
+			// added Source just for testing the function
 			Source: v1alpha1.ApplicationSource{
 				TargetRevision: "-1",
 				RepoURL:        "ignore",
@@ -1712,7 +1712,7 @@ func TestMerge(t *testing.T) {
 	assert.Equal(t, rstNew.Status, rst.Status)
 }
 
-func TestMergeWitoutUpdate(t *testing.T) {
+func TestMergeWithoutUpdate(t *testing.T) {
 	rst := resourceState{
 		Group:     "group",
 		Kind:      "kind",

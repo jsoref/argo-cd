@@ -104,7 +104,7 @@ func TestGetGitCreds(t *testing.T) {
 
 func TestGetGitCreds_GitHubApp_InstallationNotFound(t *testing.T) {
 	// This test verifies that when GitHub App credentials are provided but the installation
-	// cannot be discovered (e.g., non-existent org), the error is raised when the credentials
+	// cannot be discovered (e.g., nonexistent org), the error is raised when the credentials
 	// are used (lazily), providing a clear error message.
 	repo := &Repository{
 		Repo:                "https://github.com/nonexistent-org-12345/repo.git",

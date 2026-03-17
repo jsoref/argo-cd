@@ -52,7 +52,7 @@ func WriteForPaths(root *os.Root, repoUrl, drySha string, dryCommitMetadata *app
 	if err != nil {
 		return false, fmt.Errorf("failed to write git attributes: %w", err)
 	}
-	var atleastOneManifestChanged bool
+	var atLeastOneManifestChanged bool
 	for _, p := range paths {
 		hydratePath := p.Path
 		if hydratePath == "." {
@@ -82,7 +82,7 @@ func WriteForPaths(root *os.Root, repoUrl, drySha string, dryCommitMetadata *app
 			continue
 		}
 		//  If any manifest has changed, signal that a commit should occur. If none have changed, skip committing.
-		atleastOneManifestChanged = changed
+		atLeastOneManifestChanged = changed
 
 		// Write hydrator.metadata containing information about the hydration process.
 		hydratorMetadata := hydrator.HydratorCommitMetadata{
@@ -102,10 +102,10 @@ func WriteForPaths(root *os.Root, repoUrl, drySha string, dryCommitMetadata *app
 		}
 	}
 	// if no manifest changes then skip commit
-	if !atleastOneManifestChanged {
+	if !atLeastOneManifestChanged {
 		return false, nil
 	}
-	return atleastOneManifestChanged, nil
+	return atLeastOneManifestChanged, nil
 }
 
 // writeMetadata writes the metadata to the hydrator.metadata file.

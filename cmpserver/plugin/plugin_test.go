@@ -294,7 +294,7 @@ func TestMatchRepository(t *testing.T) {
 	})
 }
 
-func Test_Negative_ConfigFile_DoesnotExist(t *testing.T) {
+func Test_Negative_ConfigFile_DoesNotExist(t *testing.T) {
 	configFilePath := "./testdata/kustomize-neg/config"
 	service, err := newService(configFilePath)
 	require.Error(t, err)

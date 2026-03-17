@@ -71,7 +71,7 @@ func TestListPullRequest(t *testing.T) {
 	assert.Equal(t, uniqueName, list[0].Author)
 }
 
-func TestConvertLabes(t *testing.T) {
+func TestConvertLabels(t *testing.T) {
 	testCases := []struct {
 		name           string
 		gotLabels      *[]core.WebApiTagDefinition

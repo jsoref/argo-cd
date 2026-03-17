@@ -514,10 +514,10 @@ func TestHandlerApplicationNameInBadgeIsEnabled(t *testing.T) {
 
 	assert.Equal(t, "test-app", titleTextPattern.FindStringSubmatch(response)[1])
 	assert.Equal(t, fmt.Sprintf("\"%d\"", svgHeightWithAppName), svgHeightPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), leftRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), rightRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), revisionRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, fmt.Sprintf("\"%d\"", logoYCoodWithAppName), logoYCoodPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), leftRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), rightRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, fmt.Sprintf("\"%d\"", badgeRowHeight), revisionRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, fmt.Sprintf("\"%d\"", logoYCoodWithAppName), logoYCoordPattern.FindStringSubmatch(response)[2])
 }
 
 func TestHandlerApplicationNameInBadgeIsDisabled(t *testing.T) {
@@ -538,9 +538,9 @@ func TestHandlerApplicationNameInBadgeIsDisabled(t *testing.T) {
 	assert.Equal(t, "Healthy", leftTextPattern.FindStringSubmatch(response)[1])
 	assert.Equal(t, "Synced", rightTextPattern.FindStringSubmatch(response)[1])
 	assert.Equal(t, "\"20\"", svgHeightPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, "\"0\"", leftRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, "\"0\"", rightRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, "\"0\"", revisionRectYCoodPattern.FindStringSubmatch(response)[2])
-	assert.Equal(t, "\"2\"", logoYCoodPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, "\"0\"", leftRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, "\"0\"", rightRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, "\"0\"", revisionRectYCoordPattern.FindStringSubmatch(response)[2])
+	assert.Equal(t, "\"2\"", logoYCoordPattern.FindStringSubmatch(response)[2])
 	assert.NotContains(t, response, "test-app")
 }

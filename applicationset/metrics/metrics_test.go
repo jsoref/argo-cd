@@ -193,15 +193,15 @@ argocd_appset_owned_applications{name="test1",namespace="argocd"} 2
 argocd_appset_labels{label_included_test="test",name="test1",namespace="argocd"} 1
 `)
 	assert.NotContains(t, rr.Body.String(), normalizeLabel("not-included.label/test"))
-	// If collected label is not present on the applicationset the value should be empty
+	// If collected label is not present on the applicationset, the value should be empty
 	assert.Contains(t, rr.Body.String(), `
 argocd_appset_labels{label_included_test="",name="test2",namespace="argocd"} 1
 `)
-	// If ResourcesUpToDate condition is not present on the applicationset the status should be reported as 'Unknown'
+	// If ResourcesUpToDate condition is not present on the applicationset, the status should be reported as 'Unknown'
 	assert.Contains(t, rr.Body.String(), `
 argocd_appset_info{name="test2",namespace="argocd",resource_update_status="Unknown"} 1
 `)
-	// If there are no resources on the applicationset the owned application gague should return 0
+	// If there are no resources on the applicationset, the owned application gauge should return 0
 	assert.Contains(t, rr.Body.String(), `
 argocd_appset_owned_applications{name="test2",namespace="argocd"} 0
 `)
@@ -225,7 +225,7 @@ func TestObserveReconcile(t *testing.T) {
 	assert.Contains(t, rr.Body.String(), `
 argocd_appset_reconcile_sum{name="test1",namespace="argocd"} 5
 `)
-	// If there are no resources on the applicationset the owned application gague should return 0
+	// If there are no resources on the applicationset the owned application gauge should return 0
 	assert.Contains(t, rr.Body.String(), `
 argocd_appset_reconcile_count{name="test1",namespace="argocd"} 1
 `)

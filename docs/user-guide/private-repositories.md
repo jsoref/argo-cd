@@ -51,7 +51,7 @@ Then, connect the repository using any non-empty string as username and the acce
 > For some services, you might have to specify your account name as the username instead of any string.
 
 > [!NOTE]
-> For BitBucket Cloud and BitBucket Data Center, you have to specify your username as `x-token-auth`.
+> For Bitbucket Cloud and Bitbucket Data Center, you have to specify your username as `x-token-auth`.
 
 ### TLS Client Certificates for HTTPS repositories
 
@@ -134,7 +134,7 @@ Using the UI:
 
     ![connect repo overview](../assets/repo-add-overview.png)
 
-2. Click `Connect Repo using GitHub App` button, choose type: `GitHub` or `GitHub Enterprise`, enter the URL, App Id, Installation Id (optional), and the app's private key.
+2. Click `Connect Repo using GitHub App` button, choose type: `GitHub` or `GitHub Enterprise`, enter the URL, App ID, Installation ID (optional), and the app's private key.
 
 > [!NOTE]
 > Enter the GitHub Enterprise Base URL for type `GitHub Enterprise`.
@@ -248,7 +248,7 @@ You can also set up credentials to serve as templates for connecting repositorie
 
 To set up a credential template using the Web UI, simply fill in all relevant credential information in the __Connect repo using SSH__ or __Connect repo using HTTPS__ dialogues (as described above), but select __Save as credential template__ instead of __Connect__ to save the credential template. Be sure to only enter the prefix URL (i.e. `https://github.com/argoproj`) instead of the complete repository URL (i.e. `https://github.com/argoproj/argocd-example-apps`) in the field __Repository URL__
 
-To manage credential templates using the CLI, use the `repocreds` sub-command, for example `argocd repocreds add https://github.com/argoproj --username youruser --password yourpass` would setup a credential template for the URL prefix `https://github.com/argoproj` using the specified username/password combination. Similar to the `repo` sub-command, you can also list and remove repository credentials using the `argocd repocreds list` and `argocd repocreds rm` commands, respectively.
+To manage credential templates using the CLI, use the `repocreds` sub-command, for example `argocd repocreds add https://github.com/argoproj --username youruser --password yourpass` would set up a credential template for the URL prefix `https://github.com/argoproj` using the specified username/password combination. Similar to the `repo` sub-command, you can also list and remove repository credentials using the `argocd repocreds list` and `argocd repocreds rm` commands, respectively.
 
 In order for Argo CD to use a credential template for any given repository, the following conditions must be met:
 
@@ -268,7 +268,7 @@ The following is an example CLI session, depicting repository credential set-up:
 $ argocd repo add https://docker-build/repos/argocd-example-apps
 FATA[0000] rpc error: code = Unknown desc = authentication required 
 
-# Setup a credential template for all repos under https://docker-build/repos
+# Set up a credential template for all repos under https://docker-build/repos
 $ argocd repocreds add https://docker-build/repos --username test --password test
 repository credentials for 'https://docker-build/repos' added
 

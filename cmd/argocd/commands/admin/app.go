@@ -102,7 +102,7 @@ func NewGenAppSpecCommand() *cobra.Command {
 	# Generate declarative config for a Kustomize app
 	argocd admin app generate-spec kustomize-guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path kustomize-guestbook --dest-namespace default --dest-server https://kubernetes.default.svc --kustomize-image quay.io/argoprojlabs/argocd-e2e-container:0.1
 
-	# Generate declarative config for a app using a custom tool:
+	# Generate declarative config for an app using a custom tool:
 	argocd admin app generate-spec kasane --repo https://github.com/argoproj/argocd-example-apps.git --path plugins/kasane --dest-namespace default --dest-server https://kubernetes.default.svc --config-management-plugin kasane
 `,
 		Run: func(c *cobra.Command, args []string) {
@@ -191,12 +191,12 @@ func NewDiffReconcileResults() *cobra.Command {
 func toUnstructured(val any) (*unstructured.Unstructured, error) {
 	data, err := json.Marshal(val)
 	if err != nil {
-		return nil, fmt.Errorf("error while marhsalling value: %w", err)
+		return nil, fmt.Errorf("error while marshalling value: %w", err)
 	}
 	res := make(map[string]any)
 	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return nil, fmt.Errorf("error while unmarhsalling data: %w", err)
+		return nil, fmt.Errorf("error while unmarshalling data: %w", err)
 	}
 	return &unstructured.Unstructured{Object: res}, nil
 }

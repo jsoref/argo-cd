@@ -1299,7 +1299,7 @@ func TestSetGroupsFromUserInfo(t *testing.T) {
 			expectError:    false,
 		},
 		{
-			name:           "empty cache and non-rechable userinfo endpoint", // this will try to reach the userinfo endpoint defined in the test and fail
+			name:           "empty cache and non-reachable userinfo endpoint", // this will try to reach the userinfo endpoint defined in the test and fail
 			inputClaims:    jwt.MapClaims{"sub": "randomUser", "groups": []string{"groupfromjwt"}, "exp": float64(time.Now().Add(5 * time.Minute).Unix())},
 			cacheClaims:    nil, // the test doesn't set the cache for an empty object
 			expectedClaims: jwt.MapClaims{"sub": "randomUser", "groups": []string{"groupfromjwt"}, "exp": float64(time.Now().Add(5 * time.Minute).Unix())},
@@ -1323,7 +1323,7 @@ userInfoPath: /`,
 			a, err := NewClientApp(cdSettings, "", nil, "/argo-cd", userInfoCache)
 			require.NoError(t, err, "failed creating clientapp")
 
-			// prepoluate cache to predict what the GetUserInfo function will return to the SetGroupsFromUserInfo function (without having to mock the userinfo response)
+			// prepopulate cache to predict what the GetUserInfo function will return to the SetGroupsFromUserInfo function (without having to mock the userinfo response)
 			encryptionKey, err := cdSettings.GetServerEncryptionKey()
 			require.NoError(t, err, "failed obtaining encryption key from settings")
 

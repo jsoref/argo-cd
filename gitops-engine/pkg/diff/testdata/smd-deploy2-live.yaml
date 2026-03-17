@@ -115,7 +115,7 @@ spec:
             exec:
               command:
                 - cat
-                - non-existent-file
+                - nonexistent-file
             failureThreshold: 3
             initialDelaySeconds: 5
             periodSeconds: 180

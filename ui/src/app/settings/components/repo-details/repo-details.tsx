@@ -43,7 +43,7 @@ export const RepoDetails = (props: {repo: models.Repository; save?: (params: New
 
         if (repository.type === 'git') {
             items.push({
-                title: 'Bearer token (optional, for BitBucket Data Center only)',
+                title: 'Bearer token (optional, for Bitbucket Data Center only)',
                 view: repository.bearerToken ? '******' : '',
                 edit: (formApi: FormApi) => <FormField formApi={formApi} field='bearerToken' component={Text} componentProps={{type: 'password'}} />
             });

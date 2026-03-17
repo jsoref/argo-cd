@@ -362,7 +362,7 @@ func TestExtractNestedItem(t *testing.T) {
 			},
 		},
 		{
-			name:     "depth is greater then list of field size",
+			name:     "depth is greater than list of field size",
 			obj:      map[string]any{"test1": "1234567890"},
 			fields:   []string{"test1"},
 			depth:    4,
@@ -556,7 +556,7 @@ func TestReconstructObject(t *testing.T) {
 			},
 		},
 		{
-			name: "complex object nesteed at depth 2",
+			name: "complex object nested at depth 2",
 			extracted: []any{map[string]any{
 				"obj1": map[string]any{
 					"key1": "value1",
@@ -672,8 +672,8 @@ spec:
 	assert.Contains(t, output, "FIELD           VALUE", "Missing or incorrect header line for table print with not showing names.")
 	assert.Contains(t, output, "apiVersion      vX", "Missing or incorrect row in table related to apiVersion with not showing names.")
 	assert.Contains(t, output, "kind            test", "Missing or incorrect row in the table related to kind with not showing names.")
-	assert.Contains(t, output, "spec.testfield  testvalue", "Missing or incorrect row in the table related to spec.testefield with not showing names.")
-	assert.NotContains(t, output, "metadata.name   testvalue", "Missing or incorrect row in the tbale related to metadata.name with not showing names.")
+	assert.Contains(t, output, "spec.testfield  testvalue", "Missing or incorrect row in the table related to spec.testfield with not showing names.")
+	assert.NotContains(t, output, "metadata.name   testvalue", "Missing or incorrect row in the table related to metadata.name with not showing names.")
 }
 
 func TestPrintManifests_FilterNestedListObject_Wide(t *testing.T) {

@@ -84,7 +84,7 @@ func PortForward(targetPort int, namespace string, overrides *clientcmd.ConfigOv
 		if err != nil {
 			return -1, fmt.Errorf("could not create tunneling dialer: %w", err)
 		}
-		// First attempt tunneling (websocket) dialer, then fallback to spdy dialer.
+		// First attempt tunneling (websocket) dialer, then fall back to spdy dialer.
 		dialer = portforward.NewFallbackDialer(tunnelingDialer, dialer, func(err error) bool {
 			return httpstream.IsUpgradeFailure(err) || httpstream.IsHTTPSProxyError(err)
 		})

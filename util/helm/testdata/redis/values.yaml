@@ -5,7 +5,7 @@ image:
   registry: docker.io
   repository: bitnamilegacy/redis
   tag: 4.0.10-debian-9
-  ## Specify a imagePullPolicy
+  ## Specify an imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
@@ -15,7 +15,7 @@ image:
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
   ##
   # pullSecrets:
-  #   - myRegistrKeySecretName
+  #   - myRegistryKeySecretName
 
 
 ## Cluster settings
@@ -43,7 +43,7 @@ metrics:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     ##
     # pullSecrets:
-    #   - myRegistrKeySecretName
+    #   - myRegistryKeySecretName
 
   ## Metrics exporter labels and tolerations for pod assignment
   # nodeSelector: {"kubernetes.io/arch": "amd64"}

@@ -18,7 +18,7 @@ type Generator interface {
 	GenerateParams(appSetGenerator *argoprojiov1alpha1.ApplicationSetGenerator, applicationSetInfo *argoprojiov1alpha1.ApplicationSet, client client.Client) ([]map[string]any, error)
 
 	// GetRequeueAfter is the generator can controller the next reconciled loop
-	// In case there is more then one generator the time will be the minimum of the times.
+	// In case there is more than one generator the time will be the minimum of the times.
 	// In case NoRequeueAfter is empty, it will be ignored
 	GetRequeueAfter(appSetGenerator *argoprojiov1alpha1.ApplicationSetGenerator) time.Duration
 

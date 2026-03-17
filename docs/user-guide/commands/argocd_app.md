@@ -14,7 +14,7 @@ argocd app [flags]
   # List all the applications.
   argocd app list
 
-  # Get the details of a application
+  # Get the details of an application
   argocd app get my-app
 
   # Set an override parameter

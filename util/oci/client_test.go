@@ -172,7 +172,7 @@ func Test_nativeOCIClient_Extract(t *testing.T) {
 			expectedError: errors.New("oci layer media type application/vnd.oci.image.layer.v1.tar+gzip is not in the list of allowed media types"),
 		},
 		{
-			name: "extraction fails due to non-existent digest",
+			name: "extraction fails due to nonexistent digest",
 			fields: fields{
 				allowedMediaTypes: []string{"application/vnd.cncf.helm.chart.content.v1.tar+gzip"},
 			},

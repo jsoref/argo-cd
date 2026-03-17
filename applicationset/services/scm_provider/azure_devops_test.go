@@ -250,7 +250,7 @@ func TestAzureDevOpsGetDefaultBranchStripsRefsName(t *testing.T) {
 	})
 }
 
-func TestAzureDevOpsGetBranchesDefultBranchOnly(t *testing.T) {
+func TestAzureDevOpsGetBranchesDefaultBranchOnly(t *testing.T) {
 	organization := "myorg"
 	teamProject := "myorg_project"
 	repoName := "myorg_project_repo"
@@ -353,7 +353,7 @@ func TestAzureDevopsGetBranches(t *testing.T) {
 			expectedProcessingErrorMsg: "empty branch result",
 		},
 		{
-			name:        "GetBranches when git client retrievel fails returns error",
+			name:        "GetBranches when git client retrieval fails returns error",
 			clientError: errors.New("Could not get Azure Devops API client"),
 			allBranches: true,
 		},

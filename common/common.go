@@ -168,13 +168,13 @@ const (
 	CallbackEndpoint = "/auth/callback"
 	// DexCallbackEndpoint is Argo CD's final callback endpoint when Dex is configured
 	DexCallbackEndpoint = "/api/dex/callback"
-	// ArgoCDClientAppName is name of the Oauth client app used when registering our web app to dex
+	// ArgoCDClientAppName is name of the OAuth client app used when registering our web app to dex
 	ArgoCDClientAppName = "Argo CD"
-	// ArgoCDClientAppID is the Oauth client ID we will use when registering our app to dex
+	// ArgoCDClientAppID is the OAuth client ID we will use when registering our app to dex
 	ArgoCDClientAppID = "argo-cd"
-	// ArgoCDCLIClientAppName is name of the Oauth client app used when registering our CLI to dex
+	// ArgoCDCLIClientAppName is name of the OAuth client app used when registering our CLI to dex
 	ArgoCDCLIClientAppName = "Argo CD CLI"
-	// ArgoCDCLIClientAppID is the Oauth client ID we will use when registering our CLI to dex
+	// ArgoCDCLIClientAppID is the OAuth client ID we will use when registering our CLI to dex
 	ArgoCDCLIClientAppID = "argo-cd-cli"
 	// DexFederatedScope allows to receive the federated_claims from Dex. https://dexidp.io/docs/configuration/custom-scopes-claims-clients/
 	DexFederatedScope = "federated:id"
@@ -295,7 +295,7 @@ const (
 	EnvEnableDynamicClusterDistribution = "ARGOCD_ENABLE_DYNAMIC_CLUSTER_DISTRIBUTION"
 	// EnvEnableGRPCTimeHistogramEnv enables gRPC metrics collection
 	EnvEnableGRPCTimeHistogramEnv = "ARGOCD_ENABLE_GRPC_TIME_HISTOGRAM"
-	// EnvGithubAppCredsExpirationDuration controls the caching of Github app credentials. This value is in minutes (default: 60)
+	// EnvGithubAppCredsExpirationDuration controls the caching of GitHub app credentials. This value is in minutes (default: 60)
 	EnvGithubAppCredsExpirationDuration = "ARGOCD_GITHUB_APP_CREDS_EXPIRATION_DURATION"
 	// EnvHelmIndexCacheDuration controls how the helm repository index file is cached for (default: 0)
 	EnvHelmIndexCacheDuration = "ARGOCD_HELM_INDEX_CACHE_DURATION"
@@ -358,7 +358,7 @@ const (
 	// When introducing breaking changes to the API or datastructures, this number should be bumped.
 	// The value here may be lower than the current value in VERSION
 	MinClientVersion = "1.4.0"
-	// CacheVersion is a objects version cached using util/cache/cache.go.
+	// CacheVersion is an object's version cached using util/cache/cache.go.
 	// Number should be bumped in case of backward incompatible change to make sure cache is invalidated after upgrade.
 	CacheVersion = "1.8.3"
 )

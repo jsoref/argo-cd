@@ -380,13 +380,13 @@ type RepoAccessQuery struct {
 	Name string `protobuf:"bytes,10,opt,name=name,proto3" json:"name,omitempty"`
 	// Whether helm-oci support should be enabled for this repo
 	EnableOci bool `protobuf:"varint,11,opt,name=enableOci,proto3" json:"enableOci,omitempty"`
-	// Github App Private Key PEM data
+	// GitHub App Private Key PEM data
 	GithubAppPrivateKey string `protobuf:"bytes,12,opt,name=githubAppPrivateKey,proto3" json:"githubAppPrivateKey,omitempty"`
-	// Github App ID of the app used to access the repo
+	// GitHub App ID of the app used to access the repo
 	GithubAppID int64 `protobuf:"varint,13,opt,name=githubAppID,proto3" json:"githubAppID,omitempty"`
-	// Github App Installation ID of the installed GitHub App
+	// GitHub App Installation ID of the installed GitHub App
 	GithubAppInstallationID int64 `protobuf:"varint,14,opt,name=githubAppInstallationID,proto3" json:"githubAppInstallationID,omitempty"`
-	// Github App Enterprise base url if empty will default to https://api.github.com
+	// GitHub App Enterprise base url if empty will default to https://api.github.com
 	GithubAppEnterpriseBaseUrl string `protobuf:"bytes,15,opt,name=githubAppEnterpriseBaseUrl,proto3" json:"githubAppEnterpriseBaseUrl,omitempty"`
 	// HTTP/HTTPS proxy to access the repository
 	Proxy string `protobuf:"bytes,16,opt,name=proxy,proto3" json:"proxy,omitempty"`

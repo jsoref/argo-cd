@@ -79,7 +79,7 @@ func TestGetRepoObjs(t *testing.T) {
 	assert.Equal(t, "ConfigMap", objs[0].GetKind())
 }
 
-func TestGetHydratorCommitMessageTemplate_WhenTemplateisNotDefined_FallbackToDefault(t *testing.T) {
+func TestGetHydratorCommitMessageTemplate_WhenTemplateIsNotDefined_FallbackToDefault(t *testing.T) {
 	cm := test.NewConfigMap()
 	cmBytes, _ := json.Marshal(cm)
 
@@ -96,7 +96,7 @@ func TestGetHydratorCommitMessageTemplate_WhenTemplateisNotDefined_FallbackToDef
 
 	tmpl, err := ctrl.GetHydratorCommitMessageTemplate()
 	require.NoError(t, err)
-	assert.NotEmpty(t, tmpl) // should fallback to default
+	assert.NotEmpty(t, tmpl) // should fall back to default
 	assert.Equal(t, settings.CommitMessageTemplate, tmpl)
 }
 

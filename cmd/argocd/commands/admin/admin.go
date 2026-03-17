@@ -31,11 +31,11 @@ const (
 )
 
 var (
-	configMapResource       = schema.GroupVersionResource{Group: "", Version: "v1", Resource: "configmaps"}
-	secretResource          = schema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}
-	applicationsResource    = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.ApplicationPlural}
-	appprojectsResource     = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.AppProjectPlural}
-	appplicationSetResource = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.ApplicationSetPlural}
+	configMapResource      = schema.GroupVersionResource{Group: "", Version: "v1", Resource: "configmaps"}
+	secretResource         = schema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}
+	applicationsResource   = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.ApplicationPlural}
+	appprojectsResource    = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.AppProjectPlural}
+	applicationSetResource = schema.GroupVersionResource{Group: application.Group, Version: "v1alpha1", Resource: application.ApplicationSetPlural}
 )
 
 type argocdAdditionalNamespaces struct {
@@ -96,7 +96,7 @@ func newArgoCDClientsets(config *rest.Config, namespace string) *argoCDClientset
 		secrets:         dynamicIf.Resource(secretResource).Namespace(namespace),
 		applications:    dynamicIf.Resource(applicationsResource).Namespace(namespace),
 		projects:        dynamicIf.Resource(appprojectsResource).Namespace(namespace),
-		applicationSets: dynamicIf.Resource(appplicationSetResource).Namespace(namespace),
+		applicationSets: dynamicIf.Resource(applicationSetResource).Namespace(namespace),
 	}
 }
 

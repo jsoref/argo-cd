@@ -34,16 +34,16 @@ func logRequest(ctx context.Context, entry *logrus.Entry, info string, pbMsg any
 		}
 	}
 	if p, ok := pbMsg.(proto.Message); ok {
-		entry = entry.WithField("grpc.request.content", &jsonpbMarshalleble{p})
+		entry = entry.WithField("grpc.request.content", &jsonpbMarshallable{p})
 	}
 	entry.Info(info)
 }
 
-type jsonpbMarshalleble struct {
+type jsonpbMarshallable struct {
 	proto.Message
 }
 
-func (j *jsonpbMarshalleble) MarshalJSON() ([]byte, error) {
+func (j *jsonpbMarshallable) MarshalJSON() ([]byte, error) {
 	var b bytes.Buffer
 	m := &jsonpb.Marshaler{}
 	err := m.Marshal(&b, j.Message)

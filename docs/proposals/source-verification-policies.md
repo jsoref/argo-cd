@@ -29,7 +29,7 @@ Argo CD would ever only verify the signature on the commit that's pointed to by 
 
 Source verification policies are an evolution of the legacy signature verification in Argo CD.
 It brings new verification modes, the possibility of treating multiple sources in an Application with different strictness.
-It also sets the foundation to implement more verification methods in the future that are not gpg, nor git specific.
+It also sets the foundation to implement more verification methods in the future that are neither gpg nor git specific.
 
 ## Motivation
 
@@ -244,7 +244,7 @@ Unless the user motivation for the downgrade is a bug in Argo CD implementation,
 
 ### How to handle local manifests?
 
-The current implementation rejects them when GPG is turned on and projest's signing keys are declared.
+The current implementation rejects them when GPG is turned on and project's signing keys are declared.
 Can be done selectively based on source integrity criteria applicability (Git/OCI/Helm & repo).
 
 ### Where to configure verification policies?
@@ -290,9 +290,9 @@ In fact, it does not harm UX *and* improves security with:
 #### Git history *sealing* for strict verification mode
 
 A sealing commit is a gpg signed commit that works as a "seal of approval" attesting that all its ancestor commits were either signed by a trusted key, or reviewed and trusted by the commit author.
-Argo CD verifying gpg signatures would then progres only as far back in the history as the most recent "seal" commits in each individual ancestral branch.
+Argo CD verifying gpg signatures would then progress only as far back in the history as the most recent "seal" commits in each individual ancestral branch.
 
-In practice, a commiter reviews all commits that are not signed or signed with untrusted keys from the previous "seal" and creates a (possibly empty) commit with a custom trailer.
+In practice, a committer reviews all commits that are not signed or signed with untrusted keys from the previous "seal" and creates a (possibly empty) commit with a custom trailer.
 Such commits can have the following organization level semantics:
 
 - "From now on, we are going to gpg sign all commits in this repository. There is no point in verifying the unsigned ones from before."
@@ -366,5 +366,5 @@ The non-trivial N:M mapping between repositories and Applications (or even Argo 
 Seal-signing marks the point(s) from where not to verify commits *inside* the repository itself, and thus is making sure that all Argo CD instances and their applications have a consistent view of what they are, regardless of application removal from Argo CD, Argo CD migration, etc.
 
 Both approaches, in fact, work as an optimization mechanism by limiting the number of commits to verify.
-For sealing, a commiter needs to add a seal commit manually even if there are no unsigned changes to speed things up.
+For sealing, a committer needs to add a seal commit manually even if there are no unsigned changes to speed things up.
 Additionally, the implementation can cache the last `strict`-verified commit per repository & strategy, to optimize verification speed on a best effort basis.

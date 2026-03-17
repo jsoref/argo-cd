@@ -1041,7 +1041,7 @@
               <!-- Overview -->
               <h2 id="overview">Overview</h2>
         <p>Affected versions of this package are vulnerable to Untrusted Search Path in resource detection code which executes <code>ioreg</code>, when the <code>PATH</code> environment variable is modified to include a malicious executable. An attacker can execute arbitrary code within the context of the application by placing a malicious binary earlier in the search path.</p>
-        <p><strong>Note:</strong> This vulnerability is only exploitable on MacOS/Darwin systems.</p>
+        <p><strong>Note:</strong> This vulnerability is only exploitable on macOS/Darwin systems.</p>
         <h2 id="remediation">Remediation</h2>
         <p>Upgrade <code>go.opentelemetry.io/otel/sdk/resource</code> to version 1.40.0 or higher.</p>
         <h2 id="references">References</h2>

@@ -11,7 +11,7 @@ image:
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
   ##
   # pullSecrets:
-  #   - myRegistrKeySecretName
+  #   - myRegistryKeySecretName
 
 
 ## Cluster settings
@@ -39,7 +39,7 @@ metrics:
     ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     ##
     # pullSecrets:
-    #   - myRegistrKeySecretName
+    #   - myRegistryKeySecretName
   ## Metrics exporter labels and tolerations for pod assignment
   # nodeSelector: {"kubernetes.io/arch": "amd64"}
   # tolerations: []

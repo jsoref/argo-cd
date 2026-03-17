@@ -3,7 +3,7 @@
 There are three different ways to integrate Argo CD login with your Google Workspace users. Generally the OpenID Connect (_oidc_) method would be the recommended way of doing this integration (and easier, as well...), but depending on your needs, you may choose a different option.
 
 - [OpenID Connect using Dex](#openid-connect-using-dex)
-  This is the recommended login method if you don't need information about the groups the user's belongs to. Google doesn't expose the `groups` claim via _oidc_, so you won't be able to use Google Groups membership information for RBAC.
+  This is the recommended login method if you don't need information about the groups to which the user belongs. Google doesn't expose the `groups` claim via _oidc_, so you won't be able to use Google Groups membership information for RBAC.
 - [SAML App Auth using Dex](#saml-app-auth-using-dex)
   Dex [recommends avoiding this method](https://dexidp.io/docs/connectors/saml/#warning). Also, you won't get Google Groups membership information through this method.
 - [OpenID Connect plus Google Groups using Dex](#openid-connect-plus-google-groups-using-dex)

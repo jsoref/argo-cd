@@ -144,7 +144,7 @@ type ArgoCDSettings struct {
 	// ImpersonationEnabled indicates whether Application sync privileges can be decoupled from control plane
 	// privileges using impersonation
 	ImpersonationEnabled bool `json:"impersonationEnabled"`
-	// RequireOverridePrivilegeForRevisionSync indicates whether giving an external revision during snyc is considered an override.
+	// RequireOverridePrivilegeForRevisionSync indicates whether giving an external revision during sync is considered an override.
 	// Up to revision 3.2, this was always false. It is now still false by default, in order to not breaking existing usage.
 	RequireOverridePrivilegeForRevisionSync bool `json:"requireOverridePrivilegeForRevisionSync"`
 }
@@ -345,13 +345,13 @@ type Repository struct {
 	TLSClientCertKeySecret *corev1.SecretKeySelector `json:"tlsClientCertKeySecret,omitempty"`
 	// Whether the repo is helm-oci enabled. Git only.
 	EnableOci bool `json:"enableOci,omitempty"`
-	// Github App Private Key PEM data
+	// GitHub App Private Key PEM data
 	GithubAppPrivateKeySecret *corev1.SecretKeySelector `json:"githubAppPrivateKeySecret,omitempty"`
-	// Github App ID of the app used to access the repo
+	// GitHub App ID of the app used to access the repo
 	GithubAppId int64 `json:"githubAppID,omitempty"`
-	// Github App Installation ID of the installed GitHub App
+	// GitHub App Installation ID of the installed GitHub App
 	GithubAppInstallationId int64 `json:"githubAppInstallationID,omitempty"`
-	// Github App Enterprise base url if empty will default to https://api.github.com
+	// GitHub App Enterprise base url if empty will default to https://api.github.com
 	GithubAppEnterpriseBaseURL string `json:"githubAppEnterpriseBaseUrl,omitempty"`
 	// Proxy specifies the HTTP/HTTPS proxy used to access the repo
 	Proxy string `json:"proxy,omitempty"`
@@ -379,13 +379,13 @@ type RepositoryCredentials struct {
 	TLSClientCertDataSecret *corev1.SecretKeySelector `json:"tlsClientCertDataSecret,omitempty"`
 	// Name of the secret storing the TLS client cert's key data
 	TLSClientCertKeySecret *corev1.SecretKeySelector `json:"tlsClientCertKeySecret,omitempty"`
-	// Github App Private Key PEM data
+	// GitHub App Private Key PEM data
 	GithubAppPrivateKeySecret *corev1.SecretKeySelector `json:"githubAppPrivateKeySecret,omitempty"`
-	// Github App ID of the app used to access the repo
+	// GitHub App ID of the app used to access the repo
 	GithubAppId int64 `json:"githubAppID,omitempty"`
-	// Github App Installation ID of the installed GitHub App
+	// GitHub App Installation ID of the installed GitHub App
 	GithubAppInstallationId int64 `json:"githubAppInstallationID,omitempty"`
-	// Github App Enterprise base url if empty will default to https://api.github.com
+	// GitHub App Enterprise base url if empty will default to https://api.github.com
 	GithubAppEnterpriseBaseURL string `json:"githubAppEnterpriseBaseUrl,omitempty"`
 	// EnableOCI specifies whether helm-oci support should be enabled for this repo
 	EnableOCI bool `json:"enableOCI,omitempty"`
@@ -526,7 +526,7 @@ const (
 	settingsPasswordPatternKey = "passwordPattern"
 	// inClusterEnabledKey is the key to configure whether to allow in-cluster server address
 	inClusterEnabledKey = "cluster.inClusterEnabled"
-	// settingsServerRBACEDisableFineGrainedInheritance is the key to configure find-grained RBAC inheritance
+	// settingsServerRBACDisableFineGrainedInheritance is the key to configure find-grained RBAC inheritance
 	settingsServerRBACDisableFineGrainedInheritance = "server.rbac.disableApplicationFineGrainedRBACInheritance"
 	// MaxPodLogsToRender the maximum number of pod logs to render
 	settingsMaxPodLogsToRender = "server.maxPodLogsToRender"

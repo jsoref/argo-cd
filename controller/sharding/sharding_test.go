@@ -297,10 +297,10 @@ func TestConsistentHashingWhenClusterIsAddedAndRemoved(t *testing.T) {
 	distributionFunction := ConsistentHashingWithBoundedLoadsDistributionFunction(clusterAccessor, appAccessor, replicasCount)
 	assert.Equal(t, 0, distributionFunction(nil))
 	distributionMap := map[int]int{}
-	assignementMap := map[string]int{}
+	assignmentMap := map[string]int{}
 	for i := range clusterCount {
 		assignedShard := distributionFunction(&clusters[i])
-		assignementMap[clusters[i].ID] = assignedShard
+		assignmentMap[clusters[i].ID] = assignedShard
 		distributionMap[assignedShard]++
 	}
 
@@ -333,9 +333,9 @@ func TestConsistentHashingWhenClusterIsAddedAndRemoved(t *testing.T) {
 	for i := range clusterCount {
 		c := &clusters[i]
 		assignedShard := distributionFunction(c)
-		prevıouslyAssignedShard := assignementMap[clusters[i].ID]
-		if prevıouslyAssignedShard != 2 && prevıouslyAssignedShard != assignedShard {
-			fmt.Printf("Previously assigned %s cluster has moved from replica %d to %d", c.ID, prevıouslyAssignedShard, assignedShard)
+		previouslyAssignedShard := assignmentMap[clusters[i].ID]
+		if previouslyAssignedShard != 2 && previouslyAssignedShard != assignedShard {
+			fmt.Printf("Previously assigned %s cluster has moved from replica %d to %d", c.ID, previouslyAssignedShard, assignedShard)
 			t.Fail()
 		}
 	}

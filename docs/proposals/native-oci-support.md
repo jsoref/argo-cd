@@ -40,7 +40,7 @@ Argo CD continues to be one of the most popular GitOps tools in the industry. As
 
 * Enable the retrieval of resources stored as artifacts in OCI registries that are formatted in any of the supported options (Kustomize, Jsonnet, Helm, plain-manifest, CMPs, etc)
 * Define a format for storing resources that can be processed by Argo CD as an OCI artifact including the composition and [Media Type(s)](https://github.com/opencontainers/image-spec/blob/main/media-types.md)
-* Support the retrieval of artifacts from OCI registries using custom / self signed TLS certificates.
+* Support the retrieval of artifacts from OCI registries using custom / self-signed TLS certificates.
 * Support the retrieval of artifacts from OCI registries requiring authentication. 
 
 ### Non-Goals

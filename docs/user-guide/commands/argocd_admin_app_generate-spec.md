@@ -27,7 +27,7 @@ argocd admin app generate-spec APPNAME [flags]
 	# Generate declarative config for a Kustomize app
 	argocd admin app generate-spec kustomize-guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path kustomize-guestbook --dest-namespace default --dest-server https://kubernetes.default.svc --kustomize-image quay.io/argoprojlabs/argocd-e2e-container:0.1
 
-	# Generate declarative config for a app using a custom tool:
+	# Generate declarative config for an app using a custom tool:
 	argocd admin app generate-spec kasane --repo https://github.com/argoproj/argocd-example-apps.git --path plugins/kasane --dest-namespace default --dest-server https://kubernetes.default.svc --config-management-plugin kasane
 
 ```

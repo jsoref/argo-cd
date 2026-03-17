@@ -318,7 +318,7 @@ func (mgr *SessionManager) Parse(tokenString string) (jwt.Claims, string, error)
 	return token.Claims, newToken, nil
 }
 
-// GetLoginFailures retrieves the login failure information from the cache. Any modifications to the LoginAttemps map must be done in a thread-safe manner.
+// GetLoginFailures retrieves the login failure information from the cache. Any modifications to the LoginAttempts map must be done in a thread-safe manner.
 func (mgr *SessionManager) GetLoginFailures() map[string]LoginAttempts {
 	// Get failures from the cache
 	return mgr.storage.GetLoginAttempts()

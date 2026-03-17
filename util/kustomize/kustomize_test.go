@@ -620,10 +620,10 @@ func TestKustomizeBuildComponentsNoFoundComponents(t *testing.T) {
 	require.NoError(t, err)
 	kustomize := NewKustomizeApp(appPath, appPath, git.NopCreds{}, "", "", "", "")
 
-	// Test with non-existent components and IgnoreMissingComponents = true
+	// Test with nonexistent components and IgnoreMissingComponents = true
 	// This should result in foundComponents being empty, so no "edit add component" command should be executed
 	kustomizeSource := v1alpha1.ApplicationSourceKustomize{
-		Components:              []string{"./non-existent-component1", "./non-existent-component2"},
+		Components:              []string{"./nonexistent-component1", "./nonexistent-component2"},
 		IgnoreMissingComponents: true,
 	}
 	_, _, commands, err := kustomize.Build(&kustomizeSource, nil, nil, nil)

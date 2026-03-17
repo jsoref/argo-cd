@@ -398,7 +398,7 @@ func TestSessionManager_WithAuthMiddleware(t *testing.T) {
 			cookieHeader:         true,
 			verifiedClaims:       nil,
 			verifyTokenErr:       nil,
-			userInfoCacheClaims:  nil, // indicates that the userinfo response will not work since cache is empty and userinfo endpoint not rechable
+			userInfoCacheClaims:  nil, // indicates that the userinfo response will not work since cache is empty and userinfo endpoint not reachable
 			expectedStatusCode:   http.StatusUnauthorized,
 			expectedResponseBody: new("Invalid session"),
 		},

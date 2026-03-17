@@ -15,7 +15,7 @@ function getStatusBasedOnPhase(obj)
     return hs
 end
 
-function getReadyContitionMessage(obj)
+function getReadyConditionMessage(obj)
     if obj.status ~= nil and obj.status.conditions ~= nil then
         for i, condition in ipairs(obj.status.conditions) do
         if condition.type == "Ready" and condition.status == "False" then
@@ -28,7 +28,7 @@ end
 
 local hs = getStatusBasedOnPhase(obj)
 if hs.status ~= "Healthy" then
-    hs.message = getReadyContitionMessage(obj)
+    hs.message = getReadyConditionMessage(obj)
 end
 
 return hs

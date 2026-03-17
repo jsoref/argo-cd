@@ -288,7 +288,7 @@ type MatchRepositoryStream interface {
 // The checks are implemented in the following order:
 //  1. If spec.Discover.FileName is provided it finds for a name match in Applications files
 //  2. If spec.Discover.Find.Glob is provided if finds for a glob match in Applications files
-//  3. Otherwise it runs the spec.Discover.Find.Command
+//  3. Otherwise, it runs the spec.Discover.Find.Command
 func (s *Service) MatchRepository(stream apiclient.ConfigManagementPluginService_MatchRepositoryServer) error {
 	return s.matchRepositoryGeneric(stream)
 }

@@ -285,7 +285,7 @@ func NewApplicationController(
 				shard := env.ParseNumFromEnv(common.EnvControllerShard, -1, -math.MaxInt32, math.MaxInt32)
 				shard, err := sharding.GetOrUpdateShardFromConfigMap(kubeClientset.(*kubernetes.Clientset), settingsMgr, int(*appControllerDeployment.Spec.Replicas), shard)
 				if err != nil {
-					return fmt.Errorf("error while updating the heartbeat for to the Shard Mapping ConfigMap: %w", err)
+					return fmt.Errorf("error while updating the heartbeat for the Shard Mapping ConfigMap: %w", err)
 				}
 
 				// update the shard number in the clusterSharding, and resync all applications if the shard number is updated
@@ -1760,7 +1760,7 @@ func (ctrl *ApplicationController) processAppRefreshQueueItem() (processNext boo
 	}()
 
 	if comparisonLevel == ComparisonWithNothing {
-		// If the destination cluster is invalid, fallback to the normal reconciliation flow
+		// If the destination cluster is invalid, fall back to the normal reconciliation flow
 		if destCluster, err = argo.GetDestinationCluster(context.Background(), app.Spec.Destination, ctrl.db); err == nil {
 			managedResources := make([]*appv1.ResourceDiff, 0)
 			if err := ctrl.cache.GetAppManagedResources(app.InstanceName(ctrl.namespace), &managedResources); err == nil {
@@ -1929,7 +1929,7 @@ func (ctrl *ApplicationController) processAppRefreshQueueItem() (processNext boo
 	}
 	ts.AddCheckpoint("process_finalizers_ms")
 	patchDuration = ctrl.persistAppStatus(origApp, &app.Status)
-	// This is a partly a duplicate of patch_ms, but more descriptive and allows to have measurement for the next step.
+	// This is partly a duplicate of patch_ms, but more descriptive and allows to have measurement for the next step.
 	ts.AddCheckpoint("persist_app_status_ms")
 	return processNext
 }

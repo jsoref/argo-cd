@@ -73,7 +73,7 @@ func TestHealthCheck(t *testing.T) {
 			break
 		}
 	}
-	require.NotEmpty(t, foundEntry, "Expected an error message '%s', but it was't found", expectedMsg)
+	require.NotEmpty(t, foundEntry, "Expected an error message '%s', but it wasn't found", expectedMsg)
 	actualErr, ok := foundEntry.Data["error"].(error)
 	require.True(t, ok, "Expected 'error' field to contain an error, but it doesn't")
 	assert.Equal(t, svcErrMsg, actualErr.Error(), "expected original error message '"+svcErrMsg+"', but got '"+actualErr.Error()+"'")

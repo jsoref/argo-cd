@@ -125,7 +125,7 @@ Switching to and from Argo CD Headless does not modify any persistent data or se
 
 ## Drawbacks
 
-* Embedding static resources into the binary increases it's size by ~20 mb. The image size is the same.
+* Embedding static resources into the binary increases its size by ~20 mb. The image size is the same.
 
 ## Alternatives
 

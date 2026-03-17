@@ -210,7 +210,7 @@ export const ReposList = ({match, location}: RouteComponentProps) => {
                     tlsClientCertKey: !validURLValues.tlsClientCertKey && validURLValues.tlsClientCertData && 'TLS client cert key is required if TLS client cert is given.',
                     bearerToken:
                         (validURLValues.password && validURLValues.bearerToken && 'Either the password or the bearer token must be set, but not both.') ||
-                        (validURLValues.bearerToken && validURLValues.type != 'git' && 'Bearer token is only supported for Git BitBucket Data Center repositories.')
+                        (validURLValues.bearerToken && validURLValues.type != 'git' && 'Bearer token is only supported for Git Bitbucket Data Center repositories.')
                 };
             case ConnectionMethod.GITHUBAPP:
                 const githubAppValues = params as NewGitHubAppRepoParams;
@@ -1162,7 +1162,7 @@ export const ReposList = ({match, location}: RouteComponentProps) => {
                                                     <div className='argo-form-row'>
                                                         <FormField
                                                             formApi={formApi}
-                                                            label='Bearer token (optional, for BitBucket Data Center only)'
+                                                            label='Bearer token (optional, for Bitbucket Data Center only)'
                                                             field='bearerToken'
                                                             component={Text}
                                                             componentProps={{type: 'password'}}

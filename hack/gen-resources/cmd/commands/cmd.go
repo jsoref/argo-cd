@@ -122,7 +122,7 @@ func NewCleanCommand(opts *util.GenerateOpts) *cobra.Command {
 			}
 			err = rg.Clean(opts)
 			if err != nil {
-				log.Fatalf("Failed to clean repositores, %v", err.Error())
+				log.Fatalf("Failed to clean repositories, %v", err.Error())
 			}
 		},
 	}

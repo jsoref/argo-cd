@@ -103,12 +103,12 @@ func (g *GitlabProvider) ListRepos(_ context.Context, cloneProtocol string) ([]*
 			case "https":
 				url = gitlabRepo.HTTPURLToRepo
 			default:
-				return nil, fmt.Errorf("unknown clone protocol for Gitlab %v", cloneProtocol)
+				return nil, fmt.Errorf("unknown clone protocol for GitLab %v", cloneProtocol)
 			}
 
 			var repoLabels []string
 			if len(gitlabRepo.Topics) == 0 {
-				// fallback to for gitlab prior to 14.5
+				// fallback for gitlab prior to 14.5
 				//nolint:staticcheck
 				repoLabels = gitlabRepo.TagList
 			} else {

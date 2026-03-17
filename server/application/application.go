@@ -1162,7 +1162,7 @@ func (s *Server) Delete(ctx context.Context, q *application.ApplicationDeleteReq
 
 	patchFinalizer := false
 	if q.Cascade == nil || *q.Cascade {
-		// validate the propgation policy
+		// validate the propagation policy
 		policyFinalizer := getPropagationPolicyFinalizer(q.GetPropagationPolicy())
 		if policyFinalizer == "" {
 			return nil, status.Errorf(codes.InvalidArgument, "invalid propagation policy: %s", *q.PropagationPolicy)
@@ -1533,7 +1533,7 @@ func (s *Server) PatchResource(ctx context.Context, q *application.ApplicationRe
 	}
 	data, err := json.Marshal(manifest.Object)
 	if err != nil {
-		return nil, fmt.Errorf("erro marshaling manifest object: %w", err)
+		return nil, fmt.Errorf("error marshaling manifest object: %w", err)
 	}
 	s.logAppEvent(ctx, a, argo.EventReasonResourceUpdated, fmt.Sprintf("patched resource %s/%s '%s'", q.GetGroup(), q.GetKind(), q.GetResourceName()))
 	m := string(data)

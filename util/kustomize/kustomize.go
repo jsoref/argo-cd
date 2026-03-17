@@ -459,7 +459,7 @@ func getSemver(ctx context.Context, k *kustomize) (*semver.Version, error) {
 
 // getSemverSafe returns parsed kustomize version;
 // if version cannot be parsed assumes that "kustomize version" output format changed again
-// and fallback to latest ( v99.99.99 )
+// and fall back to latest ( v99.99.99 )
 func getSemverSafe(ctx context.Context, k *kustomize) *semver.Version {
 	if semVer == nil {
 		semVerLock.Lock()

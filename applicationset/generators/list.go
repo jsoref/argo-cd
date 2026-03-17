@@ -45,7 +45,7 @@ func (g *ListGenerator) GenerateParams(appSetGenerator *argoprojiov1alpha1.Appli
 		var element map[string]any
 		err := json.Unmarshal(tmpItem.Raw, &element)
 		if err != nil {
-			return nil, fmt.Errorf("error unmarshling list element %w", err)
+			return nil, fmt.Errorf("error unmarshaling list element %w", err)
 		}
 
 		if appSet.Spec.GoTemplate {
@@ -81,7 +81,7 @@ func (g *ListGenerator) GenerateParams(appSetGenerator *argoprojiov1alpha1.Appli
 		var yamlElements []map[string]any
 		err := yaml.Unmarshal([]byte(appSetGenerator.List.ElementsYaml), &yamlElements)
 		if err != nil {
-			return nil, fmt.Errorf("error unmarshling decoded ElementsYaml %w", err)
+			return nil, fmt.Errorf("error unmarshaling decoded ElementsYaml %w", err)
 		}
 		res = append(res, yamlElements...)
 	}

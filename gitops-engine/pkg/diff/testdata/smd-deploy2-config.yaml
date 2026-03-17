@@ -25,7 +25,7 @@ spec:
             exec:
               command:
                 - cat
-                - non-existent-file
+                - nonexistent-file
             initialDelaySeconds: 5
             periodSeconds: 180
           name: nginx

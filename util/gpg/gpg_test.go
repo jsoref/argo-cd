@@ -76,7 +76,7 @@ func Test_GPG_InitializeGnuPG(t *testing.T) {
 	assert.Len(t, keys, 1)
 	assert.Equal(t, "ultimate", keys[0].Trust)
 
-	// During unit-tests, we need to also kill gpg-agent so we can create a new key.
+	// During unit-tests, we also need to kill gpg-agent so we can create a new key.
 	// In real world scenario -- i.e. container crash -- gpg-agent is not running yet.
 	cmd := exec.CommandContext(t.Context(), "gpgconf", "--kill", "gpg-agent")
 	cmd.Env = []string{"GNUPGHOME=" + p}

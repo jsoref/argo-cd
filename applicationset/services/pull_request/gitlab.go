@@ -24,7 +24,7 @@ var _ PullRequestService = (*GitLabService)(nil)
 func NewGitLabService(token, url, project string, labels []string, pullRequestState string, scmRootCAPath string, insecure bool, caCerts []byte) (PullRequestService, error) {
 	var clientOptionFns []gitlab.ClientOptionFunc
 
-	// Set a custom Gitlab base URL if one is provided
+	// Set a custom GitLab base URL if one is provided
 	if url != "" {
 		clientOptionFns = append(clientOptionFns, gitlab.WithBaseURL(url))
 	}
@@ -43,7 +43,7 @@ func NewGitLabService(token, url, project string, labels []string, pullRequestSt
 
 	client, err := gitlab.NewClient(token, clientOptionFns...)
 	if err != nil {
-		return nil, fmt.Errorf("error creating Gitlab client: %w", err)
+		return nil, fmt.Errorf("error creating GitLab client: %w", err)
 	}
 
 	return &GitLabService{

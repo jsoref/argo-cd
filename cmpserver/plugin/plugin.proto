@@ -15,7 +15,7 @@ message AppStreamRequest {
     }
 }
 
-// ManifestRequestMetadata defines the metada related to the file being sent
+// ManifestRequestMetadata defines the metadata related to the file being sent
 // to the CMP server.
 message ManifestRequestMetadata {
     // appName refers to the ArgoCD Application name

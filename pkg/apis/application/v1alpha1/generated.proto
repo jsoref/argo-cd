@@ -813,13 +813,13 @@ message BasicAuthBitbucketServer {
   optional SecretRef passwordRef = 2;
 }
 
-// BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.
 message BearerTokenBitbucket {
   // Password (or personal access token) reference.
   optional SecretRef tokenRef = 1;
 }
 
-// BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.
 message BearerTokenBitbucketCloud {
   // Password (or personal access token) reference.
   optional SecretRef tokenRef = 1;
@@ -1841,7 +1841,7 @@ message RepoCreds {
   // GithubAppPrivateKey specifies the private key PEM data for authentication via GitHub app
   optional string githubAppPrivateKey = 7;
 
-  // GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication
+  // GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication
   optional int64 githubAppID = 8;
 
   // GithubAppInstallationId specifies the ID of the installed GitHub App for GitHub app authentication
@@ -1871,7 +1871,7 @@ message RepoCreds {
   // UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
   optional bool useAzureWorkloadIdentity = 24;
 
-  // BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+  // BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
   optional string bearerToken = 25;
 
   // InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.
@@ -1930,7 +1930,7 @@ message Repository {
   // EnableOCI specifies whether helm-oci support should be enabled for this repo
   optional bool enableOCI = 14;
 
-  // Github App Private Key PEM data
+  // GitHub App Private Key PEM data
   optional string githubAppPrivateKey = 15;
 
   // GithubAppId specifies the ID of the GitHub app used to access the repo
@@ -1960,7 +1960,7 @@ message Repository {
   // UseAzureWorkloadIdentity specifies whether to use Azure Workload Identity for authentication
   optional bool useAzureWorkloadIdentity = 24;
 
-  // BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server
+  // BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server
   optional string bearerToken = 25;
 
   // InsecureOCIForceHttp specifies whether the connection to the repository uses TLS at _all_. If true, no TLS. This flag is applicable for OCI repos only.
@@ -1984,7 +1984,7 @@ message RepositoryCertificate {
   // CertData contains the actual certificate data, dependent on the certificate type
   optional bytes certData = 4;
 
-  // CertInfo will hold additional certificate info, depdendent on the certificate type (e.g. SSH fingerprint, X509 CommonName)
+  // CertInfo will hold additional certificate info, dependent on the certificate type (e.g. SSH fingerprint, X509 CommonName)
   optional string certInfo = 5;
 }
 
@@ -2509,15 +2509,15 @@ message SCMProviderGeneratorGithub {
   optional bool allBranches = 5;
 }
 
-// SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
+// SCMProviderGeneratorGitlab defines connection info specific to GitLab.
 message SCMProviderGeneratorGitlab {
-  // Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
+  // GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
   optional string group = 1;
 
   // Recurse through subgroups (true) or scan only the base group (false).  Defaults to "false"
   optional bool includeSubgroups = 2;
 
-  // The Gitlab API URL to talk to.
+  // The GitLab API URL to talk to.
   optional string api = 3;
 
   // Authentication token reference.
@@ -2532,7 +2532,7 @@ message SCMProviderGeneratorGitlab {
   // When recursing through subgroups, also include shared Projects (true) or scan only the subgroups under same path (false).  Defaults to "true"
   optional bool includeSharedProjects = 7;
 
-  // Filter repos list based on Gitlab Topic.
+  // Filter repos list based on GitLab Topic.
   optional string topic = 8;
 
   // ConfigMap key holding the trusted certificates

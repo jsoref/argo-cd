@@ -114,7 +114,7 @@ func TestAppProject_IsDestinationPermitted(t *testing.T) {
 		isPermitted bool
 	}{
 		{
-			name: "server an namespace match",
+			name: "server and namespace match",
 			projDest: []ApplicationDestination{{
 				Server: "https://kubernetes.default.svc", Namespace: "default",
 			}},
@@ -2359,7 +2359,7 @@ func TestAppProjectSpec_AddWindow(t *testing.T) {
 		{"BadDuration", proj, "deny", "* * * * *", "33mm", []string{"app1"}, []string{}, []string{}, false, "error", false, "", ""},
 		{"WorkingApplication", proj, "allow", "1 * * * *", "1h", []string{"app1"}, []string{}, []string{}, false, "noError", false, "", ""},
 		{"WorkingNamespace", proj, "deny", "3 * * * *", "1h", []string{}, []string{}, []string{"cluster"}, false, "noError", false, "", ""},
-		{"WorkeringDescription", proj, "deny", "3 * * * *", "1h", []string{}, []string{}, []string{"cluster"}, false, "noError", false, "description", ""},
+		{"WorkingDescription", proj, "deny", "3 * * * *", "1h", []string{}, []string{}, []string{"cluster"}, false, "noError", false, "description", ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -3919,10 +3919,10 @@ func Test_validateGroupName(t *testing.T) {
 		{"Unquoted with comma", "foo,bar,baz", false},
 		{"Improperly quoted 1", "\"foo,bar,baz", false},
 		{"Improperly quoted 2", "foo,bar,baz\"", false},
-		{"Runaway quote in unqouted string", "foo,bar\",baz", false},
+		{"Runaway quote in unquoted string", "foo,bar\",baz", false},
 		{"Runaway quote in quoted string", "\"foo,\"bar,baz\"", false},
-		{"Invalid characters unqouted", "foo\nbar", false},
-		{"Invalid characters qouted", "\"foo\nbar\"", false},
+		{"Invalid characters unquoted", "foo\nbar", false},
+		{"Invalid characters quoted", "\"foo\nbar\"", false},
 		{"Runaway quote 1", "\"foo", false},
 		{"Runaway quote 2", "foo\"", false},
 	}

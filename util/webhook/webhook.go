@@ -253,7 +253,7 @@ func (a *ArgoCDWebhookHandler) affectedRevisionInfo(payloadIf any) (webURLs []st
 			}
 		}
 
-	// Bitbucket does not include a list of changed files anywhere in it's payload
+	// Bitbucket does not include a list of changed files anywhere in its payload
 	// so we cannot update changedFiles for this type of payload
 	case bitbucketserver.RepositoryReferenceChangedPayload:
 
@@ -282,7 +282,7 @@ func (a *ArgoCDWebhookHandler) affectedRevisionInfo(payloadIf any) (webURLs []st
 		// payload alone. To be safe, we just return true and let the controller check for himself.
 		touchedHead = true
 
-		// Bitbucket does not include a list of changed files anywhere in it's payload
+		// Bitbucket does not include a list of changed files anywhere in its payload
 		// so we cannot update changedFiles for this type of payload
 
 	case gogsclient.PushPayload:
@@ -561,12 +561,12 @@ func newBitbucketClient(_ context.Context, repository *v1alpha1.Repository, apiB
 		if repository.Username == "x-token-auth" {
 			bbClient, err = bb.NewOAuthbearerToken(repository.Password)
 			if err != nil {
-				return nil, fmt.Errorf("error creating BitBucket Cloud client with oauth bearer token: %w", err)
+				return nil, fmt.Errorf("error creating Bitbucket Cloud client with oauth bearer token: %w", err)
 			}
 		} else {
 			bbClient, err = bb.NewBasicAuth(repository.Username, repository.Password)
 			if err != nil {
-				return nil, fmt.Errorf("error creating BitBucket Cloud client with basic auth: %w", err)
+				return nil, fmt.Errorf("error creating Bitbucket Cloud client with basic auth: %w", err)
 			}
 		}
 	} else {
@@ -577,7 +577,7 @@ func newBitbucketClient(_ context.Context, repository *v1alpha1.Repository, apiB
 		}
 		bbClient, err = bb.NewOAuthbearerToken(repository.BearerToken)
 		if err != nil {
-			return nil, fmt.Errorf("error creating BitBucket Cloud client with oauth bearer token: %w", err)
+			return nil, fmt.Errorf("error creating Bitbucket Cloud client with oauth bearer token: %w", err)
 		}
 	}
 	// parse and set the target URL of the Bitbucket server in the client
@@ -590,7 +590,7 @@ func newBitbucketClient(_ context.Context, repository *v1alpha1.Repository, apiB
 }
 
 // fetchDiffStatFromBitbucket gets the list of files changed between two commits, by making a diffstat api callback to the
-// bitbucket server from where the webhook orignated.
+// bitbucket server from where the webhook originated.
 func fetchDiffStatFromBitbucket(_ context.Context, bbClient *bb.Client, owner, repoSlug, spec string) ([]string, error) {
 	// Getting the files changed from diff API:
 	// https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-diffstat-spec-get
@@ -661,12 +661,12 @@ func (a *ArgoCDWebhookHandler) Handler(w http.ResponseWriter, r *http.Request) {
 	case r.Header.Get("X-Hook-UUID") != "":
 		payload, err = a.bitbucket.Parse(r, bitbucket.RepoPushEvent)
 		if errors.Is(err, bitbucket.ErrUUIDVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook UUID verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Infof("Bitbucket webhook UUID verification failed")
 		}
 	case r.Header.Get("X-Event-Key") != "":
 		payload, err = a.bitbucketserver.Parse(r, bitbucketserver.RepositoryReferenceChangedEvent, bitbucketserver.DiagnosticsPingEvent)
 		if errors.Is(err, bitbucketserver.ErrHMACVerificationFailed) {
-			log.WithField(common.SecurityField, common.SecurityHigh).Infof("BitBucket webhook HMAC verification failed")
+			log.WithField(common.SecurityField, common.SecurityHigh).Infof("Bitbucket webhook HMAC verification failed")
 		}
 	default:
 		log.Debug("Ignoring unknown webhook event")

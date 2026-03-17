@@ -11,7 +11,7 @@ To configure automated sync run:
 argocd app set <APPNAME> --sync-policy automated
 ```
 
-Alternatively, if creating the application an application manifest, specify a syncPolicy with an
+Alternatively, if creating the application with an application manifest, specify a syncPolicy with an
 `automated` policy.
 ```yaml
 spec:

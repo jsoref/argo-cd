@@ -1227,19 +1227,19 @@ func testListAppsWithLabels(t *testing.T, appQuery application.ApplicationQuery,
 	}
 
 	invalidTests := []struct {
-		testName    string
-		label       string
-		errorMesage string
+		testName     string
+		label        string
+		errorMessage string
 	}{
 		{
-			testName:    "Set based filtering using '>' operator",
-			label:       "key1>value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '>' operator",
+			label:        "key1>value1",
+			errorMessage: "error parsing the selector",
 		},
 		{
-			testName:    "Set based filtering using '<' operator",
-			label:       "key1<value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '<' operator",
+			label:        "key1<value1",
+			errorMessage: "error parsing the selector",
 		},
 	}
 	// test invalid scenarios
@@ -1247,7 +1247,7 @@ func testListAppsWithLabels(t *testing.T, appQuery application.ApplicationQuery,
 		t.Run(invalidTest.testName, func(t *testing.T) {
 			appQuery.Selector = &invalidTest.label
 			_, err := appServer.List(t.Context(), &appQuery)
-			assert.ErrorContains(t, err, invalidTest.errorMesage)
+			assert.ErrorContains(t, err, invalidTest.errorMessage)
 		})
 	}
 }
@@ -1539,7 +1539,7 @@ func TestCreateAppUpsert(t *testing.T) {
 		createReq := application.ApplicationCreateRequest{
 			Application: testApp,
 		}
-		// Call Create() instead of adding the object to the tesst server to make sure the app is correctly normalized.
+		// Call Create() instead of adding the object to the test server to make sure the app is correctly normalized.
 		_, err := appServer.Create(t.Context(), &createReq)
 		require.NoError(t, err)
 
@@ -1552,7 +1552,7 @@ func TestCreateAppUpsert(t *testing.T) {
 		appServer := newTestAppServer(t)
 		testApp := newTestApp()
 
-		// Call Create() instead of adding the object to the tesst server to make sure the app is correctly normalized.
+		// Call Create() instead of adding the object to the test server to make sure the app is correctly normalized.
 		_, err := appServer.Create(t.Context(), &application.ApplicationCreateRequest{
 			Application: testApp,
 		})
@@ -1700,7 +1700,7 @@ func TestUpdateApp(t *testing.T) {
 		require.ErrorContains(t, err, "application repo https://github.com/argoproj/argocd-example-apps.git is not permitted in project 'restricted-proj'")
 		require.ErrorContains(t, err, "application destination server 'fake-cluster' and namespace 'fake-dest-ns' do not match any of the allowed destinations in project 'restricted-proj'")
 	})
-	t.Run("Cannot update application project to inexisting", func(t *testing.T) {
+	t.Run("Cannot update application project to nonexistent", func(t *testing.T) {
 		t.Parallel()
 		testApp := newTestApp()
 		appServer := newTestAppServer(t, testApp)

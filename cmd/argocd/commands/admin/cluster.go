@@ -394,7 +394,7 @@ func NewClusterEnableNamespacedMode() *cobra.Command {
 	clientConfig = cli.AddKubectlFlagsToCmd(&command)
 	command.Flags().BoolVar(&dryRun, "dry-run", true, "Print what will be performed")
 	command.Flags().BoolVar(&clusterResources, "cluster-resources", false, "Indicates if cluster level resources should be managed.")
-	command.Flags().IntVar(&namespacesCount, "max-namespace-count", 0, "Max number of namespaces that cluster should managed managed namespaces is less or equal to specified count")
+	command.Flags().IntVar(&namespacesCount, "max-namespace-count", 0, "Max number of namespaces that cluster should manage; managed namespaces are less or equal to specified count")
 
 	return &command
 }
@@ -669,7 +669,7 @@ func NewGenClusterConfigCommand(pathOpts *clientcmd.PathOptions) *cobra.Command 
 			}
 			if clusterOpts.ClusterEndpoint == string(cmdutil.KubePublicEndpoint) {
 				// Ignore `kube-public` cluster endpoints, since this command is intended to run without invoking any network connections.
-				log.Warn("kube-public cluster endpoints are not supported. Falling back to the endpoint listed in the kubconfig context.")
+				log.Warn("kube-public cluster endpoints are not supported. Falling back to the endpoint listed in the kubeconfig context.")
 			}
 			if clusterOpts.Shard >= 0 {
 				clst.Shard = &clusterOpts.Shard

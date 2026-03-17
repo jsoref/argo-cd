@@ -20,7 +20,7 @@ func removeFields(config, live any) any {
 	}
 }
 
-// RemoveMapFields remove all non-existent fields in the live that don't exist in the config
+// RemoveMapFields remove all nonexistent fields in the live that don't exist in the config
 func RemoveMapFields(config, live map[string]any) map[string]any {
 	result := map[string]any{}
 	for k, v1 := range config {

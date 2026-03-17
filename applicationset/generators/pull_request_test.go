@@ -353,7 +353,7 @@ func TestAllowedSCMProviderPullRequest(t *testing.T) {
 		providerConfig *argoprojiov1alpha1.PullRequestGenerator
 	}{
 		{
-			name: "Error Github",
+			name: "Error GitHub",
 			providerConfig: &argoprojiov1alpha1.PullRequestGenerator{
 				Github: &argoprojiov1alpha1.PullRequestGeneratorGithub{
 					API: "https://myservice.mynamespace.svc.cluster.local",
@@ -361,7 +361,7 @@ func TestAllowedSCMProviderPullRequest(t *testing.T) {
 			},
 		},
 		{
-			name: "Error Gitlab",
+			name: "Error GitLab",
 			providerConfig: &argoprojiov1alpha1.PullRequestGenerator{
 				GitLab: &argoprojiov1alpha1.PullRequestGeneratorGitLab{
 					API: "https://myservice.mynamespace.svc.cluster.local",

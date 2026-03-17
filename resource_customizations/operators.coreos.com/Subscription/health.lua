@@ -27,7 +27,7 @@ if obj.status ~= nil then
       numDegraded = numDegraded + 1
       msg = msg .. ".status.state is '" .. obj.status.state .. "'\n"
     else
-      -- Last possiblity of .status.state: AtLatestKnown
+      -- Last possibility of .status.state: AtLatestKnown
       msg =  msg .. ".status.state is '" .. obj.status.state .. "'\n"
     end
  

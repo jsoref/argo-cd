@@ -43,7 +43,7 @@ const ec2AWSCrossplaneObjJSON = `
 apiVersion: ec2.aws.crossplane.io/v1alpha1
 kind: Instance
 metadata:
-  name: sample-crosspalne-ec2-instance
+  name: sample-crossplane-ec2-instance
 spec:
   forProvider:
     region: us-west-2
@@ -64,7 +64,7 @@ return a`
 const newWildcardHealthStatusFunction = `a = {}
 a.status = "Healthy"
 a.message ="NeedsToBeChanged"
-if obj.metadata.name == "sample-crosspalne-ec2-instance" then
+if obj.metadata.name == "sample-crossplane-ec2-instance" then
 	a.message = "testWildcardMessage"
 end
 return a`

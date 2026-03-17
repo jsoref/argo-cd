@@ -1,11 +1,11 @@
 tests:
 - healthStatus:
     status: Progressing
-    message: Waiting for resourcrecordset to be available
+    message: Waiting for resourcerecordset to be available
   inputPath: testdata/progressing_creating.yaml
 - healthStatus:
     status: Progressing
-    message: Waiting for resourcrecordset to be created
+    message: Waiting for resourcerecordset to be created
   inputPath: testdata/progressing_noStatus.yaml
 - healthStatus:
     status: Degraded

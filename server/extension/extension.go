@@ -159,7 +159,7 @@ type ExtensionConfig struct {
 }
 
 // BackendConfig defines the backend service configurations that will
-// be used by an specific extension. An extension can have multiple services
+// be used by a specific extension. An extension can have multiple services
 // associated. This is necessary when Argo CD is managing applications in
 // external clusters. In this case, each cluster may have its own backend
 // service.
@@ -388,7 +388,7 @@ func NewManager(log *log.Entry, namespace string, sg SettingsGetter, ag Applicat
 	}
 }
 
-// ExtensionRegistry is an in memory registry that contains contains all
+// ExtensionRegistry is an in memory registry that contains all
 // proxies for all extensions. The key is the extension name defined in
 // the Argo CD configmap.
 type ExtensionRegistry map[string]ProxyRegistry
@@ -807,7 +807,7 @@ func (m *Manager) CallExtension() func(http.ResponseWriter, *http.Request) {
 			"path":                      r.URL.Path,
 		}).Info("sending proxy extension request")
 		// httpsnoop package is used to properly wrap the responseWriter
-		// and avoid optional intefaces issue:
+		// and avoid optional interfaces issue:
 		// https://github.com/felixge/httpsnoop#why-this-package-exists
 		// CaptureMetrics will call the proxy and return the metrics from it.
 		metrics := httpsnoop.CaptureMetrics(proxy, w, r)

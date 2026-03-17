@@ -296,19 +296,19 @@ func testListAppsetsWithLabels(t *testing.T, appsetQuery applicationset.Applicat
 	}
 
 	invalidTests := []struct {
-		testName    string
-		label       string
-		errorMesage string
+		testName     string
+		label        string
+		errorMessage string
 	}{
 		{
-			testName:    "Set based filtering using '>' operator",
-			label:       "key1>value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '>' operator",
+			label:        "key1>value1",
+			errorMessage: "error parsing the selector",
 		},
 		{
-			testName:    "Set based filtering using '<' operator",
-			label:       "key1<value1",
-			errorMesage: "error parsing the selector",
+			testName:     "Set based filtering using '<' operator",
+			label:        "key1<value1",
+			errorMessage: "error parsing the selector",
 		},
 	}
 	// test invalid scenarios
@@ -316,7 +316,7 @@ func testListAppsetsWithLabels(t *testing.T, appsetQuery applicationset.Applicat
 		t.Run(invalidTest.testName, func(t *testing.T) {
 			appsetQuery.Selector = invalidTest.label
 			_, err := appServer.List(t.Context(), &appsetQuery)
-			assert.ErrorContains(t, err, invalidTest.errorMesage)
+			assert.ErrorContains(t, err, invalidTest.errorMessage)
 		})
 	}
 }
@@ -782,7 +782,7 @@ func TestListResourceEvents(t *testing.T) {
 		assert.EqualError(t, err, "namespace 'NOT-ALLOWED' is not permitted")
 	})
 
-	t.Run("ListResourceEvents for non-existent appset", func(t *testing.T) {
+	t.Run("ListResourceEvents for nonexistent appset", func(t *testing.T) {
 		appSetServer := newTestAppSetServer(t, appSet1, appSet2)
 
 		appsetQuery := applicationset.ApplicationSetGetQuery{Name: "DoesNotExist"}

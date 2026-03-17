@@ -16,7 +16,7 @@ related features in [Security](./operator-manual/security.md) section.
 
 The following table gives a general overview about past and present issues known
 to the Argo CD project. See in the [Known Issues](#known-issues-and-workarounds)
-section if there is a work-around available if you cannot update or if there is
+section if there is a workaround available if you cannot update or if there is
 no fix yet.
 
 |Date|CVE|Title|Risk|Affected version(s)|Fix version|

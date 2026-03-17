@@ -55,7 +55,7 @@ var _ SCMProviderService = &BitBucketCloudProvider{}
 func NewBitBucketCloudProvider(owner string, user string, password string, allBranches bool) (*BitBucketCloudProvider, error) {
 	bitbucketClient, err := bitbucket.NewBasicAuth(user, password)
 	if err != nil {
-		return nil, fmt.Errorf("error creating BitBucket Cloud client with basic auth: %w", err)
+		return nil, fmt.Errorf("error creating Bitbucket Cloud client with basic auth: %w", err)
 	}
 	client := &ExtendedClient{
 		bitbucketClient,

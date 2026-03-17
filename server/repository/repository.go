@@ -296,9 +296,9 @@ func (s *Server) ListApps(ctx context.Context, q *repositorypkg.RepoAppsQuery) (
 	// This endpoint causes us to clone git repos & invoke config management tooling for the purposes
 	// of app discovery. Only allow this to happen if user has privileges to create or update the
 	// application which it wants to retrieve these details for.
-	appRBACresource := fmt.Sprintf("%s/%s", q.AppProject, q.AppName)
-	if !s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionCreate, appRBACresource) &&
-		!s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionUpdate, appRBACresource) {
+	appRBACResource := fmt.Sprintf("%s/%s", q.AppProject, q.AppName)
+	if !s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionCreate, appRBACResource) &&
+		!s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionUpdate, appRBACResource) {
 		return nil, common.PermissionDeniedAPIError
 	}
 	// Also ensure the repo is actually allowed in the project in question

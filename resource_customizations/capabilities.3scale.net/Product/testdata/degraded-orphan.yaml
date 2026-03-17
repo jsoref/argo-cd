@@ -4,4 +4,4 @@ status:
   conditions:
     - type: Orphan
       status: "True"
-      message: Product spec contains reference(s) to non existing resources
+      message: Product spec contains reference(s) to nonexistent resources

@@ -545,7 +545,7 @@ metadata:
 		return len(r.OwnerRefs) == 0
 	})
 	assert.Nil(t, managedObjs)
-	assert.EqualError(t, err, "cluster level Deployment \"helm-guestbook\" can not be managed when in namespaced mode")
+	assert.EqualError(t, err, "cluster level Deployment \"helm-guestbook\" cannot be managed when in namespaced mode")
 }
 
 func TestGetManagedLiveObjsNamespacedModeClusterLevelResource_ClusterResourceEnabled(t *testing.T) {

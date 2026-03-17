@@ -1339,18 +1339,18 @@ func TestOIDCConfigChangeDetection_ConfigChanged(t *testing.T) {
 	assert.Equal(t, originalOIDCConfig.ClientSecret, originalSecrets["k8ssecret:clientsecret"], "expected ClientSecret be replaced by secret value")
 
 	// When
-	newRawOICDConfig, err := yaml.Marshal(&settings_util.OIDCConfig{
+	newRawOIDCConfig, err := yaml.Marshal(&settings_util.OIDCConfig{
 		Name:         "cat",
 		ClientID:     "$k8ssecret:clientid",
 		ClientSecret: "$k8ssecret:clientsecret",
 	})
 
 	require.NoError(t, err, "no error expected when marshalling OIDC config")
-	argoSettings.OIDCConfigRAW = string(newRawOICDConfig)
+	argoSettings.OIDCConfigRAW = string(newRawOIDCConfig)
 	result := checkOIDCConfigChange(originalOIDCConfig, &argoSettings)
 
 	// Then
-	assert.True(t, result, "no error expected since OICD config created")
+	assert.True(t, result, "no error expected since OIDC config created")
 }
 
 func TestOIDCConfigChangeDetection_ConfigCreated(t *testing.T) {
@@ -1359,19 +1359,19 @@ func TestOIDCConfigChangeDetection_ConfigCreated(t *testing.T) {
 	originalOIDCConfig := argoSettings.OIDCConfig()
 
 	// When
-	newRawOICDConfig, err := yaml.Marshal(&settings_util.OIDCConfig{
+	newRawOIDCConfig, err := yaml.Marshal(&settings_util.OIDCConfig{
 		Name:         "cat",
 		ClientID:     "$k8ssecret:clientid",
 		ClientSecret: "$k8ssecret:clientsecret",
 	})
 	require.NoError(t, err, "no error expected when marshalling OIDC config")
 	newSecrets := map[string]string{"k8ssecret:clientid": "argocd", "k8ssecret:clientsecret": "sharedargooauthsecret"}
-	argoSettings.OIDCConfigRAW = string(newRawOICDConfig)
+	argoSettings.OIDCConfigRAW = string(newRawOIDCConfig)
 	argoSettings.Secrets = newSecrets
 	result := checkOIDCConfigChange(originalOIDCConfig, &argoSettings)
 
 	// Then
-	assert.True(t, result, "no error expected since new OICD config created")
+	assert.True(t, result, "no error expected since new OIDC config created")
 }
 
 func TestOIDCConfigChangeDetection_ConfigDeleted(t *testing.T) {
@@ -1397,7 +1397,7 @@ func TestOIDCConfigChangeDetection_ConfigDeleted(t *testing.T) {
 	result := checkOIDCConfigChange(originalOIDCConfig, &argoSettings)
 
 	// Then
-	assert.True(t, result, "no error expected since OICD config deleted")
+	assert.True(t, result, "no error expected since OIDC config deleted")
 }
 
 func TestOIDCConfigChangeDetection_NoChange(t *testing.T) {
@@ -1504,7 +1504,7 @@ func TestCacheControlHeaders(t *testing.T) {
 			expectedCacheControlHeaders: []string{"public, max-age=31536000, immutable"},
 		},
 		{
-			name:                        "main js bundle does not exists",
+			name:                        "main js bundle does not exist",
 			filename:                    "main.e4188e5adc97bbfc00c0.js",
 			createFile:                  false,
 			expectedStatus:              404,

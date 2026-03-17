@@ -30,7 +30,7 @@ interface ResourceDetailsProps {
     application: Application;
     isAppSelected: boolean;
     tree: ApplicationTree;
-    appCxt: AppContext;
+    appCtx: AppContext;
 }
 
 export const ResourceDetails = (props: ResourceDetailsProps) => {
@@ -178,7 +178,7 @@ export const ResourceDetails = (props: ResourceDetailsProps) => {
                         setPageNumber={setPageNumber}
                         collapsedSources={collapsedSources}
                         handleCollapse={handleCollapse}
-                        appContext={props.appCxt}
+                        appContext={props.appCtx}
                     />
                 )
             },

@@ -25,7 +25,7 @@ argocd admin cluster namespaces enable-namespaced-mode PATTERN [flags]
   -h, --help                           help for enable-namespaced-mode
       --insecure-skip-tls-verify       If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
       --kubeconfig string              Path to a kube config. Only required if out-of-cluster
-      --max-namespace-count int        Max number of namespaces that cluster should managed managed namespaces is less or equal to specified count
+      --max-namespace-count int        Max number of namespaces that cluster should manage; managed namespaces are less or equal to specified count
   -n, --namespace string               If present, the namespace scope for this CLI request
       --password string                Password for basic authentication to the API server
       --proxy-url string               If provided, this URL will be used to connect via proxy

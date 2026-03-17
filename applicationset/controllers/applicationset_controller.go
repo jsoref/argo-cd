@@ -651,7 +651,7 @@ func appControllerIndexer(rawObj client.Object) []string {
 	if owner == nil {
 		return nil
 	}
-	// ...make sure it's a application set...
+	// ...make sure it's an application set...
 	if owner.APIVersion != argov1alpha1.SchemeGroupVersion.String() || owner.Kind != "ApplicationSet" {
 		return nil
 	}
@@ -1030,7 +1030,7 @@ func (r *ApplicationSetReconciler) buildAppDependencyList(logCtx *log.Entry, app
 			if selected {
 				appDependencyList[i] = append(appDependencyList[i], app.Name)
 				if val, ok := appStepMap[app.Name]; ok {
-					logCtx.Warnf("AppSet '%v' has a invalid matchExpression that selects Application '%v' label twice, in steps %v and %v", applicationSet.Name, app.Name, val+1, i+1)
+					logCtx.Warnf("AppSet '%v' has an invalid matchExpression that selects Application '%v' label twice, in steps %v and %v", applicationSet.Name, app.Name, val+1, i+1)
 				} else {
 					appStepMap[app.Name] = i
 				}
@@ -1210,7 +1210,7 @@ func (r *ApplicationSetReconciler) updateApplicationSetApplicationStatus(ctx con
 			if currentAppStatus.Status == argov1alpha1.ProgressiveSyncPending {
 				// No need to evaluate status health further if the application did not change since our last transition
 				if app.Status.ReconciledAt == nil || (newAppStatus.LastTransitionTime != nil && app.Status.ReconciledAt.After(newAppStatus.LastTransitionTime.Time)) {
-					// Validate that at least one sync was trigerred after the pending transition time
+					// Validate that at least one sync was triggered after the pending transition time
 					if app.Status.OperationState != nil && app.Status.OperationState.StartedAt.After(currentAppStatus.LastTransitionTime.Time) {
 						statusLogCtx = statusLogCtx.WithField("app.operation", app.Status.OperationState.Phase)
 						newAppStatus.LastTransitionTime = &now
@@ -1237,7 +1237,7 @@ func (r *ApplicationSetReconciler) updateApplicationSetApplicationStatus(ctx con
 
 			if currentAppStatus.Status == argov1alpha1.ProgressiveSyncProgressing {
 				// If the status has reached progressing, we know a sync has been triggered. No matter the result of that operation,
-				// we want an the app to reach the Healthy state for the current revision.
+				// we want the app to reach the Healthy state for the current revision.
 				if appHealthStatus == health.HealthStatusHealthy && appSyncStatus == argov1alpha1.SyncStatusCodeSynced {
 					newAppStatus.LastTransitionTime = &now
 					newAppStatus.Status = argov1alpha1.ProgressiveSyncHealthy
@@ -1306,7 +1306,7 @@ func (r *ApplicationSetReconciler) updateApplicationSetApplicationStatusProgress
 			if maxUpdate != nil {
 				maxUpdateVal, err := intstr.GetScaledValueFromIntOrPercent(maxUpdate, totalCountMap[appStepMap[appStatus.Application]], false)
 				if err != nil {
-					statusLogCtx.Warnf("AppSet has a invalid maxUpdate value '%+v', ignoring maxUpdate logic for this step: %v", maxUpdate, err)
+					statusLogCtx.Warnf("AppSet has an invalid maxUpdate value '%+v', ignoring maxUpdate logic for this step: %v", maxUpdate, err)
 				}
 
 				// ensure that percentage values greater than 0% always result in at least 1 Application being selected

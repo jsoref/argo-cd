@@ -101,7 +101,7 @@ func Untar(dstPath string, r io.Reader, maxSize int64, preserveFileMode bool) er
 // Callers must make sure dstPath is:
 //   - a full path
 //   - points to an empty directory or
-//   - points to a non existing directory
+//   - points to a nonexistent directory
 func untar(dstPath string, r io.Reader, preserveFileMode bool) error {
 	tr := tar.NewReader(r)
 
@@ -248,7 +248,7 @@ func (t *tgz) tgzFile(path string, fi os.FileInfo, err error) error {
 		return fmt.Errorf("error creating a tar file header: %w", err)
 	}
 
-	// update the name to correctly reflect the desired destination when untaring
+	// update the name to correctly reflect the desired destination when untarring
 	header.Name = relativePath
 
 	if err := t.tarWriter.WriteHeader(header); err != nil {

@@ -28,13 +28,13 @@ func TestValueInterpolation(t *testing.T) {
 			},
 		},
 		{
-			name: "Non-existent",
+			name: "Nonexistent",
 			values: map[string]string{
-				"non-existent": "{{ non-existent }}",
+				"nonexistent": "{{ nonexistent }}",
 			},
 			params: map[string]any{},
 			expected: map[string]any{
-				"values.non-existent": "{{ non-existent }}",
+				"values.nonexistent": "{{ nonexistent }}",
 			},
 		},
 		{
@@ -85,7 +85,7 @@ func TestValueInterpolationWithGoTemplating(t *testing.T) {
 			},
 		},
 		{
-			name: "Non-existent to default",
+			name: "Nonexistent to default",
 			values: map[string]string{
 				"non_existent": "{{ default \"bar\" .non_existent }}",
 			},

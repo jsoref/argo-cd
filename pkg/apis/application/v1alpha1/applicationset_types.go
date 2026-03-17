@@ -500,13 +500,13 @@ type SCMProviderGeneratorGithub struct {
 	AllBranches bool `json:"allBranches,omitempty" protobuf:"varint,5,opt,name=allBranches"`
 }
 
-// SCMProviderGeneratorGitlab defines connection info specific to Gitlab.
+// SCMProviderGeneratorGitlab defines connection info specific to GitLab.
 type SCMProviderGeneratorGitlab struct {
-	// Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
+	// GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.
 	Group string `json:"group" protobuf:"bytes,1,opt,name=group"`
 	// Recurse through subgroups (true) or scan only the base group (false).  Defaults to "false"
 	IncludeSubgroups bool `json:"includeSubgroups,omitempty" protobuf:"varint,2,opt,name=includeSubgroups"`
-	// The Gitlab API URL to talk to.
+	// The GitLab API URL to talk to.
 	API string `json:"api,omitempty" protobuf:"bytes,3,opt,name=api"`
 	// Authentication token reference.
 	TokenRef *SecretRef `json:"tokenRef,omitempty" protobuf:"bytes,4,opt,name=tokenRef"`
@@ -516,7 +516,7 @@ type SCMProviderGeneratorGitlab struct {
 	Insecure bool `json:"insecure,omitempty" protobuf:"varint,6,opt,name=insecure"`
 	// When recursing through subgroups, also include shared Projects (true) or scan only the subgroups under same path (false).  Defaults to "true"
 	IncludeSharedProjects *bool `json:"includeSharedProjects,omitempty" protobuf:"varint,7,opt,name=includeSharedProjects"`
-	// Filter repos list based on Gitlab Topic.
+	// Filter repos list based on GitLab Topic.
 	Topic string `json:"topic,omitempty" protobuf:"bytes,8,opt,name=topic"`
 	// ConfigMap key holding the trusted certificates
 	CARef *ConfigMapKeyRef `json:"caRef,omitempty" protobuf:"bytes,9,opt,name=caRef"`
@@ -748,13 +748,13 @@ type PullRequestGeneratorBitbucket struct {
 	BearerToken *BearerTokenBitbucketCloud `json:"bearerToken,omitempty" protobuf:"bytes,5,opt,name=bearerToken"`
 }
 
-// BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.
 type BearerTokenBitbucket struct {
 	// Password (or personal access token) reference.
 	TokenRef *SecretRef `json:"tokenRef" protobuf:"bytes,1,opt,name=tokenRef"`
 }
 
-// BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.
+// BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.
 type BearerTokenBitbucketCloud struct {
 	// Password (or personal access token) reference.
 	TokenRef *SecretRef `json:"tokenRef" protobuf:"bytes,1,opt,name=tokenRef"`
@@ -837,9 +837,9 @@ type ApplicationSetConditionStatus string
 
 // Application Condition Status
 const (
-	// ApplicationSetConditionStatusTrue indicates that a application has been successfully established
+	// ApplicationSetConditionStatusTrue indicates that an application has been successfully established
 	ApplicationSetConditionStatusTrue ApplicationSetConditionStatus = "True"
-	// ApplicationSetConditionStatusFalse indicates that a application attempt has failed
+	// ApplicationSetConditionStatusFalse indicates that an application attempt has failed
 	ApplicationSetConditionStatusFalse ApplicationSetConditionStatus = "False"
 	// ApplicationSetConditionStatusUnknown indicates that the application condition status could not be reliably determined
 	ApplicationSetConditionStatusUnknown ApplicationSetConditionStatus = "Unknown"
@@ -882,9 +882,9 @@ const (
 type ProgressiveSyncStatusCode string
 
 const (
-	// Indicates that an Application sync is waiting to be trigerred
+	// Indicates that an Application sync is waiting to be triggered
 	ProgressiveSyncWaiting ProgressiveSyncStatusCode = "Waiting"
-	// Indicates that a sync has been trigerred, but the application did not report any status
+	// Indicates that a sync has been triggered, but the application did not report any status
 	ProgressiveSyncPending ProgressiveSyncStatusCode = "Pending"
 	// Indicates that the application has not yet reached an Healthy state in regards to the requested sync
 	ProgressiveSyncProgressing ProgressiveSyncStatusCode = "Progressing"
@@ -1019,7 +1019,7 @@ func (status *ApplicationSetStatus) SetConditions(conditions []ApplicationSetCon
 	for i := range conditions {
 		condition := conditions[i]
 		if isEvaluated, ok := evaluatedTypes[condition.Type]; !ok || !isEvaluated {
-			// ignore an new condition when it is not evaluated
+			// ignore a new condition when it is not evaluated
 			continue
 		}
 

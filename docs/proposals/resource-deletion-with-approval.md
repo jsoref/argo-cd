@@ -80,7 +80,7 @@ should pause the sync operation **before deleting any app resources** and wait f
 using Argo CD UI, CLI or API.
 
 
-### Friendly prunning/deletion manual approval
+### Friendly pruning/deletion manual approval
 
 Since we know Argo CD is often used to implement fully automated developer workflows that include resource deletion, the
 deletion approval process should be as painless as possible. This way, platform administrators can instruct end users to

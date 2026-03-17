@@ -63,7 +63,7 @@ As an operator, I would like to configure Argo CD to perform pre-defined actions
 
 ## Proposal
  
-A new `ArgoCDExtension` CRD would be introduced which will allow operators configure Argo CD to understand how to handle and visualize custom resources. Visualizing a object requires javascript to render the object, and health/actions require lua scripts. As such, the extension CR would need to point to some location where the javascript/lua code would be hosted.
+A new `ArgoCDExtension` CRD would be introduced which will allow operators configure Argo CD to understand how to handle and visualize custom resources. Visualizing an object requires javascript to render the object, and health/actions require lua scripts. As such, the extension CR would need to point to some location where the javascript/lua code would be hosted.
 
 It is proposed that a git repository be used to contain the javascript code, as well as the lua scripts necessary to assess health or perform actions of a resource.
 
@@ -113,7 +113,7 @@ The git repository would have an expected structure, such that the scripts and U
 │       │   │   └── action.lua
 ```
 
-Note that it may be necessary to support multiple versions of a resource (e.g. v1alpha1 vs. a v1 version of a custom esource), and so the path structure may need to also support incorporating the version in the path. For example:
+Note that it may be necessary to support multiple versions of a resource (e.g. v1alpha1 vs. a v1 version of a custom esource), and so the path structure may also need to support incorporating the version in the path. For example:
 
 ```
 ├── argoproj.io
@@ -161,7 +161,7 @@ The sidecar will be responsible for cloning repos specified in `ArgoCDExtension`
 
 Some changes are required in the Argo CD API server:
 
-1. It will serve Javascript assets mounted by the sidecar in the well known location to the UI at an endpoint (i.e. `/api/v1/extensions/<resource-kind>`)
+1. It will serve JavaScript assets mounted by the sidecar in the well known location to the UI at an endpoint (i.e. `/api/v1/extensions/<resource-kind>`)
 2. It will retrieve Actions Lua scripts from the same well known location mounted by the sidecar instead of from `argocd-cm`
 
 

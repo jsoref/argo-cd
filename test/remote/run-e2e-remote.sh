@@ -15,8 +15,8 @@ export ARGOCD_E2E_TEST_TIMEOUT=2h
 # The default timeout for certain operations (such as sync)
 export ARGOCD_E2E_DEFAULT_TIMEOUT=30
 
-# Set ARGOCD_E2E_NAMESPACE to the namespace the Argo CD we're testing against is
-# running in. Defaults to "argocd-e2e"
+# Set ARGOCD_E2E_NAMESPACE to the namespace in which the Argo CD we're testing against
+# is running. Defaults to "argocd-e2e"
 export ARGOCD_E2E_NAMESPACE="${ARGOCD_E2E_NAMESPACE:-argocd-e2e}"
 
 # Name prefix the operator sets on resources created for Argo CD instance. This

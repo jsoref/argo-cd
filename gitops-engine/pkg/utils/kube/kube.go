@@ -112,7 +112,7 @@ func TestConfig(config *rest.Config) error {
 	return nil
 }
 
-// ToUnstructured converts a concrete K8s API type to a un unstructured object
+// ToUnstructured converts a concrete K8s API type to an unstructured object
 func ToUnstructured(obj any) (*unstructured.Unstructured, error) {
 	uObj, err := runtime.NewTestUnstructuredConverter(equality.Semantic).ToUnstructured(obj)
 	if err != nil {
@@ -122,7 +122,7 @@ func ToUnstructured(obj any) (*unstructured.Unstructured, error) {
 	return &unstructured.Unstructured{Object: uObj}, nil
 }
 
-// MustToUnstructured converts a concrete K8s API type to a un unstructured object and panics if not successful
+// MustToUnstructured converts a concrete K8s API type to an unstructured object and panics if not successful
 func MustToUnstructured(obj any) *unstructured.Unstructured {
 	uObj, err := ToUnstructured(obj)
 	if err != nil {

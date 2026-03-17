@@ -47,7 +47,7 @@ func (a ByKey) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
 
 func (a ByKey) Less(i, j int) bool { return a[i].key < a[j].key }
 
-// Matches for a internalSelector returns true if all
+// Matches for an internalSelector returns true if all
 // its Requirements match the input Labels. If any
 // Requirement does not match, false is returned.
 func (s internalSelector) Matches(l labels.Labels) bool {

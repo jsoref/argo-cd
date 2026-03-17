@@ -303,7 +303,7 @@ func TestLuaResourceActionsScript(t *testing.T) {
 						}
 					}
 
-					// Ideally, we would use a assert.Equal to detect the difference, but the Lua VM returns a object with float64 instead of the original int32.  As a result, the assert.Equal is never true despite that the change has been applied.
+					// Ideally, we would use an assert.Equal to detect the difference, but the Lua VM returns an object with float64 instead of the original int32.  As a result, the assert.Equal is never true despite that the change has been applied.
 					diffResult, err := diff.Diff(expectedObj, result, diff.WithNormalizer(testNormalizer{}))
 					require.NoError(t, err)
 					if diffResult.Modified {

@@ -107,7 +107,7 @@ type PGPVerifyResult struct {
 	Identity string
 	// Trust level of the key
 	Trust string
-	// Cipher of the key the signature was made with
+	// Cipher of the key with which the signature was made
 	Cipher string
 	// Result of verification - "unknown", "good" or "bad"
 	Result string

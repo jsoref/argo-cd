@@ -166,7 +166,7 @@ From the [GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advi
 * chore: Implement tests to validate aws auth retry (#9627)
 * chore: Implement a retry in aws auth command (#9618)
 * test: Remove temp directories from repo server tests (#9501)
-* test: Make context tests idempodent (#9502)
+* test: Make context tests idempotent (#9502)
 * test: fix plugin var test for OSX (#9590)
 * docs: Document how to deploy from the root of the git repository (#9632)
 * docs: added environment variables documentation (#8680)
@@ -360,7 +360,7 @@ Read more about these changes at [New sync and diff strategies in ArgoCD](https:
 ### ARM Images
 
 An officially supported ARM 64 image is now available. Enjoy running Argo CD on your Raspberry Pi! Additionally, the image size was reduced by nearly ~50%
-and is only 200MB now. The ARM version of `argocd` CLI is also available and published as a Github release artifact.
+and is only 200MB now. The ARM version of `argocd` CLI is also available and published as a GitHub release artifact.
 
 ### Compact Tree View And Click Application Navigation
 
@@ -482,7 +482,7 @@ This is mainly a security related release and updates compatibility with Kuberne
 - chore: Go mod tidy
 - test: Remove circular symlinks from testdata (#9886)
 - test: Fix e2e tests for release-2.2 branch
-- chore: bump redoc vesion to avoid CVE-2021-23820 (#8604)
+- chore: bump redoc version to avoid CVE-2021-23820 (#8604)
 - chore(deps): bump moment from 2.29.3 to 2.29.4 in /ui (#9897)
 - chore: upgrade moment to latest version to fix CVE (#9005)
 - chore: move dependencies to dev dependencies (#8541)
@@ -682,7 +682,7 @@ as there are no conflicts with other Kubernetes tools, and you can easily instal
 
 * Argo CD API server caches RBAC checks that significantly improves the GET /api/v1/applications API performance (#7587)
 * Argo CD RBAC supports regex matches (#7165)
-* Health check support for KubeVirt (#7176), Cassandra (#7017), Openshift Route (#7112), DeploymentConfig (#7114), Confluent (#6957) and SparkApplication (#7434) CRDs.
+* Health check support for KubeVirt (#7176), Cassandra (#7017), OpenShift Route (#7112), DeploymentConfig (#7114), Confluent (#6957) and SparkApplication (#7434) CRDs.
 * Persistent banner (#7312) with custom positioning (#7462)
 * Cluster name support in project destinations (#7198)
 * around 30 more features and a total of 84 bug fixes
@@ -856,7 +856,7 @@ on Kubernetes API/RBAC to power UI and CLI.
 
 ### Core Features
 
-* The synchronization process became much much faster and requires significantly less memory.
+* The synchronization process became much, much, faster and requires significantly less memory.
 * An additional caching that ensures that each repository's target revisions are queried only once per
   reconciliation cycle. This dramatically reduces the number of Git requests.
 * Improved Diffing Customizations: use JQ path expressions to exclude required fields from the diffing.
@@ -1604,7 +1604,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 * feat: Adds support for Helm charts to be a semver range. Closes #2552 (#2606)
 * feat: Adds tracing to key external invocations. (#2811)
 * feat: argocd-util should allow editing project policies in bulk  (#2615)
-* feat: Displays controllerrevsion's revision in the UI. Closes #2306 (#2702)
+* feat: Displays controllerrevision's revision in the UI. Closes #2306 (#2702)
 * feat: Issue #2559 - Add gauge Prometheus metric which represents the number of pending manifest requests. (#2658)
 * feat: Make ConvertToVersion maybe 1090% faster on average (#2820)
 * feat: namespace isolation (#2839)
@@ -1644,7 +1644,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 - fix: prevent user from seeing/deleting resources not permitted in project (#2908) (#2910)
 - fix: self-heal should retry syncing an application after specified delay
 - fix: stop logging dex config secrets #(2904) (#2937)
-- fix: stop using jsondiffpatch on clientside to render resource difference  (#2869)
+- fix: stop using jsondiffpatch on client-side to render resource difference  (#2869)
 - fix: Target Revision truncated #2736
 - fix: UI should re-trigger SSO login if SSO JWT token expires (#2891)
 - fix: update argocd-util import was not working properly (#2939)
@@ -1718,7 +1718,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 - #2754 BeforeHookCreation should be the default hook
 - #2767 Fix bug whereby retry does not work for CLI
 - #2770 Always cache miss for manifests
-- #1345 argocd-application-controller: can not retrieve list of objects using index : Index with name namespace does not exist
+- #1345 argocd-application-controller: cannot retrieve list of objects using index : Index with name namespace does not exist
 
 ## v1.3.0 (2019-11-13)
 
@@ -1728,7 +1728,7 @@ an in-flight state for all Kubernetes resources including `Deployment`, `PVC`, `
 
 We know that for many of our users, they want to deploy existing Helm charts using Argo CD. Up until now that has required you to create an Argo CD app in a Git repo that does nothing but point to that chart. Now you can use a Helm chart repository is the same way as a Git repository.
 
-On top of that, we've improved support for Helm apps. The most common types of Helm hooks such as `pre-install` and `post-install` are supported as well as a the delete policy `before-hook-creation` which makes it easier to work with hooks.
+On top of that, we've improved support for Helm apps. The most common types of Helm hooks such as `pre-install` and `post-install` are supported as well as the delete policy `before-hook-creation` which makes it easier to work with hooks.
 
 https://youtu.be/GP7xtrnNznw
 
@@ -2145,7 +2145,7 @@ Argo CD introduces Custom Resource Actions to allow users to provide their own L
 - Fix hardcoded 'git' user in `util/git.NewClient` (#1555)
 - Application controller becomes unresponsive (#1476)
 - Load target resource using K8S if conversion fails (#1414)
-- Can't ignore a non-existent pointer anymore (#1586)
+- Can't ignore a nonexistent pointer anymore (#1586)
 - Impossible to sync to HEAD from UI if auto-sync is enabled (#1579)
 - Application controller is unable to delete self-referenced app (#1570)
 - Prevent reconciliation loop for self-managed apps (#1533)
@@ -2263,7 +2263,7 @@ any load balancer, ingress controller, or API gateway.
 Argo CD introduces some additional CLI commands:
 
 * `argocd app edit APPNAME` - to edit an application spec using preferred EDITOR
-* `argocd proj edit PROJNAME` - to edit an project spec using preferred EDITOR
+* `argocd proj edit PROJNAME` - to edit a project spec using preferred EDITOR
 * `argocd app patch APPNAME` - to patch an application spec
 * `argocd app patch-resource APPNAME` - to patch a specific resource which is part of an application
 
@@ -2393,7 +2393,7 @@ has a minimum client version of v0.12.0. Older CLI clients will be rejected.
 - Fix ability to unset ApplicationSource specific parameters
 - Fix force resource delete API (#1033)
 - Incorrect PermissionDenied error during app creation when using project roles + user-defined RBAC (#1019)
-- Fix `kubctl convert` issue preventing deployment of extensions/NetworkPolicy (#1012)
+- Fix `kubectl convert` issue preventing deployment of extensions/NetworkPolicy (#1012)
 - Do not allow metadata.creationTimestamp to affect sync status (#1021)
 - Graceful handling of clusters where API resource discovery is partially successful (#1018)
 - Handle k8s resources circular dependency (#1016)
@@ -2521,7 +2521,7 @@ which have a dependency to external helm repositories.
 * Update dependencies to k8s v1.12 and client-go v9.0 (#729)
 - add argo cluster permission to view logs (#766) (@conorfennell)
 - Fix issue where applications could not be deleted on k8s v1.12
-- Allow 'syncApplication' action to reference target revision rather then hard-coding to 'HEAD' (#69) (@chrisgarland)
+- Allow 'syncApplication' action to reference target revision rather than hard-coding to 'HEAD' (#69) (@chrisgarland)
 - Issue #768 - Fix application wizard crash
 
 ## v0.10.4 (2018-11-07)
@@ -2630,7 +2630,7 @@ the behavior of v0.8.
 + Support IAM Authentication for managing external K8s clusters (issue #482)
 + Compatibility with cert manager (issue #617)
 * Enable TLS for repo server (issue #553)
-* Split out dex into it's own deployment (instead of sidecar) (issue #555)
+* Split out dex into its own deployment (instead of sidecar) (issue #555)
 + [UI] Support selection of helm values files in App creation wizard (issue #499)
 + [UI] Support specifying source revision in App creation wizard allow (issue #503)
 + [UI] Improve resource diff rendering (issue #457)
@@ -2750,7 +2750,7 @@ RBAC policy rules, need to be rewritten to include one extra column with the eff
 * Remove installer in favor of kubectl apply instructions
 * Add validation when setting application parameters
 * Cascade deletion is decided during app deletion, instead of app creation
-- Fix git authentication implementation when using using SSH key
+- Fix git authentication implementation when using SSH key
 - app-name label was inadvertently injected into spec.selector if selector was omitted from v1beta1 specs
 
 ## v0.5.4 (2018-06-27)

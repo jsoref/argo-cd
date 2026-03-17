@@ -24,7 +24,7 @@ func SanitizeName(name string) string {
 	return strings.Trim(name, "-.")
 }
 
-// This has been copied from helm and may be removed as soon as it is retrofited in sprig
+// This has been copied from helm and may be removed as soon as it is retrofitted in sprig
 // toYAML takes an interface, marshals it to yaml, and returns a string. It will
 // always return a string, even on marshal error (empty string).
 //
@@ -38,7 +38,7 @@ func toYAML(v any) (string, error) {
 	return strings.TrimSuffix(string(data), "\n"), nil
 }
 
-// This has been copied from helm and may be removed as soon as it is retrofited in sprig
+// This has been copied from helm and may be removed as soon as it is retrofitted in sprig
 // fromYAML converts a YAML document into a map[string]any.
 //
 // This is not a general-purpose YAML parser, and will not parse all valid
@@ -54,7 +54,7 @@ func fromYAML(str string) (map[string]any, error) {
 	return m, nil
 }
 
-// This has been copied from helm and may be removed as soon as it is retrofited in sprig
+// This has been copied from helm and may be removed as soon as it is retrofitted in sprig
 // fromYAMLArray converts a YAML array into a []any.
 //
 // This is not a general-purpose YAML parser, and will not parse all valid

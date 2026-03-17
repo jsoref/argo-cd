@@ -1540,7 +1540,7 @@ func TestNamespacedNotPermittedResources(t *testing.T) {
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "guestbook-ui",
 			Annotations: map[string]string{
-				common.AnnotationKeyAppInstance: fmt.Sprintf("%s_%s:Service:%s/guesbook-ui", fixture.TestNamespace(), ctx.AppQualifiedName(), ctx.DeploymentNamespace()),
+				common.AnnotationKeyAppInstance: fmt.Sprintf("%s_%s:Service:%s/guestbook-ui", fixture.TestNamespace(), ctx.AppQualifiedName(), ctx.DeploymentNamespace()),
 			},
 		},
 		Spec: corev1.ServiceSpec{

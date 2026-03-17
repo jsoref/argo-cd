@@ -14,7 +14,7 @@ if obj.status ~= nil and obj.status.conditions ~= nil then
       return hs
     elseif condition.type == "Failed" then
       hs.status = "Degraded"
-      hs.message = condition.message or "3cale ProxyConfigPromote failed"
+      hs.message = condition.message or "3scale ProxyConfigPromote failed"
       return hs
     end
 

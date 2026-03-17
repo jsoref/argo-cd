@@ -56,7 +56,7 @@ If the number of available shards is changed (i.e. one or more application contr
 ### Why use Deployments instead of StatefulSet:
 StatefulSet is a Kubernetes resource that manages multiple pods that have unique identities, and are not interchangeable (unlike a regular Kubernetes Deployment, in which pods are stateless and can be destroyed and recreated as often as needed). 
 
-Stateless applications scale horizontally very easily as compared to stateful applications due to the fact that infrastructure allows adding as many computing resources as needed. Changing the StatefulSet to Deployments for Application Controller will allow us to dynamically scale the replicas without restarting existing application controller pods. Also, the shard to application controller assignment would help in making sure the shards are scaled and distributed across the available healhty replicas of application controllers.
+Stateless applications scale horizontally very easily as compared to stateful applications due to the fact that infrastructure allows adding as many computing resources as needed. Changing the StatefulSet to Deployments for Application Controller will allow us to dynamically scale the replicas without restarting existing application controller pods. Also, the shard to application controller assignment would help in making sure the shards are scaled and distributed across the available healthy replicas of application controllers.
 
 ### Distributing shards among Application Controllers:
 
@@ -64,11 +64,11 @@ Inorder to be able to accurately know which shards are being managed by which ap
 
 In most scenarios, the service account used by the application controller has read access to all the resources in the cluster. Thus, instead of setting the environment variable ARGOCD_CONTROLLER_REPLICAS representing the number of replicas, the number of replicas can be read directly from the number of healthy replicas of the application controller deployment.
 
-For other scenarios, some users install controller with only `argocd-application-controller-role` role and use it to manage remote clusters only. In this case, we would need to update the `argocd-application-controller-role` role and allow controller inspect it's own deployment and find out the number of replicas.
+For other scenarios, some users install controller with only `argocd-application-controller-role` role and use it to manage remote clusters only. In this case, we would need to update the `argocd-application-controller-role` role and allow controller inspect its own deployment and find out the number of replicas.
 
 The application controllers will claim one of the available shards by checking which shard is not present in the ConfigMap or is assigned to an unhealthy controller. We will store the assignment list of Application Controller to Shard in ConfigMap. The mapping of Application Controller to Shard will store the below information:
 
-* Name/Id of the shard
+* Name/ID of the shard
 * Name of the Application Controller currently managing the shard
 * Last time of successful update to ConfigMap (Heartbeat)
 

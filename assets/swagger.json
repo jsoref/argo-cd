@@ -3974,27 +3974,27 @@
           },
           {
             "type": "string",
-            "description": "Github App Private Key PEM data.",
+            "description": "GitHub App Private Key PEM data.",
             "name": "githubAppPrivateKey",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "Github App ID of the app used to access the repo.",
+            "description": "GitHub App ID of the app used to access the repo.",
             "name": "githubAppID",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "Github App Installation ID of the installed GitHub App.",
+            "description": "GitHub App Installation ID of the installed GitHub App.",
             "name": "githubAppInstallationID",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "Github App Enterprise base url if empty will default to https://api.github.com.",
+            "description": "GitHub App Enterprise base url if empty will default to https://api.github.com.",
             "name": "githubAppEnterpriseBaseUrl",
             "in": "query"
           },
@@ -4881,27 +4881,27 @@
           },
           {
             "type": "string",
-            "description": "Github App Private Key PEM data.",
+            "description": "GitHub App Private Key PEM data.",
             "name": "githubAppPrivateKey",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "Github App ID of the app used to access the repo.",
+            "description": "GitHub App ID of the app used to access the repo.",
             "name": "githubAppID",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "Github App Installation ID of the installed GitHub App.",
+            "description": "GitHub App Installation ID of the installed GitHub App.",
             "name": "githubAppInstallationID",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "Github App Enterprise base url if empty will default to https://api.github.com.",
+            "description": "GitHub App Enterprise base url if empty will default to https://api.github.com.",
             "name": "githubAppEnterpriseBaseUrl",
             "in": "query"
           },
@@ -8061,7 +8061,7 @@
       }
     },
     "v1alpha1BearerTokenBitbucket": {
-      "description": "BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.",
+      "description": "BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.",
       "type": "object",
       "properties": {
         "tokenRef": {
@@ -8070,7 +8070,7 @@
       }
     },
     "v1alpha1BearerTokenBitbucketCloud": {
-      "description": "BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.",
+      "description": "BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.",
       "type": "object",
       "properties": {
         "tokenRef": {
@@ -9521,7 +9521,7 @@
       "properties": {
         "bearerToken": {
           "type": "string",
-          "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+          "title": "BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server"
         },
         "enableOCI": {
           "type": "boolean",
@@ -9542,7 +9542,7 @@
         "githubAppID": {
           "type": "integer",
           "format": "int64",
-          "title": "GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication"
+          "title": "GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication"
         },
         "githubAppInstallationID": {
           "type": "integer",
@@ -9620,7 +9620,7 @@
       "properties": {
         "bearerToken": {
           "type": "string",
-          "title": "BearerToken contains the bearer token used for Git BitBucket Data Center auth at the repo server"
+          "title": "BearerToken contains the bearer token used for Git Bitbucket Data Center auth at the repo server"
         },
         "connectionState": {
           "$ref": "#/definitions/v1alpha1ConnectionState"
@@ -9662,7 +9662,7 @@
         },
         "githubAppPrivateKey": {
           "type": "string",
-          "title": "Github App Private Key PEM data"
+          "title": "GitHub App Private Key PEM data"
         },
         "inheritedCreds": {
           "type": "boolean",
@@ -9741,7 +9741,7 @@
         },
         "certInfo": {
           "type": "string",
-          "title": "CertInfo will hold additional certificate info, depdendent on the certificate type (e.g. SSH fingerprint, X509 CommonName)"
+          "title": "CertInfo will hold additional certificate info, dependent on the certificate type (e.g. SSH fingerprint, X509 CommonName)"
         },
         "certSubType": {
           "type": "string",
@@ -10453,7 +10453,7 @@
       }
     },
     "v1alpha1SCMProviderGeneratorGitlab": {
-      "description": "SCMProviderGeneratorGitlab defines connection info specific to Gitlab.",
+      "description": "SCMProviderGeneratorGitlab defines connection info specific to GitLab.",
       "type": "object",
       "properties": {
         "allBranches": {
@@ -10461,14 +10461,14 @@
           "type": "boolean"
         },
         "api": {
-          "description": "The Gitlab API URL to talk to.",
+          "description": "The GitLab API URL to talk to.",
           "type": "string"
         },
         "caRef": {
           "$ref": "#/definitions/v1alpha1ConfigMapKeyRef"
         },
         "group": {
-          "description": "Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
+          "description": "GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
           "type": "string"
         },
         "includeSharedProjects": {
@@ -10487,7 +10487,7 @@
           "$ref": "#/definitions/v1alpha1SecretRef"
         },
         "topic": {
-          "description": "Filter repos list based on Gitlab Topic.",
+          "description": "Filter repos list based on GitLab Topic.",
           "type": "string"
         }
       }

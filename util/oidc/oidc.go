@@ -168,7 +168,7 @@ func (a *ClientApp) GetTokenSourceFromCache(ctx context.Context, oidcTokenCache 
 	if oidcTokenCache == nil {
 		return nil, errors.New("oidcTokenCache is required")
 	}
-	config, err := a.getOauth2ConfigForRedirectURI(oidcTokenCache.RedirectURL)
+	config, err := a.getOAuth2ConfigForRedirectURI(oidcTokenCache.RedirectURL)
 	if err != nil {
 		return nil, err
 	}
@@ -272,7 +272,7 @@ func (a *ClientApp) getRedirectURIForRequest(req *http.Request) string {
 	return redirectURI
 }
 
-func (a *ClientApp) getOauth2ConfigForRedirectURI(redirectURI string) (*oauth2.Config, error) {
+func (a *ClientApp) getOAuth2ConfigForRedirectURI(redirectURI string) (*oauth2.Config, error) {
 	endpoint, err := a.provider.Endpoint()
 	if err != nil {
 		return nil, err
@@ -362,7 +362,7 @@ func (a *ClientApp) verifyAppState(r *http.Request, w http.ResponseWriter, state
 	return redirectURL, pkceVerifier, nil
 }
 
-// isValidRedirectURL checks whether the given redirectURL matches on of the
+// isValidRedirectURL checks whether the given redirectURL matches one of the
 // allowed URLs to redirect to.
 //
 // In order to be considered valid,the protocol and host (including port) have
@@ -423,7 +423,7 @@ func (a *ClientApp) HandleLogin(w http.ResponseWriter, r *http.Request) {
 		opts = AppendClaimsAuthenticationRequestParameter(opts, config.RequestedIDTokenClaims)
 	}
 
-	oauth2Config, err := a.getOauth2ConfigForRedirectURI(a.getRedirectURIForRequest(r))
+	oauth2Config, err := a.getOAuth2ConfigForRedirectURI(a.getRedirectURIForRequest(r))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -507,7 +507,7 @@ func (a *azureApp) getFederatedServiceAccountToken(context.Context) (string, err
 
 // HandleCallback is the callback handler for an OAuth2 login flow
 func (a *ClientApp) HandleCallback(w http.ResponseWriter, r *http.Request) {
-	oauth2Config, err := a.getOauth2ConfigForRedirectURI(a.getRedirectURIForRequest(r))
+	oauth2Config, err := a.getOAuth2ConfigForRedirectURI(a.getRedirectURIForRequest(r))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -623,7 +623,7 @@ func (a *ClientApp) HandleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// GetValueFromEncryptedCache is a convenience method for retreiving a value from cache and decrypting it.  If the cache
+// GetValueFromEncryptedCache is a convenience method for retrieving a value from cache and decrypting it.  If the cache
 // does not contain a value for the given key, a nil value is returned.  Return handling should check for error and then
 // check for nil.
 func (a *ClientApp) GetValueFromEncryptedCache(ctx context.Context, key string) (value []byte, err error) {
@@ -653,7 +653,7 @@ func (a *ClientApp) GetValueFromEncryptedCache(ctx context.Context, key string) 
 	return value, err
 }
 
-// SetValueFromEncyrptedCache is a convenience method for encrypting a value and storing it in the cache at a given key.
+// SetValueFromEncryptedCache is a convenience method for encrypting a value and storing it in the cache at a given key.
 // Cache expiration is set based on input.
 func (a *ClientApp) SetValueInEncryptedCache(ctx context.Context, key string, value []byte, expiration time.Duration) error {
 	_, span := tracer.Start(ctx, "oidc.ClientApp.SetValueInEncryptedCache")
@@ -900,7 +900,7 @@ func (a *ClientApp) SetGroupsFromUserInfo(ctx context.Context, claims jwt.Claims
 	if iss != sessionManagerClaimsIssuer && a.settings.UserInfoGroupsEnabled() && a.settings.UserInfoPath() != "" {
 		userInfo, unauthorized, err := a.GetUserInfo(ctx, groupClaims, a.settings.IssuerURL(), a.settings.UserInfoPath())
 		if unauthorized {
-			return groupClaims, fmt.Errorf("error while quering userinfo endpoint: %w", err)
+			return groupClaims, fmt.Errorf("error while querying userinfo endpoint: %w", err)
 		}
 		if err != nil {
 			return groupClaims, fmt.Errorf("error fetching user info endpoint: %w", err)

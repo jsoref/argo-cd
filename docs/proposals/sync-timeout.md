@@ -95,7 +95,7 @@ if it exceeds a certain time limit.
 
 The application CRD status field already has all required information to implement sync timeout.
 
-* Global sync timeout: only the operation start time is required to implement this functoinality. It is provided be the `status.operationState.startedAt` field.
+* Global sync timeout: only the operation start time is required to implement this functionality. It is provided be the `status.operationState.startedAt` field.
 * Resources state based termination. This part is a bit more complex and requires information about resources affected/created during the sync operation. Most of
 the required information is already available in the Application CRD status field. The `status.operationState.syncResult.resources` field contains a list of resources
 affected/created during the sync operation. Each `resource` list item includes the resource name, kind, and the resource health status. In order to provide accurate
@@ -119,7 +119,7 @@ The proposed changes don't require any special upgrade/downgrade strategy. The n
 
 ## Drawbacks
 
-Slight increase of the application syncrhonization logic complexity.
+Slight increase of the application synchronization logic complexity.
 
 ## Alternatives
 

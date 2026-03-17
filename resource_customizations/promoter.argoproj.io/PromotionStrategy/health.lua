@@ -56,7 +56,7 @@ if not obj.status.environments or #obj.status.environments == 0 then
     return hs
 end
 
--- Use note.drySha as canonical proposed SHA when present; fallback to proposed.dry.sha.
+-- Use note.drySha as canonical proposed SHA when present; fall back to proposed.dry.sha.
 local function getProposedDrySha(env)
     if env and env.proposed and env.proposed.note and env.proposed.note.drySha and env.proposed.note.drySha ~= "" then
         return env.proposed.note.drySha

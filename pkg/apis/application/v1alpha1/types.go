@@ -1337,7 +1337,7 @@ type SyncOperationResource struct {
 	Exclude   bool   `json:"-"`
 }
 
-// RevisionHistories is a array of history, oldest first and newest last
+// RevisionHistories is an array of history, oldest first and newest last
 type RevisionHistories []RevisionHistory
 
 // LastRevisionHistory returns the latest history item from the revision history
@@ -3829,7 +3829,7 @@ func (c *Cluster) RawRestConfig() (*rest.Config, error) {
 	if c.Config.ProxyUrl != "" {
 		u, err := ParseProxyUrl(c.Config.ProxyUrl)
 		if err != nil {
-			return nil, fmt.Errorf("unable to create K8s REST config, can`t parse proxy url: %w", err)
+			return nil, fmt.Errorf("unable to create K8s REST config, can't parse proxy url: %w", err)
 		}
 		config.Proxy = http.ProxyURL(u)
 	}

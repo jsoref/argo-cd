@@ -126,7 +126,7 @@ func GetRelevantGenerators(requestedGenerator *argoprojiov1alpha1.ApplicationSet
 func flattenParameters(in map[string]any) (map[string]string, error) {
 	flat, err := flatten.Flatten(normalizeMapForFlatten(in), "", flatten.DotStyle)
 	if err != nil {
-		return nil, fmt.Errorf("error flatenning parameters: %w", err)
+		return nil, fmt.Errorf("error flattening parameters: %w", err)
 	}
 
 	out := make(map[string]string, len(flat))

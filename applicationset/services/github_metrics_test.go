@@ -76,7 +76,7 @@ func TestGitHubMetrics_CollectorApproach_Success(t *testing.T) {
 		metrics.RateLimitUsed,
 	)
 
-	// Setup a fake HTTP server
+	// Set up a fake HTTP server
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("X-RateLimit-Reset", strconv.FormatInt(time.Now().Unix()+1, 10))
 		w.Header().Set("X-RateLimit-Remaining", "42")

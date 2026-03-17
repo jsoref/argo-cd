@@ -283,7 +283,7 @@ func TestGeneratePEM(t *testing.T) {
 		assert.Nil(t, key)
 	})
 
-	t.Run("Create PEM from certficate options", func(t *testing.T) {
+	t.Run("Create PEM from certificate options", func(t *testing.T) {
 		opts := CertOptions{Hosts: []string{"localhost"}, Organization: "Acme"}
 		cert, key, err := generatePEM(opts)
 		require.NoError(t, err)
@@ -373,7 +373,7 @@ func TestCreateServerTLSConfig(t *testing.T) {
 	})
 
 	t.Run("Self-signed creation due to non-existing cert", func(t *testing.T) {
-		tlsc, err := CreateServerTLSConfig("testdata/invvalid_tls.crt", "testdata/invalid_tls.key", []string{"localhost", "argocd-repo-server"})
+		tlsc, err := CreateServerTLSConfig("testdata/invalid_tls.crt", "testdata/invalid_tls.key", []string{"localhost", "argocd-repo-server"})
 		require.NoError(t, err)
 		assert.Len(t, tlsc.Certificates, 1)
 		c, err := x509.ParseCertificate(tlsc.Certificates[0].Certificate[0])
@@ -382,7 +382,7 @@ func TestCreateServerTLSConfig(t *testing.T) {
 	})
 
 	t.Run("Self-signed creation fails due to hosts being nil", func(t *testing.T) {
-		tlsc, err := CreateServerTLSConfig("testdata/invvalid_tls.crt", "testdata/invalid_tls.key", nil)
+		tlsc, err := CreateServerTLSConfig("testdata/invalid_tls.crt", "testdata/invalid_tls.key", nil)
 		require.Error(t, err)
 		assert.Nil(t, tlsc)
 	})

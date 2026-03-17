@@ -98,7 +98,7 @@ func Diff(config, live *unstructured.Unstructured, opts ...Option) (*DiffResult,
 		return r, nil
 	}
 
-	// TODO The two variables bellow are necessary because there is a cyclic
+	// TODO The two variables below are necessary because there is a cyclic
 	// dependency with the kube package that blocks the usage of constants
 	// from common package. common package needs to be refactored and exclude
 	// dependency from kube.
@@ -524,7 +524,7 @@ func TwoWayDiff(config, live *unstructured.Unstructured) (*DiffResult, error) {
 // created or being deleted. Will return error if both are nil or if none are nil.
 func handleResourceCreateOrDeleteDiff(config, live *unstructured.Unstructured) (*DiffResult, error) {
 	if live != nil && config != nil {
-		return nil, errors.New("unnexpected state: expected live or config to be null: not create or delete operation")
+		return nil, errors.New("unexpected state: expected live or config to be null: not create or delete operation")
 	}
 	if live != nil {
 		liveData, err := json.Marshal(live)
@@ -797,7 +797,7 @@ func threeWayMergePatch(orig, config, live *unstructured.Unstructured) ([]byte, 
 		}
 		patch, err := strategicpatch.CreateThreeWayMergePatch(origBytes, configBytes, liveBytes, lookupPatchMeta, true)
 		if err != nil {
-			return nil, nil, fmt.Errorf("failed to construct thre way merge patch: %w", err)
+			return nil, nil, fmt.Errorf("failed to construct three way merge patch: %w", err)
 		}
 		newVersionedObject := func() (runtime.Object, error) {
 			return scheme.Scheme.New(orig.GroupVersionKind())
@@ -815,7 +815,7 @@ func threeWayMergePatch(orig, config, live *unstructured.Unstructured) ([]byte, 
 
 	patch, err := jsonmergepatch.CreateThreeWayJSONMergePatch(origBytes, configBytes, liveBytes)
 	if err != nil {
-		return nil, nil, fmt.Errorf("failed to construct thre way merge patch: %w", err)
+		return nil, nil, fmt.Errorf("failed to construct three way merge patch: %w", err)
 	}
 	return patch, nil, nil
 }
@@ -884,7 +884,7 @@ func Normalize(un *unstructured.Unstructured, opts ...Option) {
 	}
 
 	// Skip the full normalization (ignoreDifferences + knownTypes) for server-side diff
-	// In the case an ignoreDifferences field is required, it needs to be present in the config
+	// In the case when an ignoreDifferences field is required, it needs to be present in the config
 	// before server-side diff is calculated and normalized before final comparison.
 	if !o.skipFullNormalize {
 		err := o.normalizer.Normalize(un)

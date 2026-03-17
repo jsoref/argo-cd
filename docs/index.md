@@ -78,7 +78,7 @@ For additional details, see [architecture overview](operator-manual/architecture
 * Automated or manual syncing of applications to its desired state
 * Web UI which provides real-time view of application activity
 * CLI for automation and CI integration
-* Webhook integration (GitHub, BitBucket, GitLab)
+* Webhook integration (GitHub, Bitbucket, GitLab)
 * Access tokens for automation
 * PreSync, Sync, PostSync hooks to support complex application rollouts (e.g. blue/green & canary upgrades)
 * Audit trails for application events and API calls
@@ -87,7 +87,7 @@ For additional details, see [architecture overview](operator-manual/architecture
 
 ## Development Status
 
-Argo CD is being actively developed by the community. [Releases](https://github.com/argoproj/argo-cd/releases) are listed on Github.
+Argo CD is being actively developed by the community. [Releases](https://github.com/argoproj/argo-cd/releases) are listed on GitHub.
 
 ## Adoption
 

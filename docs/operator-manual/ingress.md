@@ -502,7 +502,7 @@ And following lines as patch.yml
 
 ```yaml
 # Use --insecure so Ingress can send traffic with HTTP
-# --bashref /argocd is the subpath like https://IP/argocd
+# --basehref /argocd is the subpath like https://IP/argocd
 # env was added because of https://github.com/argoproj/argo-cd/issues/3572 error
 ---
 apiVersion: apps/v1
@@ -728,7 +728,7 @@ spec:
       http:
         paths:
         - pathType: ImplementationSpecific
-          path: "/*"   # "*" is needed. Without this, the UI Javascript and CSS will not load properly
+          path: "/*"   # "*" is needed. Without this, the UI JavaScript and CSS will not load properly
           backend:
             service:
               name: argocd-server

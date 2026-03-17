@@ -12,7 +12,7 @@ import (
 	. "github.com/argoproj/argo-cd/v3/test/e2e/fixture/app"
 )
 
-// when a app gets stuck in sync, and we try to delete it, it won't delete, instead we must then terminate it
+// when an app gets stuck in sync, and we try to delete it, it won't delete, instead we must then terminate it
 // and deletion will then just happen
 func TestDeletingAppStuckInSync(t *testing.T) {
 	Given(t).

@@ -77,7 +77,7 @@ func OperationRetriedMinimumTimes(minRetries int64) Expectation {
 	return func(c *Consequences) (state, string) {
 		operationState := c.app().Status.OperationState
 		actual := operationState.RetryCount
-		message := fmt.Sprintf("operation state retry cound should be at least %d, is %d, message: '%s'", minRetries, actual, operationState.Message)
+		message := fmt.Sprintf("operation state retry count should be at least %d, is %d, message: '%s'", minRetries, actual, operationState.Message)
 		return simple(actual >= minRetries, message)
 	}
 }
@@ -442,7 +442,7 @@ func Error(message, err string, matchers ...func(string, string) bool) Expectati
 	}
 }
 
-// ErrorRegex asserts that the last command was an error that matches given regex epxression
+// ErrorRegex asserts that the last command was an error that matches given regex expression
 func ErrorRegex(messagePattern, err string) Expectation {
 	return Error(messagePattern, err, func(actual, expected string) bool {
 		return regexp.MustCompile(expected).MatchString(actual)

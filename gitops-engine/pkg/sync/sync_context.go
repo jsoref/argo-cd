@@ -490,7 +490,7 @@ func (sc *syncContext) Sync() {
 	} else {
 		// Perform a `kubectl apply --dry-run` against all the manifests. This will detect most (but
 		// not all) validation issues with the user's manifests (e.g. will detect syntax issues, but
-		// will not not detect if they are mutating immutable fields). If anything fails, we will refuse
+		// will not detect if they are mutating immutable fields). If anything fails, we will refuse
 		// to perform the sync. we only wish to do this once per operation, performing additional dry-runs
 		// is harmless, but redundant. The indicator we use to detect if we have already performed
 		// the dry-run for this operation, is if the resource or hook list is empty.
@@ -781,7 +781,7 @@ func (sc *syncContext) terminateHooksPreemptively(tasks syncTasks) bool {
 		}
 
 		if task.liveObj == nil {
-			// if we terminate preemtively after the task was run, it will not contain the live object yet
+			// if we terminate preemptively after the task was run, it will not contain the live object yet
 			liveObj, err := sc.getResource(task)
 			if err != nil && !apierrors.IsNotFound(err) {
 				sc.setResourceResult(task, task.syncStatus, common.OperationError, fmt.Sprintf("Failed to get live resource: %v", err))
@@ -1431,7 +1431,7 @@ func (sc *syncContext) applyObject(t *syncTask, dryRun, validate bool) (common.R
 	return common.ResultCodeSynced, message
 }
 
-// pruneObject deletes the object if both prune is true and dryRun is false. Otherwise appropriate message
+// pruneObject deletes the object if both prune is true and dryRun is false. Otherwise, an appropriate message
 func (sc *syncContext) pruneObject(liveObj *unstructured.Unstructured, prune, dryRun bool) (common.ResultCode, string) {
 	if !prune {
 		return common.ResultCodePruneSkipped, "ignored (requires pruning)"

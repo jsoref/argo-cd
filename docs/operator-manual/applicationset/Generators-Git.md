@@ -519,7 +519,7 @@ kubectl edit secret argocd-secret -n argocd
 TIP: for ease of entering secrets, Kubernetes supports inputting secrets in the `stringData` field,
 which saves you the trouble of base64 encoding the values and copying it to the `data` field.
 Simply copy the shared webhook secret created in step 1, to the corresponding
-GitHub/GitLab/BitBucket key under the `stringData` field:
+GitHub/GitLab/Bitbucket key under the `stringData` field:
 
 ```yaml
 apiVersion: v1

@@ -2675,7 +2675,7 @@ func schema_pkg_apis_application_v1alpha1_BearerTokenBitbucket(ref common.Refere
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "BearerTokenBitbucket defines the Bearer token for BitBucket AppToken auth.",
+				Description: "BearerTokenBitbucket defines the Bearer token for Bitbucket AppToken auth.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"tokenRef": {
@@ -2697,7 +2697,7 @@ func schema_pkg_apis_application_v1alpha1_BearerTokenBitbucketCloud(ref common.R
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "BearerTokenBitbucketCloud defines the Bearer token for BitBucket AppToken auth.",
+				Description: "BearerTokenBitbucketCloud defines the Bearer token for Bitbucket AppToken auth.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"tokenRef": {
@@ -5788,7 +5788,7 @@ func schema_pkg_apis_application_v1alpha1_RepoCreds(ref common.ReferenceCallback
 					},
 					"githubAppID": {
 						SchemaProps: spec.SchemaProps{
-							Description: "GithubAppId specifies the Github App ID of the app used to access the repo for GitHub app authentication",
+							Description: "GithubAppId specifies the GitHub App ID of the app used to access the repo for GitHub app authentication",
 							Type:        []string{"integer"},
 							Format:      "int64",
 						},
@@ -5999,7 +5999,7 @@ func schema_pkg_apis_application_v1alpha1_Repository(ref common.ReferenceCallbac
 					},
 					"githubAppPrivateKey": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Github App Private Key PEM data",
+							Description: "GitHub App Private Key PEM data",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -6109,7 +6109,7 @@ func schema_pkg_apis_application_v1alpha1_RepositoryCertificate(ref common.Refer
 					},
 					"certInfo": {
 						SchemaProps: spec.SchemaProps{
-							Description: "CertInfo will hold additional certificate info, depdendent on the certificate type (e.g. SSH fingerprint, X509 CommonName)",
+							Description: "CertInfo will hold additional certificate info, dependent on the certificate type (e.g. SSH fingerprint, X509 CommonName)",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -7668,12 +7668,12 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "SCMProviderGeneratorGitlab defines connection info specific to Gitlab.",
+				Description: "SCMProviderGeneratorGitlab defines connection info specific to GitLab.",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"group": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Gitlab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
+							Description: "GitLab group to scan. Required.  You can use either the project id (recommended) or the full namespaced path.",
 							Default:     "",
 							Type:        []string{"string"},
 							Format:      "",
@@ -7688,7 +7688,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 					},
 					"api": {
 						SchemaProps: spec.SchemaProps{
-							Description: "The Gitlab API URL to talk to.",
+							Description: "The GitLab API URL to talk to.",
 							Type:        []string{"string"},
 							Format:      "",
 						},
@@ -7722,7 +7722,7 @@ func schema_pkg_apis_application_v1alpha1_SCMProviderGeneratorGitlab(ref common.
 					},
 					"topic": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Filter repos list based on Gitlab Topic.",
+							Description: "Filter repos list based on GitLab Topic.",
 							Type:        []string{"string"},
 							Format:      "",
 						},

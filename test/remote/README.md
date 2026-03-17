@@ -48,7 +48,7 @@ You will need to build & publish a container image that will hold the required
 testing repositories.
 
 This container image will be named `argocd-e2e-cluster`, so you will need to
-setup a corresponding repository for it in your registry as well.
+set up a corresponding repository for it in your registry as well.
 
 To build it, run the following. Note that kustomize is required:
 

@@ -37,7 +37,7 @@ import {ApplicationHydrateOperationState} from '../application-hydrate-operation
 
 interface ApplicationDetailsState {
     page: number;
-    revision?: string; // Which type of revision panelto show SYNC_STATUS_REVISION or OPERATION_STATE_REVISION
+    revision?: string; // Which type of revision panel to show SYNC_STATUS_REVISION or OPERATION_STATE_REVISION
     groupedResources?: ResourceStatus[];
     slidingPanelPage?: number;
     filteredGraph?: any[];
@@ -1160,7 +1160,7 @@ Are you sure you want to disable auto-sync and rollback application '${props.mat
                                                     isAppSelected={isAppSelected}
                                                     updateApp={(app: models.Application, query: {validate?: boolean}) => updateApp(app, query)}
                                                     selectedNode={selectedNode}
-                                                    appCxt={{...appContext, apis: appContext} as unknown as AppContext}
+                                                    appCtx={{...appContext, apis: appContext} as unknown as AppContext}
                                                 />
                                             </SlidingPanel>
                                         )}
@@ -1300,7 +1300,7 @@ Are you sure you want to disable auto-sync and rollback application '${props.mat
                           {
                               iconClassName: 'fa fa-check',
                               title: <ActionMenuItem actionLabel='Confirm Pruning' />,
-                              action: () => confirmDeletion(app, 'Confirm Prunning', 'Are you sure you want to confirm resources pruning?')
+                              action: () => confirmDeletion(app, 'Confirm Pruning', 'Are you sure you want to confirm resources pruning?')
                           }
                       ]
                     : []),

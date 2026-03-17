@@ -42,7 +42,7 @@ spec:
       github:
         # The GitHub organization or user.
         owner: myorg
-        # The Github repository
+        # The GitHub repository
         repo: myrepository
         # For GitHub Enterprise (optional)
         api: https://git.example.com/
@@ -116,7 +116,7 @@ spec:
 * `insecure`: By default (false) - Skip checking the validity of the SCM's certificate - useful for self-signed TLS certificates.
 * `caRef`: Optional `ConfigMap` name and key containing the GitLab certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
 
-As a preferable alternative to setting `insecure` to true, you can configure self-signed TLS certificates for Gitlab by [mounting self-signed certificate to the applicationset controller](./Generators-SCM-Provider.md#self-signed-tls-certificates).
+As a preferable alternative to setting `insecure` to true, you can configure self-signed TLS certificates for GitLab by [mounting self-signed certificate to the applicationset controller](./Generators-SCM-Provider.md#self-signed-tls-certificates).
 
 ## Gitea
 
@@ -217,9 +217,9 @@ If you want to access a private repository, you must also provide the credential
 In case of Bitbucket App Token, go with `bearerToken` section.
 * `tokenRef`: A `Secret` name and key containing the app token to use for requests.
 
-In case of self-signed BitBucket Server certificates, the following options can be useful:
+In case of self-signed Bitbucket Server certificates, the following options can be useful:
 * `insecure`: By default (false) - Skip checking the validity of the SCM's certificate - useful for self-signed TLS certificates.
-* `caRef`: Optional `ConfigMap` name and key containing the BitBucket server certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
+* `caRef`: Optional `ConfigMap` name and key containing the Bitbucket server certificates to trust - useful for self-signed TLS certificates. Possibly reference the ArgoCD CM holding the trusted certs.
 
 ## Bitbucket Cloud
 
@@ -456,7 +456,7 @@ The configuration is almost the same as the one described [in the Git generator]
 > [!NOTE]
 > The ApplicationSet controller webhook does not use the same [API server webhook](../webhook.md). ApplicationSet exposes a webhook server as a service of type ClusterIP. An ApplicationSet specific Ingress resource needs to be created to expose this service to the webhook source.
 
-### Github webhook configuration
+### GitHub webhook configuration
 
 In section 1, _"Create the webhook in the Git provider"_, add an event so that a webhook request will be sent when a pull request is created, closed, or label changed.
 
@@ -478,11 +478,11 @@ The Pull Request Generator will requeue when the next action occurs.
 
 For more information about each event, please refer to the [official documentation](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads).
 
-### Gitlab webhook configuration
+### GitLab webhook configuration
 
 Enable checkbox for "Merge request events" in triggers list.
 
-![Add Gitlab Webhook](../../assets/applicationset/webhook-config-merge-request-gitlab.png "Add Gitlab Merge request Webhook")
+![Add GitLab Webhook](../../assets/applicationset/webhook-config-merge-request-gitlab.png "Add GitLab Merge request Webhook")
 
 The Pull Request Generator will requeue when the next action occurs.
 

@@ -60,7 +60,7 @@ func TestShuffle(t *testing.T) {
 	assert.Equal(t, 1, distributionFunction(&cluster5))
 	assert.Equal(t, 2, distributionFunction(&cluster6))
 
-	// Now, we remove cluster1, it should be unassigned, and all the other should be resuffled
+	// Now, we remove cluster1, it should be unassigned, and all the other should be reshuffled
 	clusterList.Items = Remove(clusterList.Items, 0)
 	assert.Equal(t, -1, distributionFunction(&cluster1))
 	assert.Equal(t, 0, distributionFunction(&cluster2))

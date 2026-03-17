@@ -134,7 +134,7 @@ func TestSetTokenCookie(t *testing.T) {
 			setCookieHeaders := w.Header()["Set-Cookie"]
 
 			if len(setCookieHeaders) != len(tt.expectedCookies) {
-				t.Errorf("Mistmatch in Set-Cookie header length: %s\nExpected: %d\nGot: %d",
+				t.Errorf("Mismatch in Set-Cookie header length: %s\nExpected: %d\nGot: %d",
 					tt.name, len(tt.expectedCookies), len(setCookieHeaders))
 				return
 			}
@@ -147,7 +147,7 @@ func TestSetTokenCookie(t *testing.T) {
 	}
 }
 
-// TestRoundTripper just copy request headers to the resposne.
+// TestRoundTripper just copy request headers to the response.
 type TestRoundTripper struct{}
 
 func (rt TestRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {

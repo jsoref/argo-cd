@@ -483,7 +483,7 @@ period has elapsed since the last time the item was queued.
 
 To configure the per item limiter you can set the following environment variables:
 
-* `WORKQUEUE_FAILURE_COOLDOWN_NS` : The cool down period in nanoseconds, once period has elapsed for an item the backoff
+* `WORKQUEUE_FAILURE_COOLDOWN_NS` : The cool down period in nanoseconds, once period has elapsed for an item, the backoff
   is reset. Exponential backoff is disabled if set to 0(default), eg. values : 10 * 10^9 (=10s)
 * `WORKQUEUE_BASE_DELAY_NS` : The base delay in nanoseconds, this is the initial backoff used in the exponential backoff
   formula. Defaults to 1000 (=1μs)

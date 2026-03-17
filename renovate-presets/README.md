@@ -53,7 +53,7 @@ Example of repo structure :
     │   ├── devtools.json5 # rules specific to the devtool (CI and dev environment...)
     │   ├── docs.json5 # rules specific to the docs folder.
     │   ├── # etc...
-    │   └── renovate.json5 # this is the single preset referenced from the repository argopro/argo-cd.
+    │   └── renovate.json5 # this is the single preset referenced from the repository argoproj/argo-cd.
     └── argo-rollouts/ # repository
         └── renovate.json5
 
