@@ -3,7 +3,12 @@ package health
 import (
 	"fmt"
 
+	"context"
 	corev1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	storagev1 "k8s.io/api/storage/v1"
+
+	"k8s.io/client-go/kubernetes"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
@@ -31,7 +36,12 @@ func getCorev1PVCHealth(pvc *corev1.PersistentVolumeClaim) (*HealthStatus, error
 	case corev1.ClaimLost:
 		status = HealthStatusDegraded
 	case corev1.ClaimPending:
-		status = HealthStatusProgressing
+		storageClass, err := clientset.StorageV1().StorageClasses().Get(context.TODO(), pvc.storageClassName, metav1.GetOptions{})
+		if err == nil && storageClass.VolumeBindingMode == storagev1.VolumeBindingWaitForFirstConsumer {
+			status = HealthStatusHealthy
+		} else {
+			status = HealthStatusProgressing
+		}
 	case corev1.ClaimBound:
 		status = HealthStatusHealthy
 	default:
